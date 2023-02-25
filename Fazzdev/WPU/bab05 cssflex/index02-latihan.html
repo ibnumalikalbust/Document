@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox 2</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: arial;
+            line-height: 2;
+        }
+
+        .container1 {
+            width: 660px;
+            margin: 50px auto;
+            background-color: #eee;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+        }
+
+        .kolom-utama {
+            flex: 3;
+            order: 2;
+        }
+
+        .sidebar-satu {
+            flex: 1;
+            order: 1;
+        }
+
+        .sidebar-dua {
+            flex: 1;
+            order: 3;
+        }
+
+        .container2 {
+            max-width: 660px;
+            margin: 50px auto;
+        }
+
+        .layanan-satu,
+        .layanan-dua,
+        .layanan-tiga {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .layanan-satu {
+            background-color: red;
+
+        }
+
+        .layanan-dua {
+            background-color: lime;
+        }
+
+        .layanan-tiga {
+            background-color: aqua;
+        }
+
+        .container3 {
+            max-width: 660px;
+            margin: 50px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .thumbnail {
+            width: 50%;
+        }
+
+        .thumbnail img {
+            width: 100%;
+        }
+
+        .container4 {
+            width: 660px;
+            margin: 50px auto;
+            display: flex;
+        }
+
+        .card {
+            border: 1px solid grey;
+            border-radius: 10px;
+            background-color: aliceblue;
+            overflow: hidden;
+            text-align: center;
+            margin: 10px;
+            flex: 1;
+        }
+
+        .card .header {
+            height: 150px;
+            background-color: violet;
+        }
+
+        .card .content {
+            padding-bottom: 20px;
+        }
+
+        .card.card2 {
+            transform: scale(1.1);
+        }
+
+        .container5 {
+            width: 660px;
+            height: 660px;
+            margin: 50px auto;
+            border: 5px solid black;
+            box-sizing: border-box;
+            display: flex;
+        }
+
+        .kotak {
+            width: 150px;
+            height: 150px;
+            background-color: brown;
+            color: white;
+            margin: auto;
+            display: flex;
+            text-align: center;
+        }
+
+        .kotak span {
+            margin: auto;
+        }
+
+        @media(min-width: 600px) {
+            .container2 {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .layanan-satu,
+            .layanan-dua,
+            .layanan-tiga {
+                width: 30%;
+            }
+
+            .thumbnail {
+                width: 33%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div0">
+        <h1>LATIHAN FLEXBOX</h1>
+    </div>
+    <div class="container1">
+        <div class="kolom-utama">
+            <h2>Judul Artikel</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae accusantium, praesentium pariatur
+                neque expedita velit vero maxime quod quidem eos laborum atque consectetur iusto sunt.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad sequi odit obcaecati nihil quae voluptatum
+                laudantium ipsa, est voluptas optio modi officiis accusamus, at delectus dolores, laborum vero hic quo
+                aliquid esse? Aspernatur, non! Commodi veritatis ipsa aliquam a perferendis.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo pariatur quos provident, fuga corrupti,
+                impedit nihil aperiam iste fugiat neque sit rerum tempora exercitationem eos nulla sequi natus odit
+                deserunt.</p>
+        </div>
+        <div class="sidebar-satu">
+            <h3>Sidebar Satu</h3>
+            <ul>
+                <li><a href="#">link 1</a></li>
+                <li><a href="#">link 2</a></li>
+                <li><a href="#">link 3</a></li>
+                <li><a href="#">link 4</a></li>
+                <li><a href="#">link 5</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-dua">
+            <h3>Sidebar Dua</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus repudiandae tempora odit accusamus
+                iste ad.</p>
+        </div>
+    </div>
+    <div class="container2">
+        <div class="layanan-satu">
+            <h4>Layanan 1</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, tempore.</p>
+        </div>
+        <div class="layanan-dua">
+            <h4>Layanan 2</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, eaque!</p>
+        </div>
+        <div class="layanan-tiga">
+            <h4>Layanan 3</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, eius?</p>
+        </div>
+    </div>
+    <div class="container3">
+        <div class="thumbnail">
+            <img src="1.png" alt="gambar1">
+        </div>
+        <div class="thumbnail">
+            <img src="2.png" alt="gambar2">
+        </div>
+        <div class="thumbnail">
+            <img src="3.png" alt="gambar3">
+        </div>
+        <div class="thumbnail">
+            <img src="4.png" alt="gambar4">
+        </div>
+        <div class="thumbnail">
+            <img src="5.png" alt="gambar5">
+        </div>
+        <div class="thumbnail">
+            <img src="6.png" alt="gambar6">
+        </div>
+    </div>
+    <div class="container4">
+        <div class="card card1">
+            <div class="header"></div>
+            <div class="content"></div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt, consequatur.</p>
+            <button>Buy Now</button>
+        </div>
+        <div class="card card2">
+            <div class="header"></div>
+            <div class="content"></div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt, consequatur.</p>
+            <button>Buy Now</button>
+        </div>
+        <div class="card card3">
+            <div class="header"></div>
+            <div class="content"></div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt, consequatur.</p>
+            <button>Buy Now</button>
+        </div>
+    </div>
+    <div class="container5">
+        <div class="kotak">
+            <span>HELLO WORLD</span>
+        </div>
+    </div>
+</body>
+
+</html>

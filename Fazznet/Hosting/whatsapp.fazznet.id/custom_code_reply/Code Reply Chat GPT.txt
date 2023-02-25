@@ -1,0 +1,46 @@
+// By : aminoto-program
+module.exports = async function(body, args, arg, client, pushname, from, m, SessionName, openAi, openAI_image) {
+    // write your code reply here hereeee, Don't delete above. example :
+    const fetch = require('node-fetch')
+    var body = body.toLowerCase()
+    
+    client.openai = client.openai ? client.openai : {}
+    client.openai_image = client.openai_image ? client.openai_image : {}
+
+    if (body == 'openai') {
+        if (from in client.openai) {
+            return await client.sendMessage(from, { text: 'Masih ada sesi open ai disini'})
+        }
+        return client.openai[from] = [
+            await client.sendMessage(from, { text: 'Sesi dengan ai telah di mulai. Sekarang anda dapat menanyakan sesuatu kepada AI.'})
+        ]
+    }
+    try {
+        if (from in client.openai) {
+        	await client.sendMessage(from, { text: 'Permintaan sedang di proses'})
+            var siAI = await openAi(body);
+            return client.sendMessage(from, { text: siAI}, { quoted: m });
+        }
+    } catch(e) {}
+
+    if (body == 'openai_image') {
+        if (from in client.openai_image) {
+            return await client.sendMessage(from, { text: 'Masih ada sesi open ai disini'})
+        }
+        return client.openai_image[from] = [
+            await client.sendMessage(from, { text: 'Sesi dengan ai telah di mulai. Sekarang anda dapat mencari gambar sesuai keyword yang anda cari'})
+        ]
+    }
+    try {
+        if (from in client.openai_image) {
+        	await client.sendMessage(from, { text: 'Permintaan sedang di proses'})
+            var siAI = await openAI_image(body);
+            return await client.sendMessage(from, { image: { url: siAI.data.data[0].url }, caption: body, mimetype: 'image/jpeg' })
+        }
+    } catch(e) {}
+
+function replece(oldS, newS, fullS) {
+  return fullS.split(oldS).join(newS)
+}
+
+}

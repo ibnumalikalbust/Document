@@ -1,0 +1,17 @@
+:root {
+  --warna1: red;
+  --warna2: green;
+  --warna3: blue;
+}
+
+body {
+  background-color: var(--warna3);
+}
+
+body {
+  background-color: cyan;
+}
+
+h1 {
+  color: green;
+}/*# sourceMappingURL=sass3.css.map */

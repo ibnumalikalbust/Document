@@ -1,0 +1,77 @@
+<?php 
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];
+$datadefp = $rid['dataUser'];
+if ($rid['web_setting']['def_msg'] == '1' && $datadefp['def_msg'] == '1') { ?>
+<?php
+
+if (post("pesan")) {
+    $sender = post("sender");
+    $pesan = post("pesan");
+    $active = post("active");
+    $ceks = mysqli_query($con, "SELECT * FROM pesan_default WHERE nomor = '$sender'");
+    $u = $_SESSION['rid_username'];
+    if (mysqli_num_rows($ceks) == 0) {
+        $neww = mysqli_query($con, "INSERT INTO pesan_default VALUES('', '$pesan', '$u', '$sender', '$active')");
+        if ($neww == true) {
+            echo '<script>alert("'.rid_lang("success_added").'");</script>';
+        } else {
+            echo '<script>alert("error");</script>';
+        }
+    } else {
+        $neww = mysqli_query($con, "UPDATE pesan_default SET pesan = '$pesan', make_by = '$u', nomor = '$sender', active = '$active' WHERE nomor = '$sender'");
+        if ($neww == true) {
+            echo '<script>alert("'.rid_lang("success_added").'");</script>';
+        } else {
+            echo '<script>alert("ada kesalahan");</script>';
+        }
+    }
+}
+$u = $_SESSION['rid_username'];
+$ceks = mysqli_query($con, "SELECT * FROM pesan_default WHERE make_by = '$u'");
+$kyww = mysqli_fetch_assoc($ceks);
+?>
+        <!-- DataTales Example -->
+        <div class="card shadow col-md-5 mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"><?php echo rid_lang('def_message');?></h6>
+            </div>
+            <div class="card-body">
+                <form action="" method="POST">
+                    <label for="">Sender</label>
+                    <select class="form-control" name="sender" style="width: 100%">
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik='$u'");
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . $row['nomor'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <label> <?php echo rid_lang('message');?> </label>
+                    <textarea class="form-control" name="pesan" placeholder="<?php echo rid_lang('message');?>" required><?php echo $kyww['pesan'];?></textarea>
+                    <br>
+                    <label for="">Choose status:</label>
+                    <select class="form-control" name="active" style="width: 100%">
+                        <option value="0"><?php echo rid_lang('disable');?></option>
+                        <option value="1"><?php echo rid_lang('enable');?></option>
+                    </select>
+                    <button class="btn btn-success" type="submit"><?php echo rid_lang('save');?></button>
+                </form>
+            </div>
+        </div>
+    <script>
+      function tambahautoreply() {
+        var ajig = document.getElementById('tambahauto');
+        if (ajig.style.display === "none") {
+          ajig.style.display = "block";
+        } else {
+          ajig.style.display = "none";
+        }
+      }
+    </script>
+<?php } else if ($datadefp['def_msg'] == '2') { ?>
+<center><h1>You do not have access to use this</h1></center>
+<?php } else { ?>
+<center><h1>This feature disabled</h1></center>
+<?php } ?>s

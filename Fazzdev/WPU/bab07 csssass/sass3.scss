@@ -1,0 +1,30 @@
+// CSS Variable
+:root {
+    --warna1: red;
+    --warna2: green;
+    --warna3: blue;
+}
+
+body {
+    background-color: var(--warna3);
+}
+
+// SASS Variable
+$warna4: cyan;
+$warna5: magenta;
+$warna6: yellow;
+
+body {
+    background-color: $warna4;
+}
+
+// Map
+$alert: (
+    'danger': red,
+    'warning':orange,
+    'success': green,
+);
+
+h1 {
+    color: map-get($alert, 'success');
+}

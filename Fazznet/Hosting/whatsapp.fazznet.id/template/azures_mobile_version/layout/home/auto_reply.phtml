@@ -1,0 +1,179 @@
+<?php 
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];;
+$datadefp = $rid['dataUser'];
+if ($rid['web_setting']['auto_reply'] == '1' && $datadefp['send_msg'] == '1') { ?>
+    <div class="card">
+        <div class="card-body">
+            <button class="btn btn-info float-right" onclick="rid_AddAutoReply();"><?php echo rid_lang('add_auto_reply');?></button>
+            <h6 class="card-title"><?php echo rid_lang('auto_reply');?></h6>
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom:0;">
+                    <div class=" add_category_form_alert"></div>
+                </div>
+            </div>
+            <br>
+            <div class="table-responsive1">
+                <table id="example" class="table key-buttons text-md-nowrap">
+                    <thead>
+                        <tr>
+                           <th><?php echo rid_lang('number');?></th>
+                           <th>keyword</th>
+                           <th>response</th>
+                           <th>action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM auto_reply WHERE make_by = '$u'");
+                        while ($row = mysqli_fetch_assoc($q)) { ?>
+                        <tr id="<?= $row['id'];?>" data-selected="<?= $row['id'];?>">
+                            <td><?= $row['nomor']; ?></td>
+                            <td><?= $row['keyword']; ?></td>
+                            <td><?= $row['response']; ?></td>
+                            <td>
+                                <button onclick="rid_edits(`<?= $row["id"];?>`,`<?= $row["keyword"]; ?>`,`<?= $row["response"]; ?>`);" type="button" class="btn bg-danger admn_table_btn">Edit</button>
+                                <button onclick="rid_delete('<?= $row["id"];?>','hide');" type="button" class="btn bg-danger admn_table_btn"><?php echo rid_lang('delete');?></button>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<script>
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+function rid_edit() {
+    $('#edit_autoreply').submit();
+}
+
+function rid_add() {
+    $("#add_autoreply").submit();
+}
+
+$(document).ready(function () {
+  $("#add_autoreply").submit(function (event) {
+      const sender = document.getElementById("sender");
+      const keyword = document.getElementById("keyword");
+      const response = document.getElementById("response");
+      
+      const addareply = {
+          sender: sender.value,
+          keyword: keyword.value,
+          response: response.value
+      };
+      
+      $.ajax({
+          url: rid_request_file() + '?f=add_autoreply',
+          beforeSend: function() {
+              $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>')
+          },
+          type: "POST",
+          data: addareply,
+      }).done(async (data) => {
+          console.log(data);
+          var ridCans = JSON.parse(data);
+          if (ridCans.status == 200) {
+              await sleep(2000);
+              $('#langsModal').modal('hide');
+              location.reload();
+          } else {
+              console.log('this error ' + data);
+              $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+              setTimeout(function () {
+                  $('.langsModalAlert').empty();
+              }, 5000);
+          }
+          $("#langsModal").animate({ scrollTop: 0 }, 100);
+      });
+    event.preventDefault();
+  });
+});
+
+$(document).ready(function () {
+  $("#edit_autoreply").submit(function (event) {
+      const id = document.getElementById("id");
+      const keyword_edit = document.getElementById("keyword_edit");
+      const response = document.getElementById("response_edit");
+      
+      const editauto = {
+          id: id.value,
+          keyword: keyword_edit.value,
+          response: response_edit.value
+      };
+      
+      $.ajax({
+          url: rid_request_file() + '?f=edit_autoreply',
+          beforeSend: function() {
+              $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>')
+          },
+          type: "POST",
+          data: editauto,
+      }).done(async (data) => {
+          console.log(data);
+          var ridCans = JSON.parse(data);
+          if (ridCans.status == 200) {
+              await sleep(2000);
+              $('#langsModal').modal('hide');
+              location.reload();
+          } else {
+              console.log('this error ' + data);
+              $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+              setTimeout(function () {
+                  $('.langsModalAlert').empty();
+              }, 5000);
+          }
+          $("#langsModal").animate({ scrollTop: 0 }, 100);
+      });
+    event.preventDefault();
+  });
+});
+
+function rid_AddAutoReply() {
+    $('#add_autoreplyh').modal('show');
+    const tot = document.getElementById("tot");
+    const response = document.getElementById("response");
+    response.addEventListener("input", (e) => {
+        if (response.value.length < 5) {
+            $("#tot").html('Please write more than 4 characters');
+            document.getElementById("saveBtnAdd").setAttribute("disabled", "");
+        } else {
+            document.getElementById("saveBtnAdd").removeAttribute("disabled");
+            $("#tot").html('Okay, You did very well');
+        }
+    });
+}
+
+function rid_edits(nomor,keyword,response) {
+    $('#edit_autoreplyh').modal('show');
+    document.getElementById("id").setAttribute("value", nomor);
+    document.getElementById("keyword_edit").setAttribute("value", keyword);
+    document.getElementById("response_edit").value = response;
+}
+
+function rid_delete(key,type = 'show') {
+  if (key == '') {
+    return false;
+  }
+  if (type == 'hide') {
+    $('#modals-delete_device').find('.delete-device').attr('onclick', "rid_delete('"+key+"')");
+    $('#modals-delete_device').showMenu();
+    return false;
+  }
+  $('#' + key).fadeOut(300, function () {
+    $(this).remove();
+  });
+  $.get(rid_request_file(), {f: 'edit_autoreply', act: 'del', id:key});
+}
+</script>
+<?php } else if ($datadefp['send_msg'] == '2') { ?>
+<center><h1>You do not have access to use this</h1></center>
+<?php } else { ?>
+<center><h1>This Feature Disabled</h1></center>
+<?php } ?>

@@ -1,0 +1,10 @@
+{
+    "host_name": "localhost",
+    "user": "u1572281_whatsapp_user",
+    "password": "krembuntakendekrogi",
+    "db_name": "u1572281_whatsapp_database",
+    "domain": "https://wa.fazznet.id",
+    "domain_without_http": "wa.fazznet.id",
+    "port_app": 8440,
+    "installed": "shared_hosting"
+}

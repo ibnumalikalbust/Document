@@ -1,0 +1,310 @@
+<?php 
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];;
+$datadefp = $rid['dataUser'];
+if ($rid['web_setting']['auto_reply'] == '1' && $datadefp['send_msg'] == '1') { ?>
+<div class="container-fluid">
+    <div>
+        <h3><?php echo rid_lang('auto_reply');?></h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page"><?php echo rid_lang('auto_reply');?></li>
+            </ol>
+        </nav>
+    </div>
+    <!-- Widgets -->
+    <div class="row clearfix">
+    <div class="card">
+        <div class="card-body">
+			<button class="btn btn-info float-right" onclick="rid_AddAutoReply();"><?php echo rid_lang('add_auto_reply');?></button>
+            <h6 class="card-title"><?php echo rid_lang('auto_reply');?></h6>
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom:0;">
+                    <div class=" add_category_form_alert"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <br>
+            <div class="table-responsive1">
+                <table id="example" class="table key-buttons text-md-nowrap">
+                    <thead>
+                        <tr>
+                           <th><?php echo rid_lang('number');?></th>
+                           <th>keyword</th>
+                           <th>response</th>
+                           <th>action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM auto_reply WHERE make_by = '$u'");
+                        while ($row = mysqli_fetch_assoc($q)) { ?>
+                        <tr id="<?= $row['id'];?>" data-selected="<?= $row['id'];?>">
+                            <td><?= $row['nomor']; ?></td>
+                            <td><?= $row['keyword']; ?></td>
+                            <td><?= $row['response']; ?></td>
+                            <td>
+                                <button onclick="rid_edits(`<?= $row["id"];?>`,`<?= $row["keyword"]; ?>`,`<?= $row["response"]; ?>`);" type="button" class="btn bg-danger admn_table_btn">Edit</button>
+                                <button onclick="rid_delete('<?= $row["id"];?>','hide');" type="button" class="btn bg-danger admn_table_btn"><?php echo rid_lang('delete');?></button>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    </div>
+    <!-- #END# Widgets -->
+</div>
+
+<div class="modal fade" id="edit_autoreplyh" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h4 class="modal-title" id="langsModalLabel">Edit</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="langsModalAlert"></div>
+                <form id="edit_autoreply" method="POST">
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel"><?php echo rid_lang('number');?> ID</label>
+                                <input type="number" style="resize: none;" name="id" id="id" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">keyword</label>
+                                <input style="resize: none;" name="keyword_edit" id="keyword_edit" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label">Response</label>
+                                <textarea name="response_edit" id="response_edit" class="form-control" cols="30" rows="10" style="height: 100px;"></textarea>
+                                <small class="admin-info">Write your message here.</small>
+                            </div>
+                        </div>
+                        <div class="data"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal_close_btn" data-dismiss="modal"><?php echo rid_lang('close');?></button>
+                <button type="button" class="btn btn-primary" onclick="rid_edit();"><?php echo rid_lang('save');?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModal1Label"><?php echo rid_lang('delete');?> Auto reply</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php echo rid_lang('sure');?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo rid_lang('close');?></button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo rid_lang('delete');?></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="add_autoreplyh" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h4 class="modal-title" id="langsModalLabel"><?php echo rid_lang('add_numb');?></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="langsModalAlert"></div>
+                <form id="add_autoreply" method="POST">
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel"><?php echo rid_lang('number');?> Sender</label>
+                        <select class="form-control show-tick" id="sender" name="sender">
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik='$u' AND state = 'CONNECTED'");
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . $row['nomor'] . ' (active)</option>';
+                        }
+                        ?>
+                        </select>
+                        <small class="admin-info">Choose sender.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">keyword</label>
+                                <input style="resize: none;" name="keyword" id="keyword" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label">Response</label>
+                                <textarea name="response" id="response" class="form-control" cols="30" rows="10" style="height: 100px;"></textarea>
+                                <small class="admin-info" id="tot">Write your message here.</small>
+                            </div>
+                        </div>
+                        <div class="data"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal_close_btn" data-dismiss="modal"><?php echo rid_lang('close');?></button>
+                <button type="button" id="saveBtnAdd" class="btn btn-primary" onclick="rid_add();"><?php echo rid_lang('save');?></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+function rid_edit() {
+    $('#edit_autoreply').submit();
+}
+
+function rid_add() {
+    $("#add_autoreply").submit();
+}
+
+$(document).ready(function () {
+  $("#add_autoreply").submit(function (event) {
+      const sender = document.getElementById("sender");
+      const keyword = document.getElementById("keyword");
+      const response = document.getElementById("response");
+      
+      const addareply = {
+          sender: sender.value,
+          keyword: keyword.value,
+          response: response.value
+      };
+      
+      $.ajax({
+          url: rid_request_file() + '?f=add_autoreply',
+          beforeSend: function() {
+              $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>')
+          },
+          type: "POST",
+          data: addareply,
+      }).done(async (data) => {
+          console.log(data);
+          var ridCans = JSON.parse(data);
+          if (ridCans.status == 200) {
+              await sleep(2000);
+              $('#langsModal').modal('hide');
+              location.reload();
+          } else {
+              console.log('this error ' + data);
+              $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+              setTimeout(function () {
+                  $('.langsModalAlert').empty();
+              }, 5000);
+          }
+          $("#langsModal").animate({ scrollTop: 0 }, 100);
+      });
+    event.preventDefault();
+  });
+});
+
+$(document).ready(function () {
+  $("#edit_autoreply").submit(function (event) {
+      const id = document.getElementById("id");
+      const keyword_edit = document.getElementById("keyword_edit");
+      const response = document.getElementById("response_edit");
+      
+      const editauto = {
+          id: id.value,
+          keyword: keyword_edit.value,
+          response: response_edit.value
+      };
+      
+      $.ajax({
+          url: rid_request_file() + '?f=edit_autoreply',
+          beforeSend: function() {
+              $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>')
+          },
+          type: "POST",
+          data: editauto,
+      }).done(async (data) => {
+          console.log(data);
+          var ridCans = JSON.parse(data);
+          if (ridCans.status == 200) {
+              await sleep(2000);
+              $('#langsModal').modal('hide');
+              location.reload();
+          } else {
+              console.log('this error ' + data);
+              $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+              setTimeout(function () {
+                  $('.langsModalAlert').empty();
+              }, 5000);
+          }
+          $("#langsModal").animate({ scrollTop: 0 }, 100);
+      });
+    event.preventDefault();
+  });
+});
+
+function rid_AddAutoReply() {
+    $('#add_autoreplyh').modal('show');
+    const tot = document.getElementById("tot");
+    const response = document.getElementById("response");
+    response.addEventListener("input", (e) => {
+        if (response.value.length < 5) {
+            $("#tot").html('Please write more than 4 characters');
+            document.getElementById("saveBtnAdd").setAttribute("disabled", "");
+        } else {
+            document.getElementById("saveBtnAdd").removeAttribute("disabled");
+            $("#tot").html('Okay, You did very well');
+        }
+    });
+}
+
+function rid_edits(nomor,keyword,response) {
+    $('#edit_autoreplyh').modal('show');
+    document.getElementById("id").setAttribute("value", nomor);
+    document.getElementById("keyword_edit").setAttribute("value", keyword);
+    document.getElementById("response_edit").value = response;
+}
+
+function rid_delete(key,type = 'show') {
+  if (key == '') {
+    return false;
+  }
+  if (type == 'hide') {
+    $('#DeleteModal').find('.btn-primary').attr('onclick', "rid_delete('"+key+"')");
+    $('#DeleteModal').modal('show');
+    return false;
+  }
+  $('#' + key).fadeOut(300, function () {
+    $(this).remove();
+  });
+  $.get(rid_request_file(), {f: 'edit_autoreply', act: 'del', id:key});
+}
+</script>
+<?php } else if ($datadefp['send_msg'] == '2') { ?>
+<center><h1>You do not have access to use this</h1></center>
+<?php } else { ?>
+<center><h1>This Feature Disabled</h1></center>
+<?php } ?>

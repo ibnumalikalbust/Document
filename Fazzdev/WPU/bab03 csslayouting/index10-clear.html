@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>layouting10</title>
+    <style>
+        .div0 {
+            text-align: center;
+        }
+
+        .container {
+            width: 610px;
+            border: 1px solid black;
+            margin: auto;
+        }
+
+        h2 {
+            margin-left: 50px;
+        }
+
+        ul li {
+            display: inline-block;
+            padding: 0px 10px;
+            border-right: 1px solid black;
+            width: 50px;
+            height: 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: green;
+            background-color: yellow;
+            padding: 2px;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        a:hover {
+            color: red;
+            font-size: 17px;
+        }
+
+        .photos {
+            background-color: lime;
+            width: 99%;
+            height: 200px;
+            margin: auto;
+            border: 1px dashed red;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .content {
+            padding: 5px;
+            text-align: justify;
+        }
+
+        .footer {
+            background-color: brown;
+            clear: both;
+        }
+
+        .footer p {
+            text-align: center;
+            color: white;
+            padding: 5px;
+        }
+
+        .float1 {
+            width: 400px;
+            box-sizing: border-box;
+            float: left;
+            padding: 10px;
+        }
+
+        .float2 {
+            width: 200px;
+            box-sizing: border-box;
+            float: right;
+            padding: 10px;
+        }
+
+        .profile {
+        background-color: lime;
+        width: 50px;
+        height: 50px;
+        border: 1px dashed red;
+        text-align: center;
+        line-height: 50px;
+        float: left;
+        margin-right: 5px;
+        }
+
+        .float2 p {
+            font: 12px/18px arial;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div0">
+        <h1>WEBSITE FLOAT</h1>
+    </div>
+    <br>
+    <div class="container">
+        <div class="header">
+            <h2>MY WEBSITE</h2>
+            <ul>
+                <li><a href="#">home</a></li>
+                <li><a href="#">about</a></li>
+                <li><a href="#">product</a></li>
+                <li><a href="#">service</a></li>
+                <li><a href="#">contact</a></li>
+            </ul>
+        </div>
+        <div class="photos">GAMBAR</div>
+        <div class="content">
+            <div class="float1">
+                <h3>Judul Artikel</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos dolorem delectus porro
+                    illum aspernatur asperiores ea in voluptatem voluptates, possimus, atque illo, officiis
+                    exercitationem repellendus?</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet nulla atque in voluptates
+                    ipsam, doloribus maxime dolores, adipisci sapiente odio soluta aut optio distinctio animi.
+                    Facilis veniam dolorem aliquam quod reprehenderit temporibus quia inventore eligendi modi alias
+                    vero, ea ipsum, voluptas labore nihil id qui assumenda. Ratione rem qui accusantium.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima eveniet voluptatem, illum
+                    voluptatum ratione corrupti aut ut inventore vero eaque ullam saepe laudantium asperiores atque!
+                </p>
+            </div>
+            <div class="float2">
+                <h3>Tentang Penulis</h3>
+                <div class="profile">P</div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dolore asperiores necessitatibus ea
+                    perspiciatis facere id minima cum deserunt nisi non nostrum quaerat, veritatis unde.</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias similique, ipsum ipsam harum quam
+                    id sapiente maxime ut alias tempora sequi eveniet fuga. Esse, quia.</p>
+            </div>
+        </div>
+        <div class="footer">
+            <p>All Right Reserved Copyright 2022</p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+<?php 
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];
+$datadefp = $rid['dataUser'];
+?>
+    <div class="card">
+        <div class="card-body">
+			<a href="<?php echo url_wa();?>/add_ccr.php" target="_blank"><button type="button" class="btn btn-info float-right">Add</button></a>
+            <h6 class="card-title"><?php echo rid_lang('auto_reply');?></h6>
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom:0;">
+                    <div class=" add_category_form_alert"></div>
+                </div>
+            </div>
+            <br>
+            <div class="langsModalAlert"></div>
+            <div class="table-responsive1">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                           <th>FILENAME</th>
+                           <th>MYNUMB</th>
+                           <th>USERNAME</th>
+                           <th>action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM custom_code_reply WHERE username = '$u'");
+                        while ($row = mysqli_fetch_assoc($q)) { 
+                            $file_name = $row['file_name'];
+                            $mynumb = $row['mynumb'];
+                            ?>
+                        <tr id="<?= $row['id'];?>" data-selected="<?= $row['id'];?>">
+                            <td><?= $row['file_name']; ?>-<?= $row['mynumb']; ?>.js</td>
+                            <td><?= $row['mynumb']; ?></td>
+                            <td><?= $row['username']; ?></td>
+                            <td>
+                                <a href="<?php echo url_wa();?>/edit_ccr.php?id=<?php echo $row['id'];?>" target="_blank"><button type="button" class="btn bg-danger admn_table_btn">Edit</button></a>
+                                <button onclick="rid_delete('<?= $row["id"];?>','hide');" type="button" class="btn bg-danger admn_table_btn"><?php echo rid_lang('delete');?></button>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+function rid_edit() {
+    $('#edit_autoreply').submit();
+}
+
+function rid_add() {
+    $('#add_autoreply').submit();
+}
+
+    var set_areply = $('#edit_autoreply');
+    set_areply.ajaxForm({
+        url: rid_request_file() + '?f=edit_autoreply',
+        beforeSend: function() {
+            $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>');
+        },
+        type: 'post',
+        success: async (data) => {
+           var ridCans = JSON.parse(data);
+            if (ridCans.status == 200) {
+                $('.langsModalAlert').html('<div class="alert alert-success">Success</div>');
+                //await sleep(1000);
+                $('#edit_autoreplyh').modal('hide');
+                location.reload();
+                
+            }
+            else{
+                console.log('this error ' + data);
+                $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+                setTimeout(function () {
+                    $('.langsModalAlert').empty();
+                }, 2000);
+            }
+            $("#edit_autoreply").animate({ scrollTop: 0 }, 100);
+
+        }
+    });
+    
+    var add_areply = $('#add_autoreply');
+    add_areply.ajaxForm({
+        url: rid_request_file() + '?f=add_autoreply',
+        beforeSend: function() {
+            $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>');
+        },
+        type: 'post',
+        success: async (data) => {
+           var ridCans = JSON.parse(data);
+            if (ridCans.status == 200) {
+                $('.langsModalAlert').html('<div class="alert alert-success">Success</div>');
+                //await sleep(1);
+                $('#add_autoreplyh').modal('hide');
+                location.reload();
+                
+            }
+            else{
+                console.log('this error ' + data);
+                $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+                setTimeout(function () {
+                    $('.langsModalAlert').empty();
+                }, 2000);
+            }
+            $("#add_autoreply").animate({ scrollTop: 0 }, 100);
+
+        }
+    });
+
+function rid_AddAutoReply() {
+    $('#add_autoreplyh').modal('show');
+}
+
+function rid_delete(key,type = 'show') {
+  if (key == '') {
+    return false;
+  }
+  if (type == 'hide') {
+    $('#modals-delete_device').find('.delete-device').attr('onclick', "rid_delete('"+key+"')");
+    $('#modals-delete_device').showMenu();
+    return false;
+  }
+  $('#' + key).fadeOut(300, function () {
+    $(this).remove();
+  });
+  $.get(rid_request_file(), {
+      beforeSend: function() {
+            $('.langsModalAlert').html('<div class="alert alert-success">Waiting for response please wait...</div>');
+        },
+      f: 'del_ccr', 
+      id:key
+      
+  }, function(data) {
+      var ridCans = JSON.parse(data);
+      if (ridCans.status == 200) {
+        $('.langsModalAlert').html('<div class="alert alert-success">'+ ridCans.message + '</div>');
+        location.reload();
+      } else {
+          $('.langsModalAlert').html('<div class="alert alert-danger">'+ ridCans.message + '</div>');
+      }
+  });
+}
+</script>

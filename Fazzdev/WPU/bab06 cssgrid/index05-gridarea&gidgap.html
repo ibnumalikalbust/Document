@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid 5</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    .container1 {
+      width: 95%;
+      margin: 50px auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas: "header header header""sidebar content content""sidebar content content""footer footer footer";
+    }
+
+    .div1 {
+      width: 100%;
+      background-color: lime;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px;
+      box-sizing: border-box;
+    }
+
+    .header {
+      background-color: red;
+      grid-area: header;
+    }
+
+    .sidebar {
+      background-color: yellow;
+      grid-area: sidebar;
+    }
+
+    .content {
+      background-color: lime;
+      grid-area: content;
+    }
+
+    .footer {
+      background-color: aqua;
+      grid-area: footer;
+    }
+
+    @media(max-width: 576px) {
+      .container1 {
+        grid-template-areas: "header header header""sidebar sidebar sidebar""content content content""footer footer footer";
+      }
+    }
+
+    .container2 {
+      width: 95%;
+      margin: 50px auto;
+      display: grid;
+      grid-template: "header header header"50px "footer footer footer"50px / 1fr 2fr 3fr;
+    }
+
+    .div2 {
+      width: 100%;
+      background-color: lime;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .div2:nth-child(even) {
+      background-color: aqua;
+    }
+
+    .container3 {
+      width: 95%;
+      margin: 50px auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+    }
+
+    .div3 {
+      width: 100%;
+      background-color: lime;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px;
+      box-sizing: border-box;
+    }
+
+    .div3:nth-child(even) {
+      background-color: aqua;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="div0">
+    <h1>GRID 5</h1>
+  </div>
+  <div class="container1">
+    <div class="div1 header">header</div>
+    <div class="div1 sidebar">sidebar</div>
+    <div class="div1 content">content</div>
+    <div class="div1 footer">footer</div>
+  </div>
+  <div class="container2">
+    <div class="div2">1</div>
+    <div class="div2">2</div>
+    <div class="div2">3</div>
+    <div class="div2">4</div>
+    <div class="div2">5</div>
+    <div class="div2">6</div>
+  </div>
+  <div class="container3">
+    <div class="div3">1</div>
+    <div class="div3">2</div>
+    <div class="div3">3</div>
+    <div class="div3">4</div>
+    <div class="div3">5</div>
+    <div class="div3">6</div>
+    <div class="div3">7</div>
+    <div class="div3">8</div>
+    <div class="div3">9</div>
+  </div>
+</body>

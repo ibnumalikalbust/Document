@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid 1</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .container1 {
+            width: 600px;
+            margin: 50px auto;
+            border: 1px solid black;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        .header1 {
+            background-color: grey;
+            padding: 40px 0;
+        }
+
+        .content1::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .sidebar1 {
+            float: left;
+            width: 40%;
+        }
+
+        .aside1 {
+            background-color: red;
+            padding: 50px 0;
+        }
+
+        .nav1 {
+            background-color: lime;
+            padding: 100px 0;
+        }
+
+        .main1 {
+            background-color: aqua;
+            padding: 159px 0;
+            width: 60%;
+            box-sizing: border-box;
+            float: right;
+        }
+
+        .footer1 {
+            background-color: grey;
+            padding: 40px 0;
+        }
+
+        .container2 {
+            width: 600px;
+            margin: 50px auto;
+            border: 1px solid black;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        .header2 {
+            background-color: grey;
+            padding: 40px 0;
+        }
+
+        .content2 {
+            display: flex;
+        }
+
+        .sidebar2 {
+            flex: 1;
+        }
+
+        .aside2 {
+            background-color: red;
+            padding: 50px 0;
+        }
+
+        .nav2 {
+            background-color: lime;
+            padding: 100px 0;
+        }
+
+        .main2 {
+            background-color: aqua;
+            box-sizing: border-box;
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer2 {
+            background-color: grey;
+            padding: 40px 0;
+        }
+
+        .container3 {
+            width: 600px;
+            margin: 50px auto;
+            border: 1px solid black;
+            box-sizing: border-box;
+            padding: 5px;
+            display: grid;
+            grid-template-areas: "header header""aside main""nav main""footer footer";
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: 1fr 1fr 2fr 1fr;
+        }
+
+        .header3 {
+            background-color: grey;
+            grid-area: header;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .aside3 {
+            background-color: red;
+            grid-area: aside;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav3 {
+            background-color: lime;
+            grid-area: nav;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main3 {
+            background-color: aqua;
+            box-sizing: border-box;
+            grid-area: main;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer3 {
+            background-color: grey;
+            grid-area: footer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div0">
+        <h1>GRID</h1>
+    </div>
+    <div class="container1">
+        <header class="header1">HEADER</header>
+        <div class="content1">
+            <div class="sidebar1">
+                <aside class="aside1">ASIDE</aside>
+                <nav class="nav1">NAV</nav>
+            </div>
+            <main class="main1">FLOAT</main>
+        </div>
+        <footer class="footer1">FOOTER</footer>
+    </div>
+    <div class="container2">
+        <header class="header2">HEADER</header>
+        <div class="content2">
+            <div class="sidebar2">
+                <aside class="aside2">ASIDE</aside>
+                <nav class="nav2">NAV</nav>
+            </div>
+            <main class="main2">FLEXBOX</main>
+        </div>
+        <footer class="footer2">FOOTER</footer>
+    </div>
+    <div class="container3">
+        <header class="header3">HEADER</header>
+        <aside class="aside3">ASIDE</aside>
+        <nav class="nav3">NAV</nav>
+        <main class="main3">GRID</main>
+        <footer class="footer3">FOOTER</footer>
+    </div>
+</body>
+
+</html>

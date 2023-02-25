@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SWITCH</title>
+  <style>
+    p {
+      text-align: center;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <p>Javascript menggunakan "parseInt"</p>
+  <p>Semua string yang anda inputkan akan diubah menjadi integer (bilangan bulat)</p>
+  <script>
+    var angkaUser = parseInt(prompt("masukkan angka:"));
+    switch (angkaUser) {
+      case 1:
+        document.write("<p>Anda memasukkan angka 1</p>")
+        break;
+      case 2:
+        document.write("<p>Anda memasukkan angka 2</p>");
+        break;
+      default:
+        document.write("<p>Anda memasukkan angka yang salah</p>");
+        break;
+    }
+    var makananUser = prompt("masukkan makanan: \n exp: nasi, mie, telur, tahu, tempe")
+    switch (makananUser) {
+      case "nasi":
+      case "mie":
+        document.write("<p>ini adalah karbohidrat</p>");
+        break;
+      case "telur":
+      case "tempe":
+      case "tahu":
+        document.write("<p>ini adalah protein</p>");
+        break;
+      default:
+        document.write("<p>makanan tidak terdaftar</p>")
+        break;
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>layouting09</title>
+    <style>
+        .div0 {
+            text-align: center;
+        }
+
+        .div1 {
+            width: 600px;
+            margin: auto;
+            border: 1px solid black;
+            padding: 5px;
+            overflow: auto;
+        }
+
+        .div2 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            text-align: center;
+            line-height: 100px;
+            float: left;
+            margin: 5px;
+        }
+
+        .div3 {
+            width: 600px;
+            margin: auto;
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        .div4 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            text-align: center;
+            line-height: 100px;
+            float: left;
+            margin: 5px;
+        }
+
+        .div5 {
+        width: 600px;
+        margin: auto;
+        border: 1px solid black;
+        padding: 5px;
+        }
+
+        .div6 {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        text-align: center;
+        line-height: 100px;
+        float: left;
+        margin: 5px;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .cf {
+            clear: both;
+        }
+
+        p {
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div0">
+        <h1>FLOAT CLEAR</h1>
+    </div>
+    <div class="div1">
+        <div class="div2">GAMBAR</div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    </div>
+    <br><br><br>
+    <div class="div3">
+        <div class="div4">GAMBAR</div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <div class="clear"></div>
+    </div>
+    <br><br><br>
+    <div class="div5 cf">
+        <div class="div6">GAMBAR</div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta content='RingRoad' name='Author' />
+	<meta name="theme-color" content="#004E7D">
+	<title>Status Hotspot</title>
+$(if refresh-timeout)
+	<meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+$(endif)
+<link rel="shortcut icon" type="image/png" href="favicon.png"/>
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script language="JavaScript">
+$(if advert-pending == 'yes')
+    var popup = '';
+    function focusAdvert() {
+	if (window.focus) popup.focus();
+    }
+    function openAdvert() {
+	popup = open('$(link-advert)', 'hotspot_advert', '');
+	setTimeout("focusAdvert()", 1000);
+    }
+$(endif)
+    function openLogout() {
+	if (window.name != 'hotspot_status') return true;
+        open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+	window.close();
+	return false;
+    }
+</script>
+</head>
+<body $(if advert-pending == 'yes')	onLoad="openAdvert()" $(endif) >
+<div class="container">
+	<header class="main-header">
+		<div class="top-border"></div>
+	</header>
+	<main>
+$(if login-by == 'trial')
+<div style="margin:10px auto 0px; text-align: center;color:#fff;font-size:12px;"><h3 id="WelcomeMessage"></h3><img class="circular_image" src="img/user.png"/> <h3 style="margin-top: 10px;"> Trial User</h3></div>
+$(elif login-by != 'mac')
+<div style="margin:10px auto 0px; text-align: center;color:#fff;font-size:12px;"><h3 id="WelcomeMessage"></h3><img id="ImgUser" class="circular_image" src=""/> <h3 id="user" style="margin-top: 10px;">$(username)</h3></div>
+$(endif)
+<div class="box" style="padding-top: 10px;">
+<span style="background:rgba(255,255,255,0.8);border-radius:50px;padding:10px;color:#333;font-size:12px;font-weight:700;">Terhubung &#127758; : <span id="Terhubung"></span></span>
+</div>
+<table class="table no-border">
+    <tbody>
+        <tr>
+            <td style="padding-bottom: 0px;">
+                <p style="font-size:12px;margin-bottom:0px;color:#fff">&#8648; Download</p>
+            </td>
+            <td style="padding-bottom: 0px;">
+                <p style="font-size:12px;margin-bottom:0px;color:#fff">&#8650; Upload</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding-top: 0px;">
+                <p style="font-size:18px;margin:0;color:#fff">$(bytes-out-nice) </p>
+            </td>
+            <td style="padding-top: 0px;">
+                <p style="font-size:18px;margin:0;color:#fff">$(bytes-in-nice) </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table class="table2">
+	<tr><td style="padding-left: 10px;width:20px;">&#128187; </td><td style="width:20%;">IP </td><td style="padding-right: 10px;" align="right">$(ip)</td></tr>
+    <tr><td style="padding-left: 10px;">&#128241; </td><td>MAC </td><td style="padding-right: 10px;" align="right">$(mac)</td></tr>
+$(if remain-bytes-total)
+    <tr><td style="padding-left: 10px;">&#128344; </td><td>Sisa Kuota </td><td style="padding-right: 10px;" align="right">$(remain-bytes-total-nice)</td></tr>
+$(endif)
+$(if blocked == 'yes')
+	<tr><td align="left">Stat</td><td><div style="color: #FF8080">
+<a href="$(link-advert)" target="hotspot_advert">advertisement</a> required</div></td><td></td></tr>
+$(elif refresh-timeout)
+	<tr><td style="padding-left: 10px;">&#8635; </td><td>Refresh </td><td style="padding-right: 10px;" align="right">$(refresh-timeout)</td></tr>
+$(endif)
+$(if session-time-left)
+    <tr><td style="padding-left: 10px;">&#128344;</td><td>Sisa Waktu </td><td style="padding-right: 10px;" align="right"><span id="SisaWaktu"></span></td></tr>
+$(endif)
+$(if session-time-left)
+	<tr><td style="padding-left: 10px;">&#9203; </td><td>Expired </td><td align="right"><iframe id="exp" frameborder="0" scrolling="no" src="about:blank"></iframe></td></tr>
+$(endif)
+	</table>
+<form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+<input type="hidden" name="erase-cookie" value="on">
+<br />
+$(if login-by-mac != 'yes')
+<p style="color:#fff;font-size:10px; text-align:center;margin:10px auto;">Tombol <b>LOG OFF</b> dapat menghentikan akses internet</p>
+<button class="btn btn-full btn-merah" type="submit">&#128683; LOG OFF</button>
+$(endif)
+</form>
+	</main>
+	<footer>
+<!-- Credit Link - Tolong Jangan Hapus Bagian Ini -->
+<div class="copy">Copyright &copy; <script type="text/javascript">new Date().getFullYear()>2016&&document.write(new Date().getFullYear());</script> <a class="login" href="http://ringroad.net/" id="login" title="Ringroad Network">Template Hotspot</a></div>
+<!-- End Credit Link -->
+	</footer>
+</div>
+<script type="text/javascript">
+//get validity
+    var usr = document.getElementById('user').innerHTML
+    var url = "http://192.168.150.150/status/status.php?name="; // http://ip-server-mikhmon/mikhmonv2/status/status.php?name=
+    var SessionName = "RB450G"
+    var getvalid = url+usr+"&session="+SessionName
+    document.getElementById("exp").src = getvalid;
+</script>
+<script>
+<!-- Ganti Foto Profile -->
+var usr = document.getElementById('user').innerHTML;
+var imgusr = document.getElementById('ImgUser');
+if (['Lucky', 'Alex', 'John'].indexOf(usr) >= 0) {
+	imgusr.src = "img/ganteng.jpg";
+} else {
+	imgusr.src = "img/user.png";
+};
+</script>
+<script>
+var time="$(session-time-left)";time=time.replace(/w/g,"w ").replace(/d/g,"d ").replace(/h/g,"h ").replace(/m/g,"m ").replace(/s/g,"s "),waktu=time.replace(/w /g,"Minggu").replace(/d /g,"Hari").replace(/h /g,"Jam").replace(/m /g,"Menit").replace(/s /g,"Detik"),sisawaktu=waktu.replace(/Minggu/g,"Minggu ").replace(/Hari/g,"Hari ").replace(/Jam/g,"Jam ").replace(/Menit/g,"Menit ").replace(/Detik/g,"Detik "),document.getElementById("SisaWaktu").innerHTML=sisawaktu;
+</script>
+<script>
+var conn="$(uptime)";conn=conn.replace(/w/g,"w ").replace(/d/g,"d ").replace(/h/g,"h ").replace(/m/g,"m ").replace(/s/g,"s "),Connect=conn.replace(/w /g,"Minggu").replace(/d /g,"Hari").replace(/h /g,"Jam").replace(/m /g,"Menit").replace(/s /g,"Detik"),TimeConnect=Connect.replace(/Minggu/g,"Minggu ").replace(/Hari/g,"Hari ").replace(/Jam/g,"Jam ").replace(/Menit/g,"Menit ").replace(/Detik/g,"Detik "),document.getElementById("Terhubung").innerHTML=TimeConnect; 
+</script>
+<script language="javascript">
+var Messages = new Date,
+    Jams = Messages.getHours();
+document.getElementById("WelcomeMessage").innerHTML = 5 <= Jams && Jams <= 11 ? "Selamat Pagi" : 12 <= Jams && Jams <= 15 ? "Selamat Siang" : 15 <= Jams && Jams <= 17 ? "Selamat Sore" : 18 <= Jams && Jams <= 23 ? "Selamat malam" : "Selamat malam menjelang pagi";
+</script>
+</body>
+</html>

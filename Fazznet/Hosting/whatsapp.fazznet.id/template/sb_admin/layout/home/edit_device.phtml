@@ -1,0 +1,162 @@
+<?php 
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];
+$datadefp = $rid['dataUser'];
+?>
+<div class="container-fluid">
+    <div>
+        <h3>Edit device</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Edit device</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- Widgets -->
+    <div class="row clearfix">
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">Edit device</h6>
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom:0;">
+                    <div class=" add_category_form_alert"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <br>
+            <div class="table-responsive">
+                <table id="example" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                           <th><?php echo rid_lang('number');?></th>
+                           <th>WEBHOOK</th>
+                           <th>AUTO READ</th>
+                           <th>action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik = '$u'");
+                        while ($row = mysqli_fetch_assoc($q)) { ?>
+                        <tr id="<?= $row['id'];?>" data-selected="<?= $row['id'];?>">
+                            <td><?= $row['nomor']; ?></td>
+                            <td><?= $row['link_webhook']; ?></td>
+                            <td><?php if ($row['auto_read'] == '1') { echo 'Enabled'; } else { echo 'Disabled'; } ?></td>
+                            <td>
+                                <button onclick="rid_edits(`<?= $row["id"];?>`,`<?= $row["link_webhook"]; ?>`,`<?= $row["auto_read"]; ?>`);" type="button" class="btn bg-danger admn_table_btn">Edit</button>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    </div>
+    <!-- #END# Widgets -->
+</div>
+
+<div class="modal fade" id="edit_autoreplyh" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h4 class="modal-title" id="langsModalLabel">Edit</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="langsModalAlert"></div>
+                <form id="edit_autoreply" method="POST">
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel"><?php echo rid_lang('number');?> ID</label>
+                                <input type="number" style="resize: none;" name="id" id="id" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">webhook</label>
+                                <input style="resize: none;" name="webhook" id="webhook" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label">auto_read</label>
+                                <input type="number" name="auto_read" id="auto_read" class="form-control" required>
+                            </div>
+                            <small>*Set to 0 for disabled, set to 1 for enabled</small>
+                        </div>
+                        <div class="data"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal_close_btn" data-dismiss="modal"><?php echo rid_lang('close');?></button>
+                <button type="button" class="btn btn-primary" onclick="rid_edit();"><?php echo rid_lang('save');?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+function rid_edit() {
+    $('#edit_autoreply').submit();
+}
+
+$(document).ready(function () {
+  $("#edit_autoreply").submit(function (event) {
+      const id = document.getElementById("id");
+      const webhook = document.getElementById("webhook");
+      const auto_read = document.getElementById("auto_read");
+      
+      const edit = {
+          id: id.value,
+          webhook: webhook.value,
+          auto_read: auto_read.value,
+      };
+      
+      $.ajax({
+          url: rid_request_file() + '?f=edit_device',
+          beforeSend: function() {
+              $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>')
+          },
+          type: "POST",
+          data: edit,
+      }).done(async (data) => {
+          console.log(data);
+          var ridCans = JSON.parse(data);
+          if (ridCans.status == 200) {
+              await sleep(2000);
+              $('#langsModal').modal('hide');
+              location.reload();
+          } else {
+              console.log('this error ' + data);
+              $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+              setTimeout(function () {
+                  $('.langsModalAlert').empty();
+              }, 5000);
+          }
+          $("#langsModal").animate({ scrollTop: 0 }, 100);
+      });
+    event.preventDefault();
+  });
+});
+
+function rid_edits(id,webhook,auto_read) {
+    $('#edit_autoreplyh').modal('show');
+    document.getElementById("id").setAttribute("value", id);
+    document.getElementById("webhook").setAttribute("value", webhook);
+    document.getElementById("auto_read").value = auto_read;
+}
+
+</script>

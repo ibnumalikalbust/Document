@@ -1,0 +1,237 @@
+<?php 
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];
+$datadefp = $rid['dataUser'];
+if ($rid['web_setting']['datanumber'] == '1' && $datadefp['datanumber'] == '1') { ?>
+<?php
+
+if (post("nama")) {
+    $nama = post("nama");
+    $nomor = post("nomor");
+    $pesan = utf8_encode(post("pesan"));
+    $tag = post("tag");
+    $u = $_SESSION['rid_username'];
+
+    $c = mysqli_query($con, "SELECT * FROM nomor WHERE nomor = '$nomor' AND make_by = '$u'");
+    $count = mysqli_num_rows($c);
+
+    if ($count == 0) {
+        $q = mysqli_query($con, "INSERT INTO nomor(`nama`, `nomor`,`pesan`, `make_by`, `tag`)
+            VALUES('$nama', '$nomor','$pesan', '$u', '$tag')");
+    } else {
+        echo "<script>alert('".rid_lang('already_number')."');</script>";
+    }
+}
+
+if (get("act") == "hapus") {
+    $id = get("id");
+
+    $q = mysqli_query($con, "DELETE FROM nomor WHERE id='$id'");
+    redirect($rid['site_url'] . "/index.php?link1=nomor");
+}
+
+if (get("act") == "delete_all") {
+    $u = $_SESSION['rid_username'];
+    $q = mysqli_query($con, "DELETE FROM nomor WHERE make_by = '$u'");
+    redirect($rid['site_url'] . "/index.php?link1=nomor");
+}
+
+if (post("e_nomor")) {
+    $id = post("e_id");
+    $e_nama = post("e_nama");
+    $e_nomor = post("e_nomor");
+    $e_pesan = post("e_pesan");
+    $e_tag = post("e_tag");
+    $upd = mysqli_query($con, "UPDATE nomor SET nama = '$e_nama', nomor = '$e_nomor', pesan = '$e_pesan', tag = '$e_tag' WHERE id = '$id'");
+    redirect($rid['site_url'] . "/index.php?link1=nomor");
+}
+
+if (post("tag_name")) {
+    
+}
+?>
+                <div class="card">
+                  <div class="card-body">
+                    <div id="imporexel" style="display:none;">
+                <form action="lib/import_excel.php" method="POST" enctype="multipart/form-data">
+                    <label> File (.xlsx) </label>
+                    <input type="file" name="file" required class="form-control">
+                    <br>
+                    <label> <?php echo rid_lang('starting_from_line');?> </label>
+                    <input type="text" name="a" required class="form-control" value="2">
+                    <br>
+                    <label> Column <?php echo rid_lang('name');?> </label>
+                    <input type="text" name="b" required class="form-control" value="1">
+                    <br>
+                    <label> Column <?php echo rid_lang('number');?> </label>
+                    <input type="text" name="c" required class="form-control" value="2">
+                    <br>
+                    <label> Column <?php echo rid_lang('message');?> </label>
+                    <input type="text" name="d" required class="form-control" value="3">
+                    <br>
+                    <p> Download file example <a href="<?php echo url_wa(); ?>/excel/contoh.xlsx" target="_blank">Download example</a> </p>
+                <button type="submit" class="btn btn-primary"><?php echo rid_lang('save');?></button>
+                </form>
+                    <br>
+                    </div>
+                    <div id="embel" style="display:none;">
+                    <br>
+                    </div>
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal">
+                     <?php echo rid_lang('add_numb');?>
+                 <!-- <button type="button" class="btn btn-success float-right" onclick="importexel();" style="margin:5px">
+                    Import Excel
+                    </button>-->
+                    </button>
+                    <a class="btn btn-danger float-right" href="?act=delete_all" style="margin:5px"><?php echo rid_lang('delete');?></a>
+                    <div class="table-responsive">
+                      <table id="example" class="table key-buttons text-md-nowrap">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th><?php echo rid_lang('name');?></th>
+                            <th><?php echo rid_lang('number');?></th>
+                            <th><?php echo rid_lang('def_message');?></th>
+                            <th>Tag</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM nomor WHERE make_by='$u'");
+
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<tr class="table-info">';
+                            echo '<td>' . $row['id'] . '</td>';
+                            echo '<td>' . $row['nama'] . '</td>';
+                            echo '<td>' . $row['nomor'] . '</td>';
+                            echo '<td>' . utf8_decode($row['pesan']) . '</td>';
+                            echo '<td>' . $row['tag'] . '</td>';
+                            echo '<td><button type="button" class="btn btn-danger" onclick="rid_edits(`' . $row['id'] . '`, `' . $row['nama'] . '`, `' . $row['nomor'] . '`, `' . $row['pesan'] . '`, `' . $row['tag'] . '`);">Edit</button><a class="btn btn-danger" href="index.php?link1=nomor&act=hapus&id=' . $row['id'] . '">'.rid_lang("delete").'</a></td>';
+                            echo '</tr>';
+                        }
+
+                        ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><?php echo rid_lang('add_numb');?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <label> <?php echo rid_lang('name');?> </label>
+                    <input type="text" name="nama" required class="form-control">
+                    <br>
+                    <label> <?php echo rid_lang('number');?> </label>
+                    <input type="text" name="nomor" required class="form-control" placeholder="62858xxxxxxxx">
+                    <br>
+                    <label><?php echo rid_lang('message');?> </label>
+                    <textarea type="text" name="pesan" required class="form-control" placeholder="<?php echo rid_lang('message');?>"></textarea>
+                    <label> Tag </label>
+                    <select class="SlectBox form-control SumoUnder" style="width: 100%" id="tag" name="tag">
+                        <?php
+
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM tag_number WHERE username ='$u'");
+
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option selected value="">Choose tag</option><option value="' . $row['tag_name'] . '">' . $row['username'] . ' (' . $row['tag_name'] . ')</option>';
+                        }
+                        ?>
+                    </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary"><?php echo rid_lang('save');?></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit tag</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <label> ID </label>
+                    <input type="number" name="e_id" id="e_id" class="form-control">
+                    <label> <?php echo rid_lang('name');?> </label>
+                    <input type="text" name="e_nama" id="e_nama" required class="form-control">
+                    <label> <?php echo rid_lang('number');?> </label>
+                    <input type="text" name="e_nomor" id="e_nomor" required class="form-control">
+                    <label><?php echo rid_lang('message');?> </label>
+                    <textarea type="text" name="e_pesan" id="e_pesan" required class="form-control" placeholder="<?php echo rid_lang('message');?>"></textarea>
+                    <label> Tag </label>
+                    <select class="SlectBox form-control SumoUnder" style="width: 100%" id="e_tag" name="e_tag">
+                        <?php
+
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM tag_number WHERE username ='$u'");
+
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['tag_name'] . '">' . $row['username'] . ' (' . $row['tag_name'] . ')</option>';
+                        }
+                        ?>
+                    </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary"><?php echo rid_lang('save');?></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- End custom js for this page -->
+    <script>
+function rid_edits(id, nama, nomor, pesan, tag) {
+    $('#exampleModals').modal('show');
+    document.getElementById("e_id").setAttribute("value", id);
+    document.getElementById("e_nama").setAttribute("value", nama);
+    document.getElementById("e_nomor").setAttribute("value", nomor);
+    document.getElementById("e_pesan").value = pesan;
+    document.getElementById("e_tag").value = tag;
+}
+      function importexel() {
+        var ajig = document.getElementById('imporexel');
+        if (ajig.style.display === "none") {
+          ajig.style.display = "block";
+        } else {
+          ajig.style.display = "none";
+        }
+      }
+      function takecon() {
+        var ajig = document.getElementById('embel');
+        if (ajig.style.display === "none") {
+          ajig.style.display = "block";
+        } else {
+          ajig.style.display = "none";
+        }
+      }
+    </script>
+<?php } else if ($datadefp['datanumber'] == '2') { ?>
+<center><h1>You do not have access to use this</h1></center>
+<?php } else { ?>
+<center><h1>This feature disabled</h1></center>
+<?php } ?>

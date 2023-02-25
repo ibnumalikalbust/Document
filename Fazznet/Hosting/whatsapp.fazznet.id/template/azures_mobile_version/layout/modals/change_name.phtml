@@ -1,0 +1,20 @@
+<div id="modal-change_name" class="menu menu-box-bottom menu-box-detached rounded-m" 
+         data-menu-height="320" 
+         data-menu-effect="menu-over">
+        <div class="content mb-0">
+            <h1 class="font-700 mb-0">Change your name</h1>
+            <p class="font-11  mt-n1 mb-0">
+                Please write a new name.
+            </p>
+            <form action="" method="POST">
+                <div class="langsModalAlert"></div>
+                <div class="input-style has-icon input-style-1 input-required">
+                    <i class="input-icon fa fa-address-card font-11"></i>
+                    <span>Full Name</span>
+                    <em>(required)</em>
+                    <input type="text" placeholder="Write a new name" name="full_name" id="full_name" required value="<?php echo $rid['dataUser']['full_name'];?>">
+                </div>
+                <button type="submit" class="btn btn-full btn-m shadow-l rounded-s text-uppercase font-900 bg-green1-dark mt-4" name="change_name">Save</button>
+            </form>
+        </div>
+    </div>

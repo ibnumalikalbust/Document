@@ -1,0 +1,24 @@
+ // By : AMPRO
+module.exports = async function(body, args, arg, client, pushname, from, m, SessionName) {
+    // write your code reply here, Don't delete above. example :
+    const fetch = require('node-fetch')
+    const {
+          proto
+      } = require('@adiwajshing/baileys')
+    const flatFileDb = require("flat-file-db")
+    const db = flatFileDb.sync(`${SessionName}-database.db`);
+    db.put(m.key.id, m);  // store some data, like this.
+    let adahB
+    let M = proto.WebMessageInfo
+    adahB = M.fromObject(m)
+
+    if (adahB.message.protocolMessage) {
+        try {
+          let getDataDb = db.get(adahB.message.protocolMessage.key.id)  
+          await client.sendMessage(from, { text: `⚠️ Terdeteksi @${adahB.key.participant.split('@')[0] ? adahB.key.participant.split('@')[0] : adahB.key.remoteJid.split('@')[0]} telah menghapus pesan!`, mentions: [adahB.key.participant ? adahB.key.participant : adahB.key.remoteJid]}, { quoted: getDataDb })
+          await client.sendMessage(from, { forward: getDataDb}, { quoted: getDataDb })
+      } catch(e) { }
+          // Simple isn't it?
+          // Develop again
+    }
+}

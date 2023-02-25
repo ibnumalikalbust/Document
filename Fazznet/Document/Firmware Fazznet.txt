@@ -1,0 +1,87 @@
+/user group
+set read policy="read,winbox,web,api,!local,!telnet,!ssh,!ftp,!reboot,!write,!policy,!test,!password,!sniff,!sensitive,!romon,!dude,!tikapp"
+set write policy="local,telnet,ssh,ftp,reboot,read,write,test,winbox,password,web,sniff,sensitive,api,romon,dude,tikapp,!policy"
+set full policy="local,telnet,ssh,ftp,reboot,read,write,policy,test,winbox,password,web,sniff,sensitive,api,romon,dude,tikapp"
+
+/system logging
+set 0 action=disk
+set 1 action=disk
+set 2 action=disk
+set 3 action=disk
+
+/system logging action
+set 1 disk-file-count=1 disk-lines-per-file=65535
+
+/system clock
+set time-zone-name=Asia/Jakarta
+
+/system ntp client
+set enabled=yes primary-ntp=203.160.128.59 secondary-ntp=119.110.74.102
+
+/system package update
+set channel=long-term
+
+/system routerboard settings
+set auto-upgrade=yes
+
+/interface ethernet
+set [ find default-name=ether1 ] mac-address=78:D7:5F:2B:0D:6A
+set [ find default-name=ether2 ] mac-address=78:D7:5F:2B:0D:6B
+set [ find default-name=ether3 ] mac-address=78:D7:5F:2B:0D:6C
+set [ find default-name=ether4 ] mac-address=78:D7:5F:2B:0D:6D
+set [ find default-name=ether5 ] mac-address=78:D7:5F:2B:0D:6E
+
+/interface detect-internet
+set detect-interface-list=all
+
+/ip dhcp-client
+add disabled=no interface=ether1
+
+/ip dns
+set allow-remote-requests=yes
+
+/ip address
+add address=192.168.2.1/24 interface=ether2 network=192.168.2.0
+add address=192.168.3.1/24 interface=ether3 network=192.168.3.0
+add address=192.168.4.1/24 interface=ether4 network=192.168.4.0
+add address=192.168.5.1/24 interface=ether5 network=192.168.5.0
+
+/ip pool
+add name=pool2 ranges=192.168.2.100-192.168.2.254
+add name=pool3 ranges=192.168.3.100-192.168.3.254
+add name=pool4 ranges=192.168.4.100-192.168.4.254
+add name=pool5 ranges=192.168.5.100-192.168.5.254
+
+/ip dhcp-server
+add address-pool=pool2 disabled=no interface=ether2 lease-time=1h name=dhcp2
+add address-pool=pool3 disabled=no interface=ether3 lease-time=1h name=dhcp3
+add address-pool=pool4 disabled=no interface=ether4 lease-time=1h name=dhcp4
+add address-pool=pool5 disabled=no interface=ether5 lease-time=1h name=dhcp5
+
+/ip dhcp-server network
+add address=192.168.2.0/24 dns-server=192.168.2.1 gateway=192.168.2.1 netmask=24
+add address=192.168.3.0/24 dns-server=192.168.3.1 gateway=192.168.3.1 netmask=24
+add address=192.168.4.0/24 dns-server=192.168.4.1 gateway=192.168.4.1 netmask=24
+add address=192.168.5.0/24 dns-server=192.168.5.1 gateway=192.168.5.1 netmask=24
+
+/ip neighbor discovery-settings
+set discover-interface-list=all
+
+/ip service
+set ftp port=65528
+set ssh port=65529
+set telnet port=65530
+set www port=65531
+set www-ssl port=65532
+set api port=65533
+set api-ssl port=65534
+set winbox port=65535
+
+/ip firewall nat
+add action=masquerade chain=srcnat out-interface=ether1
+
+/tool graphing interface
+add
+
+/tool graphing resource
+add

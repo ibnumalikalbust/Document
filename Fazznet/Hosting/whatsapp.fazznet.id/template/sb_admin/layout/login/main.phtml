@@ -1,0 +1,87 @@
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    </div>
+                                    <form class="user" method="POST" id="login">
+                                        <?php if ($_COOKIE['forced'] == '1') { ?>
+                                         <p style="color: red;">Sesi telah expired!.</p>
+                                         <?php
+                                         unset($_COOKIE['forced']);
+                                         setcookie('forced', null);
+                                         ?>
+                                         <?php } else if ($_COOKIE['deleted_acc'] == '1') { ?>
+                                         <p style="color: red;">Akun kamu telah di delete oleh admin, silahkan hubungi admin untuk info lebih lanjut.</p>
+                                         <?php
+                                         unset($_COOKIE['deleted_acc']);
+                                         setcookie('deleted_acc', null);
+                                         ?>
+                                         <?php } ?>
+                                         <div id="remsult" class="errors-rid"></div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="username" aria-describedby="username"
+                                                placeholder="Username..." name="username">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="Password" name="password">
+                                        </div>
+                                        <button type="submit" class="main-bt btn btn-primary btn-user btn-block" id="sign_submit">
+                                            Login
+                                        </button>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="<?php echo $rid['site_url'];?>/index.php?link1=register">Create an Account!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+<script>
+var $this = $('#login');
+var $state = $this.find('.errors-rid');
+$(function() {
+  $this.ajaxForm({
+    url: rid_request_file() + '?f=login',
+    beforeSend: function() {
+		$this.find('.main_bt').attr("disabled", true);
+		$this.find('.main_bt').html('Please wait..');
+    },
+    success: function(data) {
+      data = JSON.parse(data);
+      if (data.status == true) {
+        $state.html('<p style="color: green;">Welcome back!</p>');
+		$this.find('.main_bt').html('Successfully');
+        setTimeout(function () {
+         window.location.href = window.location;
+        }, 1000);
+      } else {
+        $this.find('.main_bt').attr("disabled", false);
+		$this.find('.main_bt').html('Login');
+        $state.html(`<p style="color: red;">${data.errors}</p>`);
+      }
+    }
+  });
+});
+</script>

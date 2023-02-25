@@ -1,0 +1,86 @@
+<?php include('template/header.php') ?>
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Auto reply button</h3>
+                <p class="text-subtitle text-muted">WAY - Admin Panel</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Total autoreply button</h6>
+                                    <h6 class="font-extrabold mb-0"><?php echo totalautoreply_button();?></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Manage & List Auto reply button
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered" id="table1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>IMAGE</th>
+                            <th>CONTENT</th>
+                            <th>FOOTER</th>
+                            <th><?php echo rid_lang('number');?></th>
+                            <th>KEYWORD</th>
+                            <th>TEXT BUTTON</th>
+                            <th>KEYWORD AUTO REPLY</th>
+                            <th>ACCOUNT</th>
+                            <th>EXTERNAL LINK</th>
+                            <th>EXTERNAL LINK NAME</th>
+                            <th>EXTERNAL TELP</th>
+                            <th>EXTERNAL TELP NAME</th>
+                            <th>KEYWORD AUTO REPLY TWO</th>
+                            <th>TEXT BUTTON TWO</th>
+                            <th>AKSI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $cek = mysqli_query($con, "SELECT * FROM autoreply_button");
+                        while($row = mysqli_fetch_assoc($cek)) { ?>
+                        <tr>
+                            <td><?= $row['id'];?></td>
+                            <td><?= $row['image'];?></td>
+                            <td><?= $row['content'];?></td>
+                            <td><?= $row['footer'];?></td>
+                            <td><?= $row['make_by'];?></td>
+                            <td><?= $row['keyword'];?></td>
+                            <td><?= $row['text_button'];?></td>
+                            <td><?= $row['keyword_auto_reply'];?></td>
+                            <td><?= $row['username'];?></td>
+                            <td><?= $row['external_link'];?></td>
+                            <td><?= $row['external_link_name'];?></td>
+                            <td><?= $row['external_telp'];?></td>
+                            <td><?= $row['external_telp_name'];?></td>
+                            <td><?= $row['keyword_auto_replytwo'];?></td>
+                            <td><?= $row['text_button_two'];?></td>
+                            <td>
+                                <center><a href="editautoreply_button.php?id=<?= $row['id'];?>">Edit</a></center>
+                                </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+<?php include("template/footer.php") ?>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>csstiga15</title>
+        <style>
+            .container {
+                border: 1px solid black;
+            }
+            .container div {
+                width: 100px;
+                height: 100px;
+                background-color: lime;
+                margin: 50px;
+                display: inline-block;
+                text-align: center;
+                line-height: 100px;
+                transition: 1s;
+            }
+            .container:hover div {
+                transform:scale(2) rotate(180deg) skew(45deg) translate(-50px);
+                background-color: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="div0">
+            <h1>TRANSITION 1</h1>
+        </div>
+        <div class="container">
+            <div class="div1">DIV 1</div>
+            <div class="div2">DIV 2</div>
+            <div class="div3">DIV 3</div>
+        </div>
+    </body>
+</html>

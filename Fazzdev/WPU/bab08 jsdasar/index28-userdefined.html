@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membuat Function</title>
+  <style>
+    body {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    function jumlahVolumeDuaKubus(a, b) {
+      var volumeA;
+      var volumeB;
+      var total;
+      volumeA = a * a * a;
+      volumeB = b * b * b;
+      total = volumeA + volumeB;
+      return total;
+    };
+    document.write("<p>Jumlah Volume 2 Kubus Adalah " + jumlahVolumeDuaKubus(1, 1) + "</p>");
+    document.write("<p>Jumlah Volume 2 Kubus Adalah " + jumlahVolumeDuaKubus(2, 2) + "</p>");
+    document.write("<p>Jumlah Volume 2 Kubus Adalah " + jumlahVolumeDuaKubus(3, 3) + "</p>");
+    document.write("<p>Jumlah Volume 2 Kubus Adalah " + jumlahVolumeDuaKubus(4, 4) + "</p>");
+    document.write("<p>Jumlah Volume 2 Kubus Adalah " + jumlahVolumeDuaKubus(5, 5) + "</p>");
+  </script>
+</body>
+
+</html>

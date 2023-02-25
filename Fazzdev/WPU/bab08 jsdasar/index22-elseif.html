@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELSE IF</title>
+    <style>
+        p {
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var nomorAngkot = 1
+        var jumlahAngkot = 10
+        var angkotBeroperasi = prompt("Berapa angkot yang beroperasi?")
+        document.write("<p>Kamu memasukkan nomor " + angkotBeroperasi + "</p>")
+        if (angkotBeroperasi % 2 == 0) {
+            document.write("<p>Kamu memasukkan angka genap</p>")
+        } else if (angkotBeroperasi % 2 == 1) {
+            document.write("<p>Kamu memasukkan angka ganjil</p>")
+        } else {
+            document.write("<p>Kamu tidak memasukkan angka</p>")
+        }
+        for (nomorAngkot; nomorAngkot <= jumlahAngkot; nomorAngkot++) {
+            if (nomorAngkot <= angkotBeroperasi) {
+                document.write("<p>Angkot No. " + nomorAngkot + " beroperasi dengan baik</p>")
+            } else if (nomorAngkot == 8 && nomorAngkot > angkotBeroperasi) {
+                document.write("<p>Angkot No. " + nomorAngkot + " sedang kejar setoran</p>")
+            } else if (nomorAngkot > angkotBeroperasi) {
+                document.write("<p>Angkot No. " + nomorAngkot + " sedang tidak beroperasi</p>")
+            } else {
+                document.write("<p>tulislah angka dengan benar</p>")
+            }
+        }
+    </script>
+</body>
+
+</html>

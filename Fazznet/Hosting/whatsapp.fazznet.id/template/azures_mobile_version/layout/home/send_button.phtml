@@ -1,0 +1,149 @@
+<?php 
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];
+$datadefp = $rid['dataUser'];
+if ($rid['web_setting']['send_button'] == '1' && $datadefp['send_button'] == '1') { ?>
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title">Send <?php echo rid_lang('button_message');?></h6>
+                    <form class="mailing-settings" id="send_button" method="POST">
+                        <label for="send_to">Sender</label>
+                        <div class="alert alert-info">
+                            Note: Only senders that are (active) will be displayed.
+                        </div>
+                        <select class="form-control show-tick" id="sender" name="sender">
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik='$u' AND state = 'CONNECTED'");
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . $row['nomor'] . ' (active)</option>';
+                        }
+                        ?>
+                        </select>
+                        <small class="admin-info">Choose sender.</small>
+                        <div class="clearfix"></div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users"><?php echo rid_lang('number');?> <span></span></label>
+                                <input type="text" class="form-control" id="nomor" name="nomor" autocomplete="off" required>
+                                <small class="admin-info">Write number whatsapp user. you can send multiple numbers separated by comma. don't using space!</small>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">Link image <span></span></label>
+                                <input type="text" class="form-control" id="image" name="image" autocomplete="off">
+                                <small class="admin-info">Optional. must be start with protocol https/http</small>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">Content / <?php echo rid_lang('message');?> <span></span></label>
+                                <textarea name="content" id="content" class="form-control" cols="30" rows="10" style="height: 100px;"></textarea>
+                                <small class="admin-info">*Required</small>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">Footer / <?php echo rid_lang('message');?> short<span></span></label>
+                                <input type="text" class="form-control" id="footer" name="footer" autocomplete="off" required>
+                                <small class="admin-info">*Required</small>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">External Link / For button link<span></span></label>
+                                <input type="text" class="form-control" id="external_link" name="external_link" autocomplete="off">
+                                <small class="admin-info">*Write your url website here. this optional</small>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">External Link name / Button link text<span></span></label>
+                                <input type="text" class="form-control" id="external_link_name" name="external_link_name" autocomplete="off">
+                                <small class="admin-info">*If you enter your url link above, then this must be filled in</small>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">External Telp / For Button phone<span></span></label>
+                                <input type="number" class="form-control" id="external_telp" name="external_telp" autocomplete="off">
+                                <small class="admin-info">*Write your number here. this optional</small>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">External Telp name / Button phone text<span></span></label>
+                                <input type="text" class="form-control" id="external_telp_name" name="external_telp_name" autocomplete="off">
+                                <small class="admin-info">*If you entered your number above, then this is required</small>
+                            </div>
+                        </div>  
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">Keyword auto reply<span></span></label>
+                                <input type="text" class="form-control" id="keyword_auto_reply" name="keyword_auto_reply" autocomplete="off">
+                                <small class="admin-info">*If you have an auto reply or auto reply button, you just enter the keyword here. this optional</small>
+                            </div>
+                        </div>  
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">Text button<span></span></label>
+                                <input type="text" class="form-control" id="text_button" name="text_button" autocomplete="off">
+                                <small class="admin-info">*If you enter the auto reply keyword above, then this must be filled in</small>
+                            </div>
+                        </div> 
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">Keyword auto reply two<span></span></label>
+                                <input type="text" class="form-control" id="keyword_auto_replytwo" name="keyword_auto_replytwo" autocomplete="off">
+                                <small class="admin-info">*If you have an auto reply or auto reply button, you just enter the keyword here. this optional</small>
+                            </div>
+                        </div> 
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">Text button two<span></span></label>
+                                <input type="text" class="form-control" id="text_button_two" name="text_button_two" autocomplete="off">
+                                <small class="admin-info">*If you enter the auto reply two keywords above, then this must be filled in</small>
+                            </div>
+                        </div> 
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect"><?php echo rid_lang('send');?></button>
+                    </form>
+                    <div class="langsModalAlert"></div>
+                </div>
+            </div>
+        </div>
+<script>
+/*function rid_testSend() {
+    $('#test_send').submit();
+}*/
+
+    var form_gender_settings = $('#send_button');
+    form_gender_settings.ajaxForm({
+        url: rid_request_file() + '?f=send_button',
+        beforeSend: function() {
+            $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>');
+        },
+        type: 'post',
+        success: function(data) {
+           var ridCans = JSON.parse(data);
+            if (ridCans.status == 200) {
+                $('.langsModalAlert').html('<div class="alert alert-success">'+ridCans.message+'</div>');
+                setTimeout(function () {
+                    $('.langsModalAlert').empty();
+                }, 2000);
+            }
+            else{
+                console.log('this error ' + data);
+                $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+            }
+        }
+    });
+</script>
+</div>
+<?php } else if ($datadefp['send_button'] == '2') { ?>
+<center><h1>You do not have access to use this</h1></center>
+<?php } else { ?>
+<center><h1>This feature disabled</h1></center>
+<?php } ?>

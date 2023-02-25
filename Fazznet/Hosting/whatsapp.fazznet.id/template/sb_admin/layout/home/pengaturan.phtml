@@ -1,0 +1,175 @@
+<?php
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];
+$ridcek = mysqli_query($con, "SELECT * FROM rid_account WHERE rid_username = '$u'");
+$dataser = mysqli_fetch_assoc($ridcek);
+
+if (isset($_POST['change_wa'])) {
+    $c_wa = $_POST['c_wa'];
+    mysqli_query($con, "UPDATE rid_account SET c_wa = '$c_wa' WHERE rid_username = '$u'");
+    redirect('index.php?link1=pengaturan');
+}
+
+if (isset($_POST['change_mail'])) {
+    $email = $_POST['email'];
+    mysqli_query($con, "UPDATE rid_account SET email = '$email' WHERE rid_username = '$u'");
+    redirect('index.php?link1=pengaturan');
+}
+
+if (isset($_POST['change_name'])) {
+    $full_name = $_POST['full_name'];
+    mysqli_query($con, "UPDATE rid_account SET full_name = '$full_name' WHERE rid_username = '$u'");
+    redirect('index.php?link1=pengaturan');
+}
+?>
+<div class="container-fluid">
+    <div>
+        <h3><?php echo rid_lang('setting');?></h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page"><?php echo rid_lang('setting');?></li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title"><?php echo rid_lang('change');?> <?php echo rid_lang('password');?></h6>
+                    <div class="alert alert-info">Password must be more than 5 characters</div>
+                    <div class="langsModalAlert"></div>
+                    <form id="change_password" method="POST">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label class="form-label"><?php echo rid_lang('new_password');?></label>
+                                <input type="password" id="newpassword" name="newpassword" class="form-control" placeholder="Write <?php echo rid_lang('new_password');?>">
+                                <input type="password" id="newpassword2" name="newpassword2" class="form-control" placeholder="Confirm <?php echo rid_lang('new_password');?>">
+                            </div>
+                        </div>
+                    </form>
+                        <div class="clearfix"></div>
+                        <hr>
+                        <div class="clearfix"></div>
+                  <button type="submit" class="btn btn-danger waves-effect waves-light m-t-20" onclick="rid_changePass();"><?php echo rid_lang('save');?></button>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title"><?php echo rid_lang('change');?> Whatsapp Number</h6>
+                    <div class="alert alert-info">Start must be with country code ex : 62xxxxx</div>
+                    <div class="langsModalAlert"></div>
+                    <form action="" method="POST">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label class="form-label">Whatsapp Number</label>
+                                <input type="number" id="c_wa" name="c_wa" class="form-control" placeholder="Ex : 6281572885606" value="<?php echo $dataser['c_wa'];?>">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger waves-effect waves-light m-t-20" name="change_wa"><?php echo rid_lang('save');?></button>
+                    </form>
+                        <div class="clearfix"></div>
+                        <hr>
+                        <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title"><?php echo rid_lang('change');?> Email</h6>
+                    <div class="langsModalAlert"></div>
+                    <form action="" method="POST">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label class="form-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Ex : akaka@yurmail.com" value="<?php echo $dataser['email'];?>">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger waves-effect waves-light m-t-20" name="change_mail"><?php echo rid_lang('save');?></button>
+                    </form>
+                        <div class="clearfix"></div>
+                        <hr>
+                        <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title"><?php echo rid_lang('change');?> Name</h6>
+                    <div class="langsModalAlert"></div>
+                    <form action="" method="POST">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label class="form-label">Full name</label>
+                                <input type="text" id="full_name" name="full_name" class="form-control" placeholder="Ex : Ridah" value="<?php echo $dataser['full_name'];?>">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger waves-effect waves-light m-t-20" name="change_name"><?php echo rid_lang('save');?></button>
+                    </form>
+                        <div class="clearfix"></div>
+                        <hr>
+                        <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<script>
+function rid_changePass() {
+    $('#change_password').submit();
+}
+
+$(document).ready(function () {
+  $("#change_password").submit(function (event) {
+      const newpassword = document.getElementById("newpassword");
+      const newpassword2 = document.getElementById("newpassword2");
+      
+      const changePass = {
+          newpassword: newpassword.value,
+          newpassword2: newpassword2.value
+      };
+      
+      $.ajax({
+          url: rid_request_file() + '?f=change_password',
+          beforeSend: function() {
+              $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>')
+          },
+          type: "POST",
+          data: changePass,
+      }).done(async (data) => {
+          console.log(data);
+          var ridCans = JSON.parse(data);
+          if (ridCans.status == 200) {
+              await sleep(2000);
+              $('#langsModal').modal('hide');
+              location.reload();
+          } else {
+              console.log('this error ' + data);
+              $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+              setTimeout(function () {
+                  $('.langsModalAlert').empty();
+              }, 5000);
+          }
+          $("#langsModal").animate({ scrollTop: 0 }, 100);
+      });
+    event.preventDefault();
+  });
+});
+</script>

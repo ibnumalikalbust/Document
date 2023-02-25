@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login Sukses</title>
+	<meta charset="utf-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta name="theme-color" content="#004E7D">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta content="2; url=$(link-redirect)" http-equiv="refresh">
+	<meta content="no-cache" http-equiv="pragma">
+	<meta content="-1" http-equiv="expires">
+	<link href="favicon.png" rel="shortcut icon" type="image/png">
+	<link href="css/style.css" rel="stylesheet">
+	<script src="js/jquery.js" type="text/javascript">
+	</script>
+	<script language="JavaScript">
+	function startClock() {
+	       $(if popup == 'true')open('$(link-status)', 'hotspot_status', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=290');
+	       $(endif)
+	       setTimeout(function () {
+	       location.href = '$(link-status)'}, 2000);
+	}
+	</script>
+	<style>
+	.container{padding:15px;margin:0 auto;box-sizing:border-box;text-align:center}a{color:#0886C4;text-decoration:none}body{text-align:center;font-size:1em;line-height:1.42857143;color:#fff;margin:0;padding:0}h1{margin-bottom:1em}p{margin:0 auto}
+	</style>
+</head>
+<body onload="startClock()">
+	<style>
+	.circle-loader{margin-bottom:2.5em;border:5px solid rgba(0,0,0,0.2);border-left-color:#0886C4;animation:loader-spin 1.2s infinite linear;position:relative;display:inline-block;vertical-align:top;border-radius:50%;width:7em;height:7em}
+	.load-complete{-webkit-animation:none;animation:none;border-color:#0886C4;transition:border 500ms ease-out}
+	.checkmark{display:none}
+	.checkmark.draw:after{animation-duration:800ms;animation-timing-function:ease;animation-name:checkmark;transform:scaleX(-1) rotate(135deg)}
+	.checkmark:after{opacity:1;height:3.5em;width:1.75em;transform-origin:left top;border-right:5px solid #0886C4;border-top:5px solid #0886C4;content:'';left:1.75em;top:3.5em;position:absolute}
+	@keyframes loader-spin {
+	0%{transform:rotate(0deg)}
+	100%{transform:rotate(360deg)}
+	}
+	@keyframes checkmark {
+	0%{height:0;width:0;opacity:1}
+	20%{height:0;width:1.75em;opacity:1}
+	40%{height:3.5em;width:1.75em;opacity:1}
+	100%{height:3.5em;width:1.75em;opacity:1}
+	}
+	</style>
+	<div class="container">
+		<h1>Login Berhasil</h1>
+		<div class="circle-loader" id="circle">
+			<div class="checkmark draw" id="checkmark"></div>
+		</div>
+		<p><b>Jika halaman status tidak muncul, klik <a href="status.html">disini</a></b></p>
+		<!-- Credit Link - Tolong Jangan Hapus Bagian Ini -->
+		<div class="copy">
+			Copyright &copy; 
+			<script type="text/javascript">
+			new Date().getFullYear()>2016&&document.write(new Date().getFullYear());
+			</script> <a class="login" href="http://ringroad.net/" id="login" title="Ringroad Network">Template Hotspot</a>
+		</div>
+		<!-- End Credit Link -->
+	</div>
+	<script>
+	setTimeout(function() {$("#circle").addClass("load-complete");}, 1000);
+	setTimeout(function () {document.getElementById('checkmark').style.display='block'}, 1000);
+	</script>
+</body>
+</html>

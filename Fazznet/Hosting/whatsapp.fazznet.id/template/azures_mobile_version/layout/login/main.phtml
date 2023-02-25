@@ -1,0 +1,70 @@
+<div class="card card-style">
+            <div class="content mt-2 mb-0">
+                <form action="" method="POST" id="login">
+                    <?php if ($_COOKIE['forced'] == '1') { ?>
+                         <p style="color: red;">Session has expired!.</p>
+                         <?php
+                         unset($_COOKIE['forced']);
+                         setcookie('forced', null);
+                         ?>
+                         <?php } else if ($_COOKIE['deleted_acc'] == '1') { ?>
+                         <p style="color: red;">Your account has been deleted by admin, please contact admin for more info.</p>
+                         <?php
+                         unset($_COOKIE['deleted_acc']);
+                         setcookie('deleted_acc', null);
+                         ?>
+                         <?php } ?>
+                         <div id="remsult" class="errors-rid"></div>
+                    <div class="input-style has-icon input-style-1 input-required pb-1">
+                        <i class="input-icon fa fa-user color-theme"></i>
+                        <span>Username</span>
+                        <em>(required)</em>
+                        <input type="text" name="username" placeholder="Username" required>
+                    </div> 
+                    <div class="input-style has-icon input-style-1 input-required pb-1">
+                        <i class="input-icon fa fa-lock color-theme"></i>
+                        <span>Password</span>
+                        <em>(required)</em>
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div> 
+
+                    <button type="submit" class="btn btn-m mt-2 mb-4 btn-full bg-green1-dark rounded-sm text-uppercase font-900">Login</button>
+                    <div class="divider mt-4 mb-3"></div>
+                    <div class="d-flex">
+                        <div class="w-50 font-11 pb-2 color-theme opacity-60 pb-3 text-left"><a href="<?php echo $rid['site_url'];?>/index.php?link1=register" class="color-theme">Create Account</a></div>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+<script>
+var $this = $('#login');
+var $state = $this.find('.errors-rid');
+$(function() {
+    try {
+      $this.ajaxForm({
+        url: rid_request_file() + '?f=login',
+        beforeSend: function() {
+            $this.find('.main_bt').attr("disabled", true);
+            $this.find('.main_bt').html('Tunggu sebentar..');
+        },
+        success: function(data) {
+          data = JSON.parse(data);
+          if (data.status == true) {
+            $state.html('<p style="color: green;">Welcome back!</p>');
+            $this.find('.main_bt').html('Successfully');
+            setTimeout(function () {
+             window.location.href = window.location;
+            }, 1000);
+          } else {
+            $this.find('.main_bt').attr("disabled", false);
+            $this.find('.main_bt').html('Login');
+            $state.html(`<p style="color: red;">${data.errors}</p>`);
+          }
+        }
+      });
+  } catch(e) {
+    console.log(e);
+  }
+});
+</script>

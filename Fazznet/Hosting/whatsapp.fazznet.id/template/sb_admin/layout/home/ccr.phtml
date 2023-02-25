@@ -1,0 +1,286 @@
+<?php 
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];
+$datadefp = $rid['dataUser'];
+?>
+<div class="container-fluid">
+    <div>
+        <h3>Custom code reply</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Custom code auto reply</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- Widgets -->
+    <div class="row clearfix">
+    <div class="card">
+        <div class="card-body">
+			<a href="<?php echo url_wa();?>/add_ccr.php" target="_blank"><button type="button" class="btn btn-info float-right">Add</button></a>
+            <h6 class="card-title"><?php echo rid_lang('auto_reply');?></h6>
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom:0;">
+                    <div class=" add_category_form_alert"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <br>
+            <div class="langsModalAlert"></div>
+            <div class="table-responsive1">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                           <th>FILENAME</th>
+                           <th>MYNUMB</th>
+                           <th>USERNAME</th>
+                           <th>action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM custom_code_reply WHERE username = '$u'");
+                        while ($row = mysqli_fetch_assoc($q)) { 
+                            $file_name = $row['file_name'];
+                            $mynumb = $row['mynumb'];
+                            ?>
+                        <tr id="<?= $row['id'];?>" data-selected="<?= $row['id'];?>">
+                            <td><?= $row['file_name']; ?>-<?= $row['mynumb']; ?>.js</td>
+                            <td><?= $row['mynumb']; ?></td>
+                            <td><?= $row['username']; ?></td>
+                            <td>
+                                <a href="<?php echo url_wa();?>/edit_ccr.php?id=<?php echo $row['id'];?>" target="_blank"><button type="button" class="btn bg-danger admn_table_btn">Edit</button></a>
+                                <button onclick="rid_delete('<?= $row["id"];?>','hide');" type="button" class="btn bg-danger admn_table_btn"><?php echo rid_lang('delete');?></button>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    </div>
+    <!-- #END# Widgets -->
+</div>
+
+<div class="modal fade" id="edit_autoreplyh" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h4 class="modal-title" id="langsModalLabel">Edit</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="langsModalAlert"></div>
+                <form id="edit_autoreply" method="POST">
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel"><?php echo rid_lang('number');?> ID</label>
+                                <input type="number" style="resize: none;" name="id" id="id" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">FILE NAME</label>
+                                <input style="resize: none;" name="file_name" id="file_name" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label">CODE</label>
+                                <textarea name="ccr" id="ccr" class="form-control" cols="30" rows="10" style="height: 100px;"></textarea>
+                                <small class="admin-info">Write your own code idea here.</small>
+                            </div>
+                        </div>
+                        <div class="data"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal_close_btn" data-dismiss="modal"><?php echo rid_lang('close');?></button>
+                <button type="button" class="btn btn-primary" onclick="rid_edit();"><?php echo rid_lang('save');?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModal1Label"><?php echo rid_lang('delete');?> Auto reply</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php echo rid_lang('sure');?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo rid_lang('close');?></button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo rid_lang('delete');?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="add_autoreplyh" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h4 class="modal-title" id="langsModalLabel"><?php echo rid_lang('add_numb');?></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="langsModalAlert"></div>
+                <form id="add_autoreply" method="POST">
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel"><?php echo rid_lang('number');?> Sender</label>
+                        <select class="form-control show-tick" id="sender" name="sender">
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik='$u' AND state = 'CONNECTED'");
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . $row['nomor'] . ' (active)</option>';
+                        }
+                        ?>
+                        </select>
+                        <small class="admin-info">Choose sender.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">keyword</label>
+                                <input style="resize: none;" name="keyword" id="keyword" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label">Response</label>
+                                <textarea name="response" id="response" class="form-control" cols="30" rows="10" style="height: 100px;"></textarea>
+                                <small class="admin-info">Write your message here.</small>
+                            </div>
+                        </div>
+                        <div class="data"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal_close_btn" data-dismiss="modal"><?php echo rid_lang('close');?></button>
+                <button type="button" class="btn btn-primary" onclick="rid_add();"><?php echo rid_lang('save');?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+function rid_edit() {
+    $('#edit_autoreply').submit();
+}
+
+function rid_add() {
+    $('#add_autoreply').submit();
+}
+
+    var set_areply = $('#edit_autoreply');
+    set_areply.ajaxForm({
+        url: rid_request_file() + '?f=edit_autoreply',
+        beforeSend: function() {
+            $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>');
+        },
+        type: 'post',
+        success: async (data) => {
+           var ridCans = JSON.parse(data);
+            if (ridCans.status == 200) {
+                $('.langsModalAlert').html('<div class="alert alert-success">Success</div>');
+                //await sleep(1000);
+                $('#edit_autoreplyh').modal('hide');
+                location.reload();
+                
+            }
+            else{
+                console.log('this error ' + data);
+                $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+                setTimeout(function () {
+                    $('.langsModalAlert').empty();
+                }, 2000);
+            }
+            $("#edit_autoreply").animate({ scrollTop: 0 }, 100);
+
+        }
+    });
+    
+    var add_areply = $('#add_autoreply');
+    add_areply.ajaxForm({
+        url: rid_request_file() + '?f=add_autoreply',
+        beforeSend: function() {
+            $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>');
+        },
+        type: 'post',
+        success: async (data) => {
+           var ridCans = JSON.parse(data);
+            if (ridCans.status == 200) {
+                $('.langsModalAlert').html('<div class="alert alert-success">Success</div>');
+                //await sleep(1);
+                $('#add_autoreplyh').modal('hide');
+                location.reload();
+                
+            }
+            else{
+                console.log('this error ' + data);
+                $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+                setTimeout(function () {
+                    $('.langsModalAlert').empty();
+                }, 2000);
+            }
+            $("#add_autoreply").animate({ scrollTop: 0 }, 100);
+
+        }
+    });
+
+function rid_AddAutoReply() {
+    $('#add_autoreplyh').modal('show');
+}
+
+function rid_delete(key,type = 'show') {
+  if (key == '') {
+    return false;
+  }
+  if (type == 'hide') {
+    $('#DeleteModal').find('.btn-primary').attr('onclick', "rid_delete('"+key+"')");
+    $('#DeleteModal').modal('show');
+    return false;
+  }
+  $('#' + key).fadeOut(300, function () {
+    $(this).remove();
+  });
+  $.get(rid_request_file(), {
+      beforeSend: function() {
+            $('.langsModalAlert').html('<div class="alert alert-success">Waiting for response please wait...</div>');
+        },
+      f: 'del_ccr', 
+      id:key
+      
+  }, function(data) {
+      var ridCans = JSON.parse(data);
+      if (ridCans.status == 200) {
+        $('.langsModalAlert').html('<div class="alert alert-success">'+ ridCans.message + '</div>');
+        location.reload();
+      } else {
+          $('.langsModalAlert').html('<div class="alert alert-danger">'+ ridCans.message + '</div>');
+      }
+  });
+}
+</script>

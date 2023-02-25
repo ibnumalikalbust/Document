@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>csstiga16</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .container1,
+        .container2 {
+            border: 1px solid black;
+            margin: 10px;
+        }
+
+        .container1:hover .div1 {
+            transform: rotate(360deg) translate(150px);
+            background-color: aqua;
+        }
+
+        .container1:hover .div2 {
+            transform: rotate(360deg) translate(-150px);
+            background-color: aqua;
+        }
+
+        .div1,
+        .div2 {
+            width: 100px;
+            height: 100px;
+            background-color: lime;
+            text-align: center;
+            line-height: 100px;
+            margin: 10px auto;
+            border-radius: 50%;
+        }
+
+        .div1 {
+            transition: 2s;
+        }
+
+        .div2 {
+            transition: transform 2s;
+        }
+
+        .container2:hover div {
+            transform: translate(500px) rotate(360deg);
+            background-color: aqua;
+        }
+
+        .div3,
+        .div4,
+        .div5,
+        .div6,
+        .div7,
+        .div8,
+        .div9,
+        .div10 {
+            width: 100px;
+            height: 100px;
+            background-color: lime;
+            text-align: center;
+            line-height: 100px;
+            margin: 10px;
+            border-radius: 50%;
+        }
+
+        .div3 {
+            transition: 3s ease;
+        }
+
+        .div4 {
+            transition: 3s ease-in;
+        }
+
+        .div5 {
+            transition: 3s ease-out;
+        }
+
+        .div6 {
+            transition: 3s ease-in-out;
+        }
+
+        .div7 {
+            transition: 3s linear;
+        }
+
+        .div8 {
+            transition: 3s cubic-bezier(0.24, -0.35, 0.78, 1,46);
+        }
+
+        .div9 {
+            transition: 2s 1s;
+        }
+
+        .div10 {
+            transition: transform 3s, background-color 2s 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div0">
+        <h1>TRANSITION 2</h1>
+    </div>
+    <div class="container1">
+        <div class="div1">DIV 1</div>
+        <div class="div2">DIV 2</div>
+    </div>
+    <div class="container2">
+        <div class="div3">ease</div>
+        <div class="div4">ease-in</div>
+        <div class="div5">ease-out</div>
+        <div class="div6">ease-in-out</div>
+        <div class="div7">linear</div>
+        <div class="div8">cubiz-berzier</div>
+        <div class="div9">delay 1s</div>
+        <div class="div10">delay 1s</div>
+    </div>
+</body>
+
+</html>

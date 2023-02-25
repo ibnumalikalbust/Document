@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>layouting08</title>
+        <style>
+            body {
+                text-align: center;
+            }
+            .div0 {
+                width: 600px;
+                margin: auto;
+                border: 1px solid black;
+                padding: 5px;
+            }
+            .div1, .div2, .div3 {
+                width: 100px;
+                height: 100px;
+            }
+            .div1 {
+                background-color: red;
+                margin: auto;
+            }
+            .div2 {
+                background-color: green;
+                float: left;
+                margin: 5px;
+            }
+            .div3 {
+                background-color: blue;
+                float: right;
+            }
+            .kotak {
+                width: 58px;
+                height: 58px;
+                background-color: salmon;
+                color: white;
+                line-height: 58px;
+                font-size: 30px;
+                margin: 1px;
+                float: left;
+            }
+            .kiri {
+                width: 200px;
+                background-color: red;
+                float: left;
+                box-sizing: border-box;
+                padding: 10px;
+            }
+            .tengah {
+                width: 200px;
+                background-color: green;
+                float: left;
+                box-sizing: border-box;
+                padding: 10px;
+            }
+            .kanan {
+                width: 200px;
+                background-color: yellow;
+                float: left;
+                box-sizing: border-box;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>CSS FLOAT</h1>
+        </div>
+        <br>
+        <div class="div0">
+            <div class="div1">RED</div>
+            <div class="div2">GREEN</div>
+            <div class="div3">BLUE</div>
+        </div>
+        <br><br><br><br><br><br>
+        <div class="div0">
+            <div class="div2"></div>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae harum aut rerum velit reiciendis maiores illo. Non consequatur dolores deleniti itaque rem, dignissimos cupiditate tenetur doloremque blanditiis praesentium, animi quaerat natus eum suscipit pariatur vitae necessitatibus explicabo vel.</p>
+        </div>
+        <br>
+        <div class="div0">
+            <div class="kotak">1</div>
+            <div class="kotak">2</div>
+            <div class="kotak">3</div>
+            <div class="kotak">4</div>
+            <div class="kotak">5</div>
+            <div class="kotak">6</div>
+            <div class="kotak">7</div>
+            <div class="kotak">8</div>
+            <div class="kotak">9</div>
+            <div class="kotak">10</div>
+        </div>
+        <br><br><br><br>
+        <div class="div0">
+            <div class="kiri">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit nulla deserunt eos eaque debitis facere repudiandae, fugit quos molestias nisi?</div>
+            <div class="tengah">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ipsa sint vero accusantium facilis repellendus. Eveniet accusamus quos suscipit aperiam?</div>
+            <div class="kanan">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias velit assumenda culpa id consequuntur amet blanditiis ipsam harum aspernatur alias!</div>
+        </div>
+    </body>
+</html>

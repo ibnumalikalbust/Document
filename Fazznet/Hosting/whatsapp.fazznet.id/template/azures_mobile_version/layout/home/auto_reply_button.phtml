@@ -1,0 +1,237 @@
+<?php 
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];
+$datadefp = $rid['dataUser'];
+if ($rid['web_setting']['autoreply_button'] == '1' && $datadefp['send_button'] == '1') { ?>
+    <div class="card">
+        <div class="card-body">
+      <button class="btn btn-info float-right" onclick="rid_AddAutoReply();"><?php echo rid_lang('add_auto_reply');?></button>
+            <h6 class="card-title"><?php echo rid_lang('auto_reply');?></h6>
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom:0;">
+                    <div class=" add_category_form_alert"></div>
+                </div>
+            </div>
+            <br>
+            <div class="table-responsive">
+                <table id="example" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                           <th><?php echo rid_lang('number');?></th>
+                           <th>image</th>
+                           <th>content</th>
+                           <th>footer</th>
+                           <th>keyword</th>
+                           <th>text button</th>
+                           <th>keyword auto reply</th>
+                           <th>external link</th>
+                           <th>external link name</th>
+                           <th>external telp</th>
+                           <th>external telp name</th>
+                           <th>keyword auto reply 2</th>
+                           <th>text button 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM autoreply_button WHERE username = '$u'");
+                        while ($row = mysqli_fetch_assoc($q)) { ?>
+                        <tr id="<?= $row['id'];?>" data-selected="<?= $row['id'];?>">
+                            <td><?= $row['make_by']; ?></td>
+                            <td><?= $row['image']; ?></td>
+                            <td><?= $row['content']; ?></td>
+                            <td><?= $row['footer']; ?></td>
+                            <td><?= $row['keyword']; ?></td>
+                            <td><?= $row['text_button']; ?></td>
+                            <td><?= $row['keyword_auto_reply']; ?></td>
+                            <td><?= $row['external_link']; ?></td>
+                            <td><?= $row['external_link_name']; ?></td>
+                            <td><?= $row['external_telp']; ?></td>
+                            <td><?= $row['external_telp_name']; ?></td>
+                            <td><?= $row['keyword_auto_replytwo']; ?></td>
+                            <td><?= $row['text_button_two']; ?></td>
+                            <td>
+                                <button onclick="rid_edits(`<?= $row["id"];?>`,`<?= $row["content"]; ?>`,`<?= $row["footer"]; ?>`,`<?= $row["keyword"]; ?>`,`<?= $row["text_button"]; ?>`,`<?= $row["keyword_auto_reply"]; ?>`,`<?= $row["external_link"]; ?>`,`<?= $row["external_link_name"]; ?>`,`<?= $row["external_telp"]; ?>`,`<?= $row["external_telp_name"]; ?>`,`<?= $row["keyword_auto_replytwo"]; ?>`,`<?= $row["text_button_two"]; ?>`);" type="button" class="btn bg-danger admn_table_btn">Edit</button>
+                                <button onclick="rid_delete('<?= $row["id"];?>','hide');" type="button" class="btn bg-danger admn_table_btn"><?php echo rid_lang('delete');?></button>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+function rid_edit() {
+    $('#edit_autoreply').submit();
+}
+
+function rid_add() {
+    $('#add_button').submit();
+}
+
+$(document).ready(function () {
+  $("#edit_autoreply").submit(function (event) {
+      const id = document.getElementById("id");
+      const keyword = document.getElementById("keyword_edit");
+      const media = document.getElementById("media_edit");
+      const content = document.getElementById("content_edit");
+      const footer = document.getElementById("footer_edit");
+      const external_link = document.getElementById("external_link_edit");
+      const external_link_name = document.getElementById("external_link_name_edit");
+      const external_telp = document.getElementById("external_telp_edit");
+      const external_telp_name = document.getElementById("external_telp_name_edit");
+      const keyword_auto_reply = document.getElementById("keyword_auto_reply_edit");
+      const text_button = document.getElementById("text_button_edit");
+      const keyword_auto_replytwo = document.getElementById("keyword_auto_replytwo_edit");
+      const text_button_two = document.getElementById("text_button_two_edit");
+      
+      const editbutton = {
+          id: id.value,
+          keyword: keyword.value,
+          media: media.value,
+          content: content.value,
+          footer: footer.value,
+          external_link: external_link.value,
+          external_link_name: external_link_name.value,
+          external_telp: external_telp.value,
+          external_telp_name: external_telp_name.value,
+          keyword_auto_reply: keyword_auto_reply.value,
+          text_button: text_button.value,
+          keyword_auto_replytwo: keyword_auto_replytwo.value,
+          text_button_two: text_button_two.value
+      };
+      
+      $.ajax({
+          url: rid_request_file() + '?f=edit_abutton',
+          beforeSend: function() {
+              $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>')
+          },
+          type: "POST",
+          data: editbutton,
+      }).done(async (data) => {
+          console.log(data);
+          var ridCans = JSON.parse(data);
+          if (ridCans.status == 200) {
+              await sleep(2000);
+              $('#langsModal').modal('hide');
+              location.reload();
+          } else {
+              console.log('this error ' + data);
+              $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+              setTimeout(function () {
+                  $('.langsModalAlert').empty();
+              }, 5000);
+          }
+          $("#langsModal").animate({ scrollTop: 0 }, 100);
+      });
+    event.preventDefault();
+  });
+});
+
+$(document).ready(function () {
+  $("#add_button").submit(function (event) {
+      const make_by = document.getElementById("make_by");
+      const keyword = document.getElementById("keyword");
+      const media = document.getElementById("media");
+      const content = document.getElementById("content");
+      const footer = document.getElementById("footer");
+      const external_link = document.getElementById("external_link");
+      const external_link_name = document.getElementById("external_link_name");
+      const external_telp = document.getElementById("external_telp");
+      const external_telp_name = document.getElementById("external_telp_name");
+      const keyword_auto_reply = document.getElementById("keyword_auto_reply");
+      const text_button = document.getElementById("text_button");
+      const keyword_auto_replytwo = document.getElementById("keyword_auto_replytwo");
+      const text_button_two = document.getElementById("text_button_two");
+      
+      const addbutton = {
+          make_by: make_by.value,
+          keyword: keyword.value,
+          media: media.value,
+          content: content.value,
+          footer: footer.value,
+          external_link: external_link.value,
+          external_link_name: external_link_name.value,
+          external_telp: external_telp.value,
+          external_telp_name: external_telp_name.value,
+          keyword_auto_reply: keyword_auto_reply.value,
+          text_button: text_button.value,
+          keyword_auto_replytwo: keyword_auto_replytwo.value,
+          text_button_two: text_button_two.value
+      };
+      
+      $.ajax({
+          url: rid_request_file() + '?f=add_button',
+          beforeSend: function() {
+              $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>')
+          },
+          type: "POST",
+          data: addbutton,
+      }).done(async (data) => {
+          console.log(data);
+          var ridCans = JSON.parse(data);
+          if (ridCans.status == 200) {
+              await sleep(2000);
+              $('#langsModal').modal('hide');
+              location.reload();
+          } else {
+              console.log('this error ' + data);
+              $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+              setTimeout(function () {
+                  $('.langsModalAlert').empty();
+              }, 5000);
+          }
+          $("#langsModal").animate({ scrollTop: 0 }, 100);
+      });
+    event.preventDefault();
+  });
+});
+
+function rid_edits(id,content,footer,keyword,text_button,keyword_auto_reply,external_link,external_link_name,external_telp,external_telp_name,keyword_auto_replytwo,text_button_two) {
+    $('#edit_autoreplyh').modal('show');
+    document.getElementById("id").setAttribute("value", id);
+    document.getElementById("content_edit").value = content;
+    document.getElementById("footer_edit").value = footer;
+    document.getElementById("keyword_edit").value = keyword;
+    document.getElementById("text_button_edit").value = text_button;
+    document.getElementById("keyword_auto_reply_edit").value = keyword_auto_reply;
+    document.getElementById("external_link_edit").value = external_link;
+    document.getElementById("external_link_name_edit").value = external_link_name;
+    document.getElementById("external_telp_edit").value = external_telp;
+    document.getElementById("external_telp_name_edit").value = external_telp_name;
+    document.getElementById("keyword_auto_replytwo_edit").value = keyword_auto_replytwo;
+    document.getElementById("text_button_two_edit").value = text_button_two;
+}
+
+function rid_AddAutoReply() {
+    $('#add_buttonh').modal('show');
+}
+
+function rid_delete(key,type = 'show') {
+  if (key == '') {
+    return false;
+  }
+  if (type == 'hide') {
+    $('#modals-delete_device').find('.delete-device').attr('onclick', "rid_delete('"+key+"')");
+    $('#modals-delete_device').showMenu();
+    return false;
+  }
+  $('#' + key).fadeOut(300, function () {
+    $(this).remove();
+  });
+  $.get(rid_request_file(), {f: 'edit_abutton', act: 'del', id:key});
+}
+</script>
+<?php } else if ($datadefp['send_button'] == '2') { ?>
+<center><h1>You do not have access to use this</h1></center>
+<?php } else { ?>
+<center><h1>This Feature disabled</h1></center>
+<?php } ?>

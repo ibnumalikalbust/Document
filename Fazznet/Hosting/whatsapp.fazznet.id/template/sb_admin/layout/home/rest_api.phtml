@@ -1,0 +1,186 @@
+<?php 
+$con = $rid['sqlConnect'];
+$checksession = $_SESSION['rid_username'];
+$riduser = $rid['dataUser'];
+if ($rid['web_setting']['rest_api'] == '1' && $riduser['rest_api'] == '1') { ?>
+<div class="card-body">
+<div class="code-block">
+<div class="input url"><label for="OrderLink">Method : </label><input disabled value="POST" placeholder="" name="url" type="url" class="form-control" required id="url"/></div>
+<div class="input url"><label for="OrderLink">Your token : </label><input disabled value="<?php echo $riduser['api_key'];?>" placeholder="" name="url" type="url" class="form-control" required id="url"/></div>
+<br><br>
+
+
+<br>
+
+<h3>PHP API CODE Send Text Message</h3>
+<!-- HTML generated using highlightmycode --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #507090">&lt;?php</span>
+
+<span style="color: #906030">$data</span> <span style="color: #303030">=</span> [
+    <span style="background-color: #fff0f0">&#39;api_key&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;<?php echo $riduser['api_key'];?>&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;sender&#39;</span>  <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Your number sender&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;number&#39;</span>  <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Number&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;message&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;<?php echo rid_lang('message');?>&#39;</span>
+];
+
+<span style="color: #906030">$curl</span> <span style="color: #303030">=</span> <span style="color: #007020">curl_init</span>();
+curl_setopt_array(<span style="color: #906030">$curl</span>, <span style="color: #008000; font-weight: bold">array</span>(
+  CURLOPT_URL <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&quot;<?php echo url_wa();?>/apiv2/send-message.php&quot;</span>,
+  CURLOPT_RETURNTRANSFER <span style="color: #303030">=&gt;</span> <span style="color: #008000; font-weight: bold">true</span>,
+  CURLOPT_ENCODING <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&quot;&quot;</span>,
+  CURLOPT_MAXREDIRS <span style="color: #303030">=&gt;</span> <span style="color: #0000D0; font-weight: bold">10</span>,
+  CURLOPT_TIMEOUT <span style="color: #303030">=&gt;</span> <span style="color: #0000D0; font-weight: bold">0</span>,
+  CURLOPT_FOLLOWLOCATION <span style="color: #303030">=&gt;</span> <span style="color: #008000; font-weight: bold">true</span>,
+  CURLOPT_HTTP_VERSION <span style="color: #303030">=&gt;</span> CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&quot;POST&quot;</span>,
+  CURLOPT_POSTFIELDS <span style="color: #303030">=&gt;</span> json_encode(<span style="color: #906030">$data</span>))
+);
+
+<span style="color: #906030">$response</span> <span style="color: #303030">=</span> <span style="color: #007020">curl_exec</span>(<span style="color: #906030">$curl</span>);
+
+<span style="color: #007020">curl_close</span>(<span style="color: #906030">$curl</span>);
+<span style="color: #008000; font-weight: bold">echo</span> <span style="color: #906030">$response</span>;
+</pre></div>
+
+
+<br><br>
+
+
+<h3>PHP API CODE Send Media Message</h3>
+<!-- HTML generated using highlightmycode --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #507090">&lt;?php</span>
+
+<span style="color: #906030">$data</span> <span style="color: #303030">=</span> [
+    <span style="background-color: #fff0f0">&#39;api_key&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;<?php echo $riduser['api_key'];?>&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;sender&#39;</span>  <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Your number sender&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;number&#39;</span>  <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Number&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;caption&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;<?php echo rid_lang('message');?>&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;url&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Url media&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;ex&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;ex : jpg,jpeg,png,mp4,mp3,pdf&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;filename&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;sample : rid.pdf&#39;</span>
+];
+
+<span style="color: #906030">$curl</span> <span style="color: #303030">=</span> <span style="color: #007020">curl_init</span>();
+curl_setopt_array(<span style="color: #906030">$curl</span>, <span style="color: #008000; font-weight: bold">array</span>(
+  CURLOPT_URL <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&quot;<?php echo url_wa();?>/apiv2/send-media.php&quot;</span>,
+  CURLOPT_RETURNTRANSFER <span style="color: #303030">=&gt;</span> <span style="color: #008000; font-weight: bold">true</span>,
+  CURLOPT_ENCODING <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&quot;&quot;</span>,
+  CURLOPT_MAXREDIRS <span style="color: #303030">=&gt;</span> <span style="color: #0000D0; font-weight: bold">10</span>,
+  CURLOPT_TIMEOUT <span style="color: #303030">=&gt;</span> <span style="color: #0000D0; font-weight: bold">0</span>,
+  CURLOPT_FOLLOWLOCATION <span style="color: #303030">=&gt;</span> <span style="color: #008000; font-weight: bold">true</span>,
+  CURLOPT_HTTP_VERSION <span style="color: #303030">=&gt;</span> CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&quot;POST&quot;</span>,
+  CURLOPT_POSTFIELDS <span style="color: #303030">=&gt;</span> json_encode(<span style="color: #906030">$data</span>))
+);
+
+<span style="color: #906030">$response</span> <span style="color: #303030">=</span> <span style="color: #007020">curl_exec</span>(<span style="color: #906030">$curl</span>);
+
+<span style="color: #007020">curl_close</span>(<span style="color: #906030">$curl</span>);
+<span style="color: #008000; font-weight: bold">echo</span> <span style="color: #906030">$response</span>;
+</pre></div>
+
+<br><br>
+
+<h3>PHP API CODE Send Button Message</h3>
+<!-- HTML generated using highlightmycode --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #507090">&lt;?php</span>
+
+<span style="color: #906030">$data</span> <span style="color: #303030">=</span> [
+    <span style="background-color: #fff0f0">&#39;api_key&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;<?php echo $riduser['api_key'];?>&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;sender&#39;</span>  <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Your number sender&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;number&#39;</span>  <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Number&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;image&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;url image&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;content&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Content / message&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;footer&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Footer / message short&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;external_link&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Write your link website here&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;external_link_name&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Write text button for link website&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;external_telp&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Write your number here&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;external_telp_name&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Write text button for phone&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;keyword_auto_reply&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Write your keyword in auto reply or auto reply button&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;text_button&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Write text button for keyword auto reply above&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;keyword_auto_replytwo&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Write your keyword in auto reply or auto reply button&#39;</span>,
+    <span style="background-color: #fff0f0">&#39;text_button_two&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Write text button for keyword auto reply two aboe&#39;</span>
+];
+
+<span style="color: #906030">$curl</span> <span style="color: #303030">=</span> <span style="color: #007020">curl_init</span>();
+curl_setopt_array(<span style="color: #906030">$curl</span>, <span style="color: #008000; font-weight: bold">array</span>(
+  CURLOPT_URL <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&quot;<?php echo url_wa();?>/apiv2/send-button.php&quot;</span>,
+  CURLOPT_RETURNTRANSFER <span style="color: #303030">=&gt;</span> <span style="color: #008000; font-weight: bold">true</span>,
+  CURLOPT_ENCODING <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&quot;&quot;</span>,
+  CURLOPT_MAXREDIRS <span style="color: #303030">=&gt;</span> <span style="color: #0000D0; font-weight: bold">10</span>,
+  CURLOPT_TIMEOUT <span style="color: #303030">=&gt;</span> <span style="color: #0000D0; font-weight: bold">0</span>,
+  CURLOPT_FOLLOWLOCATION <span style="color: #303030">=&gt;</span> <span style="color: #008000; font-weight: bold">true</span>,
+  CURLOPT_HTTP_VERSION <span style="color: #303030">=&gt;</span> CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&quot;POST&quot;</span>,
+  CURLOPT_POSTFIELDS <span style="color: #303030">=&gt;</span> json_encode(<span style="color: #906030">$data</span>))
+);
+
+<span style="color: #906030">$response</span> <span style="color: #303030">=</span> <span style="color: #007020">curl_exec</span>(<span style="color: #906030">$curl</span>);
+
+<span style="color: #007020">curl_close</span>(<span style="color: #906030">$curl</span>);
+<span style="color: #008000; font-weight: bold">echo</span> <span style="color: #906030">$response</span>;
+</pre></div>
+
+<br><br>
+
+<h3>PHP  CODE Webhook</h3>
+
+<!-- HTML generated using highlightmycode --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #507090">&lt;?php</span>
+
+<span style="color: #808080">// ------------------------------------------------------------------//</span>
+<span style="color: #007020">header</span>(<span style="background-color: #fff0f0">&#39;content-type: application/json&#39;</span>);
+<span style="color: #906030">$data</span> <span style="color: #303030">=</span> json_decode(<span style="color: #007020">file_get_contents</span>(<span style="background-color: #fff0f0">&#39;php://input&#39;</span>), <span style="color: #008000; font-weight: bold">true</span>);
+<span style="color: #007020">file_put_contents</span>(<span style="background-color: #fff0f0">&#39;whatsapp.txt&#39;</span>, <span style="background-color: #fff0f0">&#39;[&#39;</span> <span style="color: #303030">.</span> <span style="color: #007020">date</span>(<span style="background-color: #fff0f0">&#39;Y-m-d H:i:s&#39;</span>) <span style="color: #303030">.</span> <span style="background-color: #fff0f0">&quot;]</span><span style="color: #606060; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span> <span style="color: #303030">.</span> json_encode(<span style="color: #906030">$data</span>) <span style="color: #303030">.</span> <span style="background-color: #fff0f0">&quot;</span><span style="color: #606060; font-weight: bold; background-color: #fff0f0">\n\n</span><span style="background-color: #fff0f0">&quot;</span>, FILE_APPEND);
+<span style="color: #906030">$message</span> <span style="color: #303030">=</span> <span style="color: #906030">$data</span>[<span style="background-color: #fff0f0">&#39;message&#39;</span>]; <span style="color: #808080">// ini menangkap pesan masuk</span>
+<span style="color: #906030">$from</span> <span style="color: #303030">=</span> <span style="color: #906030">$data</span>[<span style="background-color: #fff0f0">&#39;from&#39;</span>]; <span style="color: #808080">// ini menangkap nomor pengirim pesan</span>
+
+
+<span style="color: #008000; font-weight: bold">if</span> (<span style="color: #007020">strtolower</span>(<span style="color: #906030">$message</span>) <span style="color: #303030">==</span> <span style="background-color: #fff0f0">&#39;hai&#39;</span>) {
+    <span style="color: #906030">$result</span> <span style="color: #303030">=</span> [
+        <span style="background-color: #fff0f0">&#39;mode&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;chat&#39;</span>, <span style="color: #808080">// mode chat = chat biasa</span>
+        <span style="background-color: #fff0f0">&#39;pesan&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Hai juga&#39;</span>
+    ];
+} <span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #007020">strtolower</span>(<span style="color: #906030">$message</span>) <span style="color: #303030">==</span> <span style="background-color: #fff0f0">&#39;hallo&#39;</span>) {
+    <span style="color: #906030">$result</span> <span style="color: #303030">=</span> [
+        <span style="background-color: #fff0f0">&#39;mode&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;reply&#39;</span>, <span style="color: #808080">// mode reply = reply pessan</span>
+        <span style="background-color: #fff0f0">&#39;pesan&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;Halo juga&#39;</span>
+    ];
+} <span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #007020">strtolower</span>(<span style="color: #906030">$message</span>) <span style="color: #303030">==</span> <span style="background-color: #fff0f0">&#39;gambar&#39;</span>) {
+    <span style="color: #906030">$result</span> <span style="color: #303030">=</span> [
+        <span style="background-color: #fff0f0">&#39;mode&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;picture&#39;</span>, <span style="color: #808080">// type picture = kirim pesan gambar</span>
+        <span style="background-color: #fff0f0">&#39;data&#39;</span> <span style="color: #303030">=&gt;</span> [
+            <span style="background-color: #fff0f0">&#39;caption&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;*webhook picture*&#39;</span>,
+            <span style="background-color: #fff0f0">&#39;url&#39;</span> <span style="color: #303030">=&gt;</span> <span style="background-color: #fff0f0">&#39;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ2Ox4zgP799q86H56GbPMNWAdQQrfIWD-Mw&amp;usqp=CAU&#39;</span>
+        ]
+    ];
+}
+
+<span style="color: #008000; font-weight: bold">print</span> json_encode(<span style="color: #906030">$result</span>);
+
+
+<span style="color: #808080">// kami akan memberitahu jika update. :)</span>
+</pre></div>
+
+
+</div>
+
+<!-- /.container-fluid -->
+
+</div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- End custom js for this page -->
+    <script>
+      function tambahautoreply() {
+        var ajig = document.getElementById('tambahauto');
+        if (ajig.style.display === "none") {
+          ajig.style.display = "block";
+        } else {
+          ajig.style.display = "none";
+        }
+      }
+    </script>
+<?php } else if ($riduser['rest_api'] == '2') { ?>
+<center><h1>You do not have access to use this</h1></center>
+<?php } else { ?>
+<center><h1>This feature disabled</h1></center>
+<?php } ?>

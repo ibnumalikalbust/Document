@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>layouting07</title>
+    <style>
+        body {
+            font: 12px/16px arial, sans-serif;
+            background-color: grey;
+        }
+
+        .div0 h1 {
+            text-align: center;
+        }
+
+        .container {
+            width: 600px;
+            margin: auto;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .header {
+            padding: 10px;
+        }
+
+        .header h1 {
+            padding-left: 40px;
+        }
+
+        .header ul li {
+            display: inline-block;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
+        .header a {
+            text-decoration: none;
+            color: salmon;
+            padding: 3px;
+            border-radius: 5px;
+        }
+
+        .header a:hover {
+            background-color: lightskyblue;
+            color: white;
+        }
+
+        .hero {
+            height: 200px;
+            background-color: yellow;
+            margin: 5px;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        .content {
+            padding-left: 10px;
+        }
+        .content p {
+            margin-bottom: 10px;
+        }
+        .footer {
+            background-color: red;
+            text-align: center;
+            padding: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div0">
+        <h1>BOX MODEL</h1>
+    </div>
+    <br>
+    <div class="container">
+        <div class="header">
+            <h1>My Website</h1>
+            <ul>
+                <li><a href="#">home</a></li>
+                <li><a href="#">about</a></li>
+                <li><a href="#">product</a></li>
+                <li><a href="#">services</a></li>
+                <li><a href="#">contact</a></li>
+            </ul>
+        </div>
+        <div class="hero"></div>
+        <div class="content">
+            <h2>Judul Artikel</h2>
+            <p class="p0">Ditulis oleh <a href="#">Saya</a> pada 01 Januari 2022</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores voluptas animi iste a officiis ab illum, deserunt molestias excepturi natus. Deleniti blanditiis voluptates, repellat sapiente modi consectetur cupiditate ad nihil?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque cum itaque eius quos facilis, quod perspiciatis? Repellendus amet, saepe aut consequatur modi dignissimos sunt quia iste laboriosam eius consequuntur eos voluptas enim architecto consectetur, deleniti facilis itaque ullam impedit ea soluta est? Sunt iure aliquid, cum magnam labore veniam rerum repellendus nemo, maxime neque doloremque autem modi sequi dolores exercitationem veritatis magni earum odio. Nulla reiciendis vero saepe quisquam accusamus voluptatem assumenda qui, corrupti mollitia repellendus dolore dicta? Reprehenderit consectetur enim, ullam veniam distinctio cum iusto voluptatibus maxime similique exercitationem minus non error, dolore reiciendis magnam delectus saepe ratione repellendus.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia vero ut dicta totam inventore accusamus ipsa numquam recusandae mollitia, natus et, sequi ea, ex perferendis.</p>
+            <br>
+        </div>
+        <div class="footer">
+            <p class="copyright">Copyrigth 2022</p>
+        </div>
+    </div>
+</body>
+
+</html>

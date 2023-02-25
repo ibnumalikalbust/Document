@@ -1,0 +1,44 @@
+<?php 
+$u = $_SESSION['rid_username'];
+$con = $rid['sqlConnect'];
+?>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><?php echo rid_lang('add_numb');?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <label> <?php echo rid_lang('name');?> </label>
+                    <input type="text" name="nama" required class="form-control">
+                    <br>
+                    <label> <?php echo rid_lang('number');?> </label>
+                    <input type="text" name="nomor" required class="form-control" placeholder="62858xxxxxxxx">
+                    <br>
+                    <label><?php echo rid_lang('message');?> </label>
+                    <textarea type="text" name="pesan" required class="form-control" placeholder="<?php echo rid_lang('message');?>"></textarea>
+                    <label> Tag </label>
+                    <select class="SlectBox form-control SumoUnder" style="width: 100%" id="tag" name="tag">
+                        <?php
+
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM tag_number WHERE username ='$u'");
+
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option selected value="">Choose tag</option><option value="' . $row['tag_name'] . '">' . $row['username'] . ' (' . $row['tag_name'] . ')</option>';
+                        }
+                        ?>
+                    </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary"><?php echo rid_lang('save');?></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

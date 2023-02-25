@@ -1,0 +1,115 @@
+<?php
+$u = $_SESSION['rid_username'];
+$con = $rid['sqlConnect'];
+?>
+<div class="modal fade" id="add_buttonh" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h4 class="modal-title" id="langsModalLabel"><?php echo rid_lang('add_numb');?></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="add_button" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel"><?php echo rid_lang('number');?> Sender</label>
+                        <select class="form-control show-tick" id="make_by" name="make_by">
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik='$u' AND state = 'CONNECTED'");
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . $row['nomor'] . ' (active)</option>';
+                        }
+                        ?>
+                        </select>
+                        <small class="admin-info">Choose sender.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">keyword</label>
+                                <input style="resize: none;" name="keyword" id="keyword" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Image link</label>
+                                <input type="text" id="media" name="media" class="form-control">
+                            </div>
+                            <small class="admin-info">jpg/png</small>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label">Content</label>
+                                <textarea name="content" id="content" class="form-control" cols="30" rows="10" style="height: 100px;"></textarea>
+                                <small class="admin-info">Write your message here.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Footer</label>
+                                <input style="resize: none;" name="footer" id="footer" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">External link</label>
+                                <input style="resize: none;" name="external_link" id="external_link" class="form-control" placeholder="ex: https://xxx">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">External link Button name</label>
+                                <input style="resize: none;" name="external_link_name" id="external_link_name" class="form-control" placeholder="Visit my website">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">External telp</label>
+                                <input style="resize: none;" name="external_telp" id="external_telp" class="form-control" placeholder="ex: 62815xxxx">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">External telp Button name</label>
+                                <input style="resize: none;" name="external_telp_name" id="external_telp_name" class="form-control" placeholder="ex: Call me!">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Keyword auto reply</label>
+                                <input style="resize: none;" name="keyword_auto_reply" id="keyword_auto_reply" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Text button for keyword auto reply</label>
+                                <input style="resize: none;" name="text_button" id="text_button" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">keyword auto reply 2</label>
+                                <input style="resize: none;" name="keyword_auto_replytwo" id="keyword_auto_replytwo" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Text button for keyword auto reply 2</label>
+                                <input style="resize: none;" name="text_button_two" id="text_button_two" class="form-control">
+                            </div>
+                        </div>
+                        <div class="data"></div>
+                        <div class="langsModalAlert"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal_close_btn" data-dismiss="modal"><?php echo rid_lang('close');?></button>
+                <button type="button" class="btn btn-primary" onclick="rid_add();"><?php echo rid_lang('save');?></button>
+            </div>
+        </div>
+    </div>
+</div>

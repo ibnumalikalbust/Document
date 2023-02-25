@@ -1,0 +1,417 @@
+<?php
+$u = $_SESSION['rid_username'];
+$con = $rid['sqlConnect'];
+$cekdatnumb = mysqli_query($con, "SELECT * FROM nomor WHERE make_by = '$u'");
+$totaldatnumb = mysqli_num_rows($cekdatnumb);
+$cekdatpesansend = mysqli_query($con, "SELECT * FROM pesan WHERE make_by = '$u' AND status = 'TERKIRIM'");
+$totaldatpesansend = mysqli_num_rows($cekdatpesansend);
+$cekdatpesanwaiting = mysqli_query($con, "SELECT * FROM pesan WHERE make_by = '$u' AND status = 'MENUNGGU JADWAL'");
+$totaldatpesanwaiting = mysqli_num_rows($cekdatpesanwaiting);
+$cekdatpesanfail = mysqli_query($con, "SELECT * FROM pesan WHERE make_by = '$u' AND status = 'GAGAL'");
+$totaldatpesanfail = mysqli_num_rows($cekdatpesanfail);
+$datser = mysqli_query($con, "SELECT * FROM rid_account WHERE rid_username = '$u'");
+$datserr = mysqli_fetch_assoc($datser);
+if ($datserr['limit_device'] == 'unlimited') {
+    $limit_device = "∞";
+} else {
+    $limit_device = $datserr['limit_device'];
+}
+$ceknumb = mysqli_query($con, "SELECT * FROM device WHERE pemilik = '$u'");
+$ceklg = mysqli_query($con, "SELECT * FROM device WHERE pemilik = '$u' AND state = 'CONNECTED'");
+if ($_GET['start']) {
+    start($_GET['start']);
+    sleep(2);
+    header('location: index.php?link1=home');
+}
+?>
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+                      <b>Hi <?php echo $rid['dataUser']['full_name'];?></b>, welcome back!
+                    </div>
+                    <!-- /breadcrumb -->
+                    
+
+                    <div class="row row-sm">
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Total Device</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $datserr['total_device'];?> / <?php echo $limit_device;?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-phone fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Total Device Connected</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo mysqli_num_rows($ceklg);?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-phone fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Total Device Not Connected</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php 
+                                                    $ceknumb = mysqli_query($con, "SELECT * FROM device WHERE pemilik = '$u' AND state = 'QRCODE'");
+                                                    echo $con->query("SELECT * FROM device WHERE pemilik = '$u' AND state = 'QRCODE'")->num_rows;?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-phone fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-4 col-lg-4">
+                            <div class="card shadow mb-2">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">STATUS</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="">
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="card bg-primary text-white shadow">
+                                                <div class="card-body">
+                                                    Start: <?php echo date('D M Y', strtotime($datserr['rid_start']));?> / <?php echo $datserr['rid_start'];?><br>
+                                                    Expired: <?php echo date('D M Y ', strtotime($datserr['rid_expired']));?> / <?php echo $datserr['rid_expired'];?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="card bg-danger text-white shadow">
+                                                <div class="card-body">
+                                                    <?php if (rid_check_x($datserr['rid_username']) !== 'expired') { ?>
+                                                    Please extend before the time expires!. avoid your WhatsApp connection being deleted.
+                                                    <?php } else { ?>
+                                                    Your account has been expired.
+                                                    <?php } ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">ACCOUNT</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <?php
+                                    $c = mysqli_query($con, "SELECT * FROM device WHERE pemilik = '$u' AND state = 'CONNECTED'");
+                                    ?>
+                                    <h1><?php if (mysqli_num_rows($c) > 0) { echo '<button class="btn btn-success btn-block">This is your whatsapp the connected</button>'; } else { echo '<button class="btn btn-danger btn-block">Looks like your not have whatsapp connected</button>'; } ?></h1>
+                                    <?php
+                                    $u = $_SESSION['rid_username'];
+                                    $c = mysqli_query($con, "SELECT * FROM device WHERE pemilik = '$u' AND state = 'CONNECTED'");
+                                    while($row = mysqli_fetch_assoc($c)) { ?>
+                                    <div class="container">
+                                      <div class="row mt-4">
+                                        <div class="col-sm-2">
+                                          <img src="<?= $row['pp'];?>" width="60" class="rounded-circle" alt="User Avatar">
+                                        </div>
+                                        <div class="col-sm-10">
+                                          <h5 class="ml-3"><b><?= $row['profile_name'];?></b></h5>
+                                          <p class="ml-3"><?= $row['status_wa'];?> <span class="badge badge-pill badge-success"><?php echo rid_lang('connected');?></span> </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-xl-4 col-lg-4">
+                            <div class="card shadow mb-2">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">MESSAGE BULK SENT / FAIL / WAITING</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="">
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="card bg-success text-white shadow">
+                                                <div class="card-body">
+                                                    <?php echo $con->query("SELECT * FROM pesan WHERE make_by = '$u' AND status = 'TERKIRIM'")->num_rows; ?> SENT
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="card bg-danger text-white shadow">
+                                                <div class="card-body">
+                                                    <?php echo $con->query("SELECT * FROM pesan WHERE make_by = '$u' AND status = 'GAGAL'")->num_rows; ?> FAILED
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="card bg-warning text-white shadow">
+                                                <div class="card-body">
+                                                    <?php echo $con->query("SELECT * FROM pesan WHERE make_by = '$u' AND status = 'MENUNGGU JADWAL'")->num_rows; ?> WAITING
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-xl-12 mt-4">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <button data-menu="modal-add_device" class="btn btn-success"><i class="fas fa-plus"></i><strong><?php echo rid_lang('add_numb');?></strong></button>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="example" class="table-bordered table key-buttons text-md-nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th class="border-bottom-0"><?php echo rid_lang('number');?></th>
+                                                    <th class="border-bottom-0">Webhook</th>
+                                                    <th class="border-bottom-0">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $u = $_SESSION['rid_username'];
+                                                $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik = '$u'");
+                                                while ($row = mysqli_fetch_assoc($q)) { ?>
+                                                <tr id="<?= $row['nomor'];?>" data-selected="<?= $row['nomor'];?>">
+                                                    <td><span><?= $row['nomor']; ?></span></td>
+                                                    <td><span><?= $row['link_webhook']; ?></span></td>
+                                                    <td>
+                                                        <?php if ($row['state'] == 'CONNECTED') { ?>
+                                                        <button type="button" class="btn btn-success btn-block" data-id="<?= $row['nomor'];?>"><?php echo rid_lang('connected');?></button>
+                                                        <button type="button" data-id="<?= $row['nomor'];?>" class="btn btn-danger btn-block" onclick="logout('<?= $row["nomor"];?>');"><?php echo rid_lang('logout');?></button>
+                                                        <?php } else if ($row['status'] == 'qrRead'){ ?>
+                                                            <?php if (rid_check_x($u) == 'expired') { ?>
+                                                            <button type="button" data-id="<?= $row['nomor'];?>" class="btn btn-danger btn-block" onclick="rid_Delete_Number('<?= $row["nomor"];?>', 'hide');"><?php echo rid_lang('delete');?></button>
+                                                            <button type="button" data-id="<?= $row['nomor'];?>" class="btn btn-danger btn-block">EXPIRED</button>
+                                                            <?php } else { ?>
+                                                            <button type="button" data-id="<?= $row['nomor'];?>" class="btn btn-success btn-block" id="scanqr" onclick="scanqr('<?= $row["nomor"];?>');">Scan</button>
+                                                            <button type="button" data-id="<?= $row['nomor'];?>" class="btn btn-danger btn-block" onclick="rid_Delete_Number('<?= $row["nomor"];?>', 'hide');"><?php echo rid_lang('delete');?></button>
+                                                            <?php } ?>
+                                                       <?php } else if ($row['state'] == 'STARTING') { 
+                                                       //header("Location: index.php?link1=home")?>
+                                                       <p>PLEASE WAIT FOR 1 MINUTE!</p>
+                                                       <a href="<?php echo url_wa();?>/index.php?link1=home&start=<?= $row['nomor'];?>"><button type="button" data-id="<?= $row['nomor'];?>" class="btn btn-danger btn-block" >Refresh</button></a>
+                                                       <?php } else if ($row['state'] == NULL) { ?>
+                                                       <p>Now tap start for getting started or wait 5 minutes!</p>
+                                                       <a href="<?php echo url_wa();?>/index.php?link1=home&start=<?= $row['nomor'];?>"><button type="button" data-id="<?= $row['nomor'];?>" class="btn btn-danger btn-block" >START</button></a>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                    
+                    
+<script>
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+function Wo_SubmitLangForm() {
+    $('.edit-key-settings').submit();
+}
+function rid_AddNumbers() {
+    $('#newnumber').submit();
+}
+
+$(document).on('click', '#add_new_number', function(event) {
+    $('#langsModal').modal('show');
+});
+
+$(document).ready(function () {
+  $("#newnumber").submit(function (event) {
+      const sender = document.getElementById("nomor");
+      const webhook = document.getElementById("webhook");
+      let addnum = {
+          nomor: sender.value,
+          webhook: webhook.value,
+      };
+      
+      $.ajax({
+          url: rid_request_file() + '?f=add_number',
+          beforeSend: function() {
+              $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>')
+          },
+          type: "POST",
+          data: addnum,
+      }).done(async (data) => {
+          console.log(data);
+          var ridCans = JSON.parse(data);
+          if (ridCans.status == 200) {
+              await sleep(2000);
+              $('#langsModal').modal('hide');
+              location.reload();
+          } else {
+              console.log('this error ' + data);
+              $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+              setTimeout(function () {
+                  $('.langsModalAlert').empty();
+              }, 5000);
+          }
+          $("#langsModal").animate({ scrollTop: 0 }, 100);
+      });
+    event.preventDefault();
+  });
+});
+
+async function rid_Delete_Number(key,type = 'show') {
+  if (key == '') {
+    return false;
+  }
+  if (type == 'hide') {
+    $('#modals-delete_device').find('.delete-device').attr('onclick', "rid_Delete_Number('"+key+"')");
+    $('#modals-delete_device').showMenu();
+    return false;
+  }
+  $('#' + key).fadeOut(300, function () {
+    $(this).remove();
+  });
+  await $.get(rid_request_file(), {f: 'delete_number', nomor:key});
+  window.location = base_url() + '/index.php?link1=home';
+}
+
+
+function scanqr(nomor) {
+        $('.areascanqr').html(`
+<div class="card-body">
+    <div id="cardimg-${nomor}" class="text-center ">
+
+    </div>
+    <p id="info-${nomor}" class="info-${nomor}"></p>
+    <div class="div arealogout"></div>
+</div>
+
+`)
+        $(`#cardimg-${nomor}`).html(`<img src="https://way-new.ridped.com/loading.gif" class="card-img-top center" alt="cardimg" id="qrcode"
+    style="height:250px; width:250px;"><br><p><?php echo rid_lang('connecting');?></p>`);
+    
+        setInterval(function() {
+            var xmlhttp = new XMLHttpRequest();
+            var url = rid_request_file() + "?f=f_data_sender&sender=" + nomor;
+
+            xmlhttp.onreadystatechange = async function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var remsult = JSON.parse(this.responseText);
+                console.log(remsult);
+                if (remsult.state == 'CONNECTED') {
+                    await restart(nomor)
+                    $(`#cardimg-${nomor}`).html(`<h2>isLogged. Please wait restarting....</h2>`);
+                    window.location = base_url() + "/index.php?link1=home"
+                } else if (remsult.state !== 'CONNECTED') {
+                    $(`#cardimg-${nomor}`).html(`<img src="${remsult.qrcode}" class="card-img-top center" alt="cardimg" id="qrcode"
+    style="height:250px; width:250px;"><br><p>Lets scan</p> <div id="tutorscan-${nomor}" class="text-center"></div>`);
+                $(`#tutorscan-${nomor}`).html(`<img src="https://way-vmd.ridped.com/pages/scan.gif" class="card-img-top center" alt="cardimg" id="tutorscan"
+    style="height:250px; width:250px;"><br><p>How to scan</p>`);
+                }
+            }
+            };
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        }, 2000);
+}
+
+function restart(nomor) {
+        var xmlhttp = new XMLHttpRequest();
+        var url = rid_restart();
+        
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log('okay!');
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+}
+
+function logout(nomor) {
+    $('#scanqrr').modal('show');
+        $('.areascanqr').html(`
+<div class="card-body">
+    <div id="cardimg-${nomor}" class="text-center ">
+
+    </div>
+    <p id="info-${nomor}" class="info-${nomor}"></p>
+    <div class="div arealogout"></div>
+</div>
+
+`)
+        $(`#cardimg-${nomor}`).html(`<img src="https://way-vmd.ridped.com/loading.gif" class="card-img-top center" alt="cardimg" id="qrcode"
+    style="height:250px; width:250px;"><br><p>Please wait...</p>`);
+    
+            var xmlhttp = new XMLHttpRequest();
+            var url = rid_request_file() + "?f=logout_wa&sender=" + nomor;
+
+            xmlhttp.onreadystatechange = async function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var remsult = JSON.parse(this.responseText);
+                if (remsult.Status.message == 'sesi terputus') {
+                    $(`#cardimg-${nomor}`).html(`<h2>Success. Please wait for restarting...</h2>`);
+                    window.location = base_url() + "/index.php?link1=home"
+                } else {
+                    $(`#cardimg-${nomor}`).html(`<h2>Ada kesalahan</h2>`);
+                }
+            }
+            };
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+    }
+
+$(document).on('click', '#scanqr', function(event) {
+    $('#scanqrr').modal('show');
+});
+</script>

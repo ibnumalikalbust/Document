@@ -1,0 +1,446 @@
+<?php 
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];
+$datadefp = $rid['dataUser'];
+if ($rid['web_setting']['send_bulk'] == '1' && $datadefp['send_msg'] == '1') { ?>
+<?php
+if (post("pesan")) {
+    $username = $_SESSION['rid_username'];
+    $pesan = post("pesan");
+    $sender = post("device");
+    // var_dump($sender); die;
+    $jadwal = date("Y-m-d H:i:s", strtotime(post("tgl") . " " . post("jam")));
+    if (!empty($_FILES['media']) && $_FILES['media']['error'] == UPLOAD_ERR_OK) {
+        // Be sure we're dealing with an upload
+        if (is_uploaded_file($_FILES['media']['tmp_name']) === false) {
+            throw new \Exception('Error on upload: Invalid file definition');
+        }
+
+        // Rename the uploaded file
+        $uploadName = $_FILES['media']['name'];
+        $ext = strtolower(substr($uploadName, strripos($uploadName, '.') + 1));
+        $size = $_FILES['media']['size'];
+        if ($size > 1000000) {
+            echo "<script>alert('Maximal 1 mb');</script>";
+            redirect("pesan_s_m");
+            exit;
+        }
+        $allow = ['png', 'jpg', 'jpeg'];
+        if (in_array($ext, $allow)) {
+            if ($ext == "png") {
+                $filename = round(microtime(true)) . mt_rand() . '.png';
+            }
+
+            if ($ext == "jpg") {
+                $filename = round(microtime(true)) . mt_rand() . '.jpg';
+            }
+
+            if ($ext == "jpeg") {
+                $filename = round(microtime(true)) . mt_rand() . '.jpeg';
+            }
+        } else {
+            echo "<script>alert('Format png,jpg,jpeg only');</script>";
+            redirect("pesan_s_m");
+            exit;
+        }
+
+        move_uploaded_file($_FILES['media']['tmp_name'], 'uploads/' . $filename);
+        // Insert it into our tracking along with the original name
+        $media = url_wa() . "/uploads/" . $filename;
+    } else {
+        $media = null;
+    }
+
+
+
+    if (isset($_POST['target'])) {
+        foreach ($_POST['target'] as $data) {
+            $n = $data;
+            $ceknomor = mysqli_query($con, "SELECT * FROM nomor WHERE nomor = '$n' AND make_by = '$username'");
+            $data2 = $ceknomor->fetch_assoc();
+            $pesannya = strtr($pesan, array(
+                '[name_contact]' => $data2['nama'],
+            ));
+            $pesannya2 = utf8_encode($pesannya);
+            if ($media == null) {
+                $q = mysqli_query($con, "INSERT INTO pesan(`sender`,`nomor`, `pesan`, `jadwal`, `make_by`)
+              VALUES('$sender','$n', '$pesannya2', '$jadwal','$username')");
+            } else {
+                $q = mysqli_query($con, "INSERT INTO pesan(`sender`,`nomor`, `pesan`, `media`, `jadwal`, `make_by`)
+              VALUES('$sender','$n', '$pesannya2', '$media', '$jadwal', '$username')");
+            }
+        }
+        // var_dump($n); die;
+
+    } else {
+        $username = $_SESSION['rid_username'];
+        $ceknomor = mysqli_query($con, "SELECT * FROM nomor WHERE make_by = '$username'");
+        while ($data = $ceknomor->fetch_assoc()) {
+            $pesannya = strtr($pesan, array(
+                '[name_contact]' => $data['nama'],
+            ));
+            $pesannya2 = utf8_encode($pesannya);
+            $n = $data['nomor'];
+            if ($media == null) {
+                $q = mysqli_query($con, "INSERT INTO pesan(`sender`,`nomor`, `pesan`, `jadwal`, `make_by`)
+            VALUES('$sender','$n', '$pesannya2', '$jadwal','$username')");
+            } else {
+                $q = mysqli_query($con, "INSERT INTO pesan(`sender`,`nomor`, `pesan`, `media`, `jadwal`, `make_by`)
+            VALUES('$sender','$n', '$pesannya2', '$media', '$jadwal', '$username')");
+            }
+            // var_dump($q);
+        }
+    }
+
+    echo "<script>alert('".rid_lang('success_added')."');</script>";
+}
+
+if (post("pesan2")) {
+    $sender = post("device");
+    $username = $_SESSION['rid_username'];
+    //$pesan = post("pesan");
+    $jadwal = date("Y-m-d H:i:s");
+    if (!empty($_FILES['media']) && $_FILES['media']['error'] == UPLOAD_ERR_OK) {
+        // Be sure we're dealing with an upload
+        if (is_uploaded_file($_FILES['media']['tmp_name']) === false) {
+            throw new \Exception('Error on upload: Invalid file definition');
+        }
+
+        // Rename the uploaded file
+        $uploadName = $_FILES['media']['name'];
+        $ext = strtolower(substr($uploadName, strripos($uploadName, '.') + 1));
+        $size = $_FILES['media']['size'];
+        if ($size > 1000000) {
+            echo "<script>alert('maximal 1 mb');</script>";
+            redirect("kirim.php");
+            exit;
+        }
+        $allow = ['png', 'jpg', 'jpeg'];
+        if (in_array($ext, $allow)) {
+            if ($ext == "png") {
+                $filename = round(microtime(true)) . mt_rand() . '.png';
+            }
+            
+            if ($ext == "jpg") {
+                $filename = round(microtime(true)) . mt_rand() . '.jpg';
+            }
+
+            if ($ext == "jpeg") {
+                $filename = round(microtime(true)) . mt_rand() . '.jpeg';
+            }
+        } else {
+            echo "<script>alert('Format png,jpg,jpeg only');</script>";
+            redirect("pesan_s_m.php");
+            exit;
+        }
+
+        move_uploaded_file($_FILES['media']['tmp_name'], 'uploads/' . $filename);
+        // Insert it into our tracking along with the original name
+        $media = url_wa() . "/uploads/" . $filename;
+    } else {
+        $media = null;
+    }
+
+
+
+    if (isset($_POST['target'])) {
+        foreach ($_POST['target'] as $data) {
+            $n = $data;
+            $ceknomor = mysqli_query($con, "SELECT * FROM nomor WHERE nomor = '$n' AND make_by = '$username'");
+            $data2 = $ceknomor->fetch_assoc();
+            $pesannya = strtr($data2['pesan'], array(
+                '[name_contact]' => $data2['nama'],
+            ));
+
+            $pesannya2 = utf8_encode($pesannya);
+            if ($media == null) {
+                $q = mysqli_query($con, "INSERT INTO pesan(`sender`,`nomor`, `pesan`, `jadwal`, `make_by`)
+              VALUES('$sender','$n', '$pesannya2', '$jadwal','$username')");
+            } else {
+                $q = mysqli_query($con, "INSERT INTO pesan(`sender`,`nomor`, `pesan`, `media`, `jadwal`, `make_by`)
+              VALUES('$sender','$n', '$pesannya2', '$media', '$jadwal', '$username')");
+            }
+        }
+    } else {
+        $username = $_SESSION['rid_username'];
+        $ceknomor = mysqli_query($con, "SELECT * FROM nomor WHERE make_by = '$username'");
+        while ($data = $ceknomor->fetch_assoc()) {
+            $pesannya = strtr($data['pesan'], array(
+                '[name_contact]' => $data['nama'],
+            ));
+            $pesannya2 = utf8_encode($pesannya);
+            $n = $data['nomor'];
+            if ($media == null) {
+                $q = mysqli_query($con, "INSERT INTO pesan(`sender`,`nomor`, `pesan`, `jadwal`, `make_by`)
+            VALUES('$sender','$n', '$pesannya2', '$jadwal','$username')");
+            } else {
+                $q = mysqli_query($con, "INSERT INTO pesan(`sender`,`nomor`, `pesan`, `media`, `jadwal`, `make_by`)
+            VALUES('$sender','$n', '$pesannya2', '$media', '$jadwal', '$username')");
+            }
+            // var_dump($q);
+        }
+    }
+
+    echo "<script>alert('".rid_lang('success_added')."');</script>";
+}
+
+if (get("act") == "ku") {
+    $id_blast = get("id");
+    $q = mysqli_query($con, "UPDATE `pesan` SET `status`='MENUNGGU JADWAL' WHERE `id`='$id_blast' AND `status`='GAGAL'");
+    header("location: " . $rid['site_url'] . "/index.php?link1=pesan_s_m");
+}
+
+if (get("act") == "hd") {
+    $q = mysqli_query($con, "DELETE FROM pesan WHERE `status`='TERKIRIM'");
+    header("location: " . $rid['site_url'] . "/index.php?link1=pesan_s_m");
+}
+
+if (get("del")) {
+    $id = get("del");
+    $q = mysqli_query($con, "DELETE FROM pesan WHERE id='$id'");
+    header("location: " . $rid['site_url'] . "/index.php?link1=pesan_s_m");
+}
+?>
+        <!-- DataTales Example -->
+    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal">
+        <?php echo rid_lang('send');?> <?php echo rid_lang('message');?>
+    </button>
+    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#kirimpesan2">
+        <?php echo rid_lang('send');?> <?php echo rid_lang('message');?> (Sesuai data nomor)
+    </button>
+    <br>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary" style="display:contents">Data <?php echo rid_lang('message');?></h6>
+            <a class="btn btn-danger float-right" href="index.php?link1=pesan_s_m&act=hd"><?php echo rid_lang('delete');?> data</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="example" class="table key-buttons text-md-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Sender</th>
+                            <th><?php echo rid_lang('number');?></th>
+                            <th><?php echo rid_lang('message');?></th>
+                            <th>Media</th>
+                            <th><?php echo rid_lang('schedule');?></th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+
+                        $username = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM pesan WHERE make_by='$username' ORDER BY id DESC");
+
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<tr>';
+                            echo '<td>' . $row['sender'] . '</td>';
+                            echo '<td>' . $row['nomor'] . '</td>';
+                            echo '<td>' . utf8_decode($row['pesan'])  . '</td>';
+                            echo '<td>' . $row['media'] . '</td>';
+                            echo '<td>' . $row['jadwal'] . '</td>';
+                            if ($row['status'] == "TERKIRIM") {
+                                echo '<td><span class="badge badge-success status-container-' . $row['id'] . '">'.rid_lang("sent").'</span></td>';
+                            } else if ($row['status'] == "GAGAL") {
+                                echo '<td><span class="badge badge-danger status-container-' . $row['id'] . '">'.rid_lang("fail").'</span></td>';
+                            } else {
+                                echo '<td><span class="badge badge-warning status-container-' . $row['id'] . '">Pending</span></td>';
+                            }
+
+                            if ($row['status'] == "GAGAL") {
+                                echo '<td class="button-container-' . $row['id'] . '"><a style="margin:5px" class="btn btn-success">'.rid_lang("fail").'</a><a style="margin:5px" class="btn btn-danger" href="pages/hapus_pesan.php?id=' . $row['id'] . '">'.rid_lang("delete").'</a></td>';
+                            } else {
+                                echo '<td class="button-container-' . $row['id'] . '"><a class="btn btn-danger" href="pages/hapus_pesan.php?id=' . $row['id'] . '">'.rid_lang("delete").'</a></td>';
+                            }
+                            echo '</tr>';
+                        }
+
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><?php echo rid_lang('send');?> <?php echo rid_lang('message');?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <label>sender</label>
+                    <br>
+                    <select class="form-control js-example-basic-multiple" name="device" style="width: 100%">
+                        <?php
+
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik='$u' AND state = 'CONNECTED'");
+
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . ' (' . $row['nomor'] . ')</option>';
+                        }
+                        ?>
+                    </select>
+                    <br>
+                    <label> <?php echo rid_lang('message');?> * </label>
+                    <textarea name="pesan" required class="form-control"></textarea>
+                    <p class="text-small text-danger">*Not support emoji now! </p>
+                    <br>
+                    <label> Media </label>
+                    <input type="file" name="media" class="form-control">
+                    <p class="text-small text-danger">Maximal 1mb </p>
+                    <br>
+                    <label> <?php echo rid_lang('schedule');?> * </label>
+                    <input type="date" name="tgl" required class="form-control" value="">
+                    <br>
+                    <label> Time * </label>
+                    <input type="time" name="jam" required class="form-control">
+                    <br>
+                    <label>To : </label>
+                    <br>
+                    <select class="form-control js-example-basic-multiple" name="target[]" multiple="multiple" style="width: 100%">
+                        <?php
+
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM nomor WHERE make_by='$u'");
+
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . $row['nama'] . ' (' . $row['nomor'] . ')</option>';
+                        }
+                        ?>
+                    </select>
+                    <br>
+                    <br>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="pesan1" class="btn btn-primary"><?php echo rid_lang('save');?></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="kirimpesan2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><?php echo rid_lang('send');?> <?php echo rid_lang('message');?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <label>sender</label>
+                    <br>
+                    <select class="form-control js-example-basic-multiple" name="device" style="width: 100%">
+                        <?php
+
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik='$u' AND state = 'CONNECTED'");
+
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . ' (' . $row['nomor'] . ')</option>';
+                        }
+                        ?>
+                    </select>
+                    <br>
+                    <input type="hidden" name="pesan2" value="yo">
+                    <label> Media </label>
+                    <input type="file" name="media" class="form-control">
+                    <p class="text-small text-danger">Maximal 1mb </p>
+                    <br>
+                    <label> <?php echo rid_lang('schedule');?> * </label>
+                    <input type="date" name="tgl"  class="form-control">
+                    <br>
+                    <label> Time * </label>
+                    <input type="time" name="jam"  class="form-control">
+                    <br>
+                    <label>To :</label>
+                    <br>
+                    <select class="form-control js-example-basic-multiple" name="target[]" multiple="multiple" style="width: 100%">
+                        <?php
+
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM nomor WHERE make_by='$u'");
+
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . $row['nama'] . ' (' . $row['nomor'] . ')</option>';
+                        }
+                        ?>
+                    </select>
+                    <br>
+                    <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="kirimpesan2" class="btn btn-info"><?php echo rid_lang('save');?></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+          <!-- partial -->
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({
+            dropdownAutoWidth: true
+        });
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+<script>
+    setInterval(sync, 1000);
+
+    function sync() {
+        let sync = localStorage.getItem('sync');
+        if (sync == null) {
+            sync = moment().format("YYYY-MM-DD HH:mm:ss");
+            localStorage.setItem('sync', sync);
+        }
+
+        $.get(rid_request_file() + "?f=lool&lastsync=" + sync, function(data) {
+            r = JSON.parse(data);
+
+            jQuery.each(r, function(i, val) {
+                let id = val.id;
+                let id_blast = val.id_blast;
+                if (val.status == "GAGAL") {
+                    $(".status-container-" + id).empty();
+                    $(".status-container-" + id).html('<?php echo rid_lang("fail");?>');
+                    $(".status-container-" + id).addClass('badge-danger').removeClass('badge-warning');
+
+                    $(".button-container-" + id).html('<a style="margin:5px" class="btn btn-success"><?php echo rid_lang("fail");?></a><a style="margin:5px" class="btn btn-danger" href="' + base_url() + '?link1=pesan_s_m&del=' + id + '"><?php echo rid_lang("delete");?></a>');
+                }
+
+                if (val.status == "TERKIRIM") {
+                    $(".status-container-" + id).empty();
+                    $(".status-container-" + id).html('<?php echo rid_lang("sent");?>');
+                    $(".status-container-" + id).addClass('badge-success').removeClass('badge-warning');
+
+                    $(".button-container-" + id).html('<a style="margin:5px" class="btn btn-danger" href="' + base_url() + '?link1=pesan_s_m&del=' + id + '"><?php echo rid_lang("delete");?></a>');
+                }
+                console.log(id);
+            });
+
+            localStorage.setItem('sync', moment().format("YYYY-MM-DD HH:mm:ss"));
+
+        });
+    }
+</script>
+<?php } else if ($datadefp['send_msg'] == '2') { ?>
+<center><h1>You do not have access to use this</h1></center>
+<?php } else { ?>
+<center><h1>This feature disabled</h1></center>
+<?php } ?>

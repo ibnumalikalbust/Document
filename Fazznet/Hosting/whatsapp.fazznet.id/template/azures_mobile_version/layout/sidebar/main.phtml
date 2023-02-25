@@ -1,0 +1,115 @@
+<div class="menu-header">
+    <a href="#" data-toggle-theme class="border-right-0"><i class="fa font-12 color-yellow1-dark fa-lightbulb"></i></a>
+</div>
+
+<div class="menu-logo text-center">
+    <a href="#"><img class="rounded-circle bg-highlight" width="80" src="<?php echo $rid['site_url'];?>/template/<?php echo $rid['template'];?>/assets/images/avatars/10s.png"></a>
+    <h1 class="pt-3 font-800 font-28 text-uppercase">
+        <?php 
+        if ($rid['loggedin'] == true) {
+            echo $rid['dataUser']['full_name'];
+        } else {
+            echo 'Guest';
+        }
+        ?>
+    </h1>
+    <p class="font-11 mt-n2">
+        <?php 
+        if ($rid['loggedin'] == true) {
+            echo 'Create your own idea!';
+        } else {
+            echo 'Login/register now for using our features';
+        }
+        ?>
+    </p>
+</div>
+
+<div class="menu-items">
+    <h5 class="text-uppercase opacity-20 font-12 pl-3">Menu</h5>
+    <?php if ($rid['loggedin'] !== true) { ?>
+    <a id="nav-login" href="<?php echo $rid['site_url'];?>/index.php?link1=login">
+        <span>Login</span>
+        <i class="fa fa-circle"></i>
+    </a>
+    <a id="nav-register" href="<?php echo $rid['site_url'];?>/index.php?link1=register">
+        <span>Register</span>
+        <i class="fa fa-circle"></i>
+    </a>
+    <?php } else { ?>
+    <?php if ($rid['dataUser']['rid_level'] == '1') { ?>
+    <a id="nav-admin" href="<?php echo $rid['site_url'];?>/admin-cp/index.php">
+        <i class="fa fa-bars"></i>
+        <span>Admin page</span>
+    </a>
+    <?php } ?>
+    <a id="nav-autoreply" href="<?php echo $rid['site_url'];?>/index.php?link1=auto_reply">
+        <i class="fa fa-reply"></i>
+        <span>Auto reply</span>
+    </a>
+    <a id="nav-autoreplybutton" href="<?php echo $rid['site_url'];?>/index.php?link1=auto_reply_button">
+        <i class="fa fa-reply"></i>
+        <span>Auto reply button</span>
+    </a>
+    <a id="nav-autoreply_listbutton" href="<?php echo $rid['site_url'];?>/index.php?link1=autoreply_listbutton">
+        <i class="fa fa-reply"></i>
+        <span>Auto reply List button</span>
+    </a>
+    <a id="nav-ccr" href="<?php echo $rid['site_url'];?>/index.php?link1=ccr">
+        <i class="fa fa-code"></i>
+        <span>Custom code reply</span>
+    </a>
+    <a id="nav-edit-device" href="<?php echo $rid['site_url'];?>/index.php?link1=edit_device">
+        <i class="fa fa-tablet"></i>
+        <span>Edit device</span>
+    </a>
+    <a id="nav-contact-number" href="<?php echo $rid['site_url'];?>/index.php?link1=nomor">
+        <i class="fa fa-address-book"></i>
+        <span>Contact number</span>
+    </a>
+    <a id="nav-def-msg" href="<?php echo $rid['site_url'];?>/index.php?link1=pesan_default">
+        <i class="fa fa-comments"></i>
+        <span>Default message</span>
+    </a>
+    <a id="nav-bulk" href="<?php echo $rid['site_url'];?>/index.php?link1=pesan_s_m">
+        <i class="fa fa-calendar"></i>
+        <span>Bulk/schedule</span>
+    </a>
+    <a id="nav-quotemaker" href="<?php echo $rid['site_url'];?>/index.php?link1=quotemaker">
+        <i class="fa fa-quote-left"></i>
+        <span>Quote Maker</span>
+    </a>
+    <a id="nav-cardimage" href="<?php echo $rid['site_url'];?>/index.php?link1=card_image">
+        <i class="fa fa-quote-left"></i>
+        <span>Card image</span>
+    </a>
+    <a id="nav-restapi" href="<?php echo $rid['site_url'];?>/index.php?link1=rest_api">
+        <i class="fa fa-code"></i>
+        <span>Rest API</span>
+    </a>
+    <a id="nav-sendbtn" href="<?php echo $rid['site_url'];?>/index.php?link1=send_button">
+        <i class="fa fa-paper-plane"></i>
+        <span>Send button message</span>
+    </a>
+    <a id="nav-testsend" href="<?php echo $rid['site_url'];?>/index.php?link1=test_send">
+        <i class="fa fa-paper-plane"></i>
+        <span>Test send</span>
+    </a>
+    <a id="nav-logout" href="<?php echo $rid['site_url'];?>/index.php?link1=logout">
+        <i class="fa fa-power-off"></i>
+        <span>Logout</span>
+    </a>
+    <?php } ?>
+    <a href="#" class="close-menu">
+        <i class="fa fa-times"></i>
+        <span>Close</span>
+    </a>
+</div>
+
+<div class="text-center pt-2">
+    <a href="#" class="icon icon-xs mr-1 rounded-s bg-facebook"><i class="fab fa-facebook"></i></a>
+    <a href="#" class="icon icon-xs mr-1 rounded-s bg-twitter"><i class="fab fa-twitter"></i></a>
+    <a href="#" class="icon icon-xs mr-1 rounded-s bg-instagram"><i class="fab fa-instagram"></i></a>
+    <a href="#" class="icon icon-xs mr-1 rounded-s bg-linkedin"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#" class="icon icon-xs rounded-s bg-whatsapp"><i class="fab fa-whatsapp"></i></a>
+    <p class="mb-0 pt-3 font-10 opacity-30">Copyright <span class="copyright-year"></span> <?php echo $rid['web_setting']['title'];?>. All rights reserved</p>
+</div>

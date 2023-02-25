@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUWIT JAWA</title>
+  <style>
+    p {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    var pilihanUser = prompt("Pilih: GAJAH, ORANG, SEMUT");
+    var pilihanUser = pilihanUser.toUpperCase();
+    var angkaAcak = Math.random();
+    document.write("<p>Comp menggunakan JS Math.random untuk memilih angka acak</p>");
+    document.write("<p>Comp telah memilih angka acak yaitu " + angkaAcak + "</p>");
+    if (angkaAcak < 0.34) {
+      var pilihanComp = "GAJAH"
+    } else if (angkaAcak >= 0.34 && angkaAcak <= 0.67) {
+      var pilihanComp = "ORANG"
+    } else {
+      var pilihanComp = "SEMUT"
+    };
+    document.write("<br><br><br>");
+    document.write("<p>User telah memilih " + pilihanUser + "</p>");
+    document.write("<p>Comp telah memilih " + pilihanComp + "</p>");
+    document.write("<br><br><br>");
+    var hasil = "";
+    if (pilihanUser == pilihanComp) {
+      var hasil = "SERI";
+    } else if (pilihanUser == "GAJAH") {
+      var hasil = (pilihanComp == "ORANG") ? "MENANG" : "KALAH";
+    } else if (pilihanUser == "ORANG") {
+      var hasil = (pilihanComp == "SEMUT") ? "MENANG" : "KALAH";
+    } else if (pilihanUser == "SEMUT") {
+      var hasil = (pilihanComp == "GAJAH") ? "MENANG" : "KALAH";
+    } else {
+      var hasil = "KREMBUN"
+    };
+    document.write("<p>Anda " + hasil + "</p>")
+    if (hasil == "KREMBUN") {
+      document.write("<p>Mele Se Teppak, Patek!!!</p>")
+    } else {
+      document.write("<p>Silahkan refresh halaman untuk main kembali</p>")
+    }
+  </script>
+</body>
+
+</html>

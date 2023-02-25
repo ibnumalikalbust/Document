@@ -1,0 +1,61 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+header {
+  padding: 1rem;
+  margin: auto;
+}
+
+header img {
+  width: 100px;
+  height: 100px;
+}
+
+header h1 {
+  margin: 1rem auto;
+}
+
+main {
+  padding: 1rem;
+  margin: 3rem auto;
+}
+
+main p {
+  font-size: 1.1rem;
+  line-height: 4rem;
+  margin: 1rem auto;
+}
+
+main a {
+  text-decoration: none;
+}
+
+main a button {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  display: block;
+  margin: 1rem auto;
+  height: 4rem;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 30px;
+  border: none;
+  background-color: white;
+}
+
+main a button:hover {
+  transform: scale(1.01);
+  font-size: 1.01rem;
+}

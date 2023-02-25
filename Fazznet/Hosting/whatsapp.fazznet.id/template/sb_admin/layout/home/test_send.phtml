@@ -1,0 +1,187 @@
+<?php 
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];
+$datadefp = $rid['dataUser'];
+if ($rid['web_setting']['send_msg'] == '1' && $datadefp['send_msg'] == '1') { ?>
+<div class="container-fluid">
+    <div>
+        <h3><?php echo rid_lang('test_send');?></h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page"><?php echo rid_lang('test_send');?></li>
+            </ol>
+        </nav>
+    </div>
+    <!-- Vertical Layout -->
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title"><?php echo rid_lang('test_send');?> (text)</h6>
+                    <form class="mailing-settings" id="test_send" method="POST">
+                        <label for="send_to">Sender</label>
+                        <div class="alert alert-info">
+                            Note: Only senders that are (active) will be displayed.
+                        </div>
+                        <select class="form-control show-tick" id="sender" name="sender">
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik='$u' AND state = 'CONNECTED'");
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . $row['nomor'] . ' (active)</option>';
+                        }
+                        ?>
+                        </select>
+                        <small class="admin-info">Choose sender.</small>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label"><?php echo rid_lang('message');?></label>
+                                <textarea name="pesan" id="pesan" class="form-control" cols="30" rows="1" style="height: 100px;"></textarea>
+                                <small class="admin-info">Write your message here.</small>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">Number <span></span></label>
+                                <input type="text" class="form-control" id="nomor" name="nomor" autocomplete="off" required>
+                                <small class="admin-info">Write number whatsapp user. you can send multiple numbers separated by comma. don't using space!</small>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect"><?php echo rid_lang('send');?></button>
+                    </form>
+                    <div class="langsModalAlert"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title"><?php echo rid_lang('test_send');?> (media)</h6>
+                    <form id="test_sendMedia" method="POST">
+                        <div class="clearfix"></div>
+                        <hr>
+                        <div class="alert alert-danger">
+                            Note: filename, typemedia & urlmedia must be filled in!. Be a smart consumer!.
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label class="form-label">Sender</label>
+                        <select class="form-control show-tick" id="sender" name="sender">
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik='$u' AND state = 'CONNECTED'");
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . $row['nomor'] . ' (active)</option>';
+                        }
+                        ?>
+                        </select>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label class="form-label"><?php echo rid_lang('number');?></label>
+                                <input type="text" id="nomor" name="nomor" class="form-control" required>
+                            </div>
+                            <small class="admin-info">Write number whatsapp user. you can send multiple numbers separated by comma. don't using space!</small>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label class="form-label">URL MEDIA</label>
+                                <input type="text" id="urlmedia" name="urlmedia" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label class="form-label">Type Media</label>
+                                <select class="form-control show-tick" id="typemedia" name="typemedia">
+                                    <option value="png">PNG</option>
+                                    <option value="jpg">JPG</option>
+                                    <option value="jpeg">JPEG</option>
+                                    <option value="mp3">MP3</option>
+                                    <option value="mp4">MP4</option>
+                                    <option value="pdf">PDF</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label class="form-label">File name</label>
+                                <input type="text" id="filename" name="filename" class="form-control">
+                            </div>
+                            <small class="admin-info">* must be end with extension. example : rid.pdf</small>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <label class="form-label">Caption</label>
+                                <input type="text" id="caption" name="caption" class="form-control">
+                            </div>
+                            <small class="admin-info">* If Type media PNG,JPG,JPEG,MP4 only!.</small>
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect"><?php echo rid_lang('send');?></button>
+                    </form>
+                    <div class="langsModalAlert-media"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- #END# Vertical Layout -->
+<script>
+/*function rid_testSend() {
+    $('#test_send').submit();
+}*/
+
+    var form_gender_settings = $('#test_sendMedia');
+    form_gender_settings.ajaxForm({
+        url: rid_request_file() + '?f=test_sendMedia',
+        beforeSend: function() {
+            $('.langsModalAlert-media').html('<div class="alert alert-info">Waiting...</div>');
+        },
+        type: 'post',
+        success: function(data) {
+           var ridCans = JSON.parse(data);
+            if (ridCans.status == 200) {
+                $('.langsModalAlert-media').html('<div class="alert alert-success">'+ridCans.message+'</div>');
+                setTimeout(function () {
+                    $('.langsModalAlert-media').empty();
+                }, 2000);
+            }
+            else{
+                console.log('this error ' + data);
+                $('.langsModalAlert-media').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+            }
+        }
+    });
+
+    var form_gender_settings = $('#test_send');
+    form_gender_settings.ajaxForm({
+        url: rid_request_file() + '?f=test_sendText',
+        beforeSend: function() {
+            $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>');
+        },
+        type: 'post',
+        success: function(data) {
+            console.log('this data ' + data);
+           var ridCans = JSON.parse(data);
+            if (ridCans.status == 200) {
+                $('.langsModalAlert').html('<div class="alert alert-success">'+ridCans.message+'</div>');
+                setTimeout(function () {
+                    $('.langsModalAlert').empty();
+                }, 2000);
+            }
+            else{
+                console.log('this error ' + data);
+                $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+            }
+        }
+    });
+</script>
+</div>
+<?php } else if ($datadefp['send_msg'] == '2') { ?>
+<center><h1>You do not have access to use this</h1></center>
+<?php } else { ?>
+<center><h1>This feature disabled</h1></center>
+<?php } ?>

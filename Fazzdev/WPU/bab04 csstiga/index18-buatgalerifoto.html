@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>csstiga18</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            margin: 10px auto;
+            text-shadow: 0px 10px 10px lime;
+        }
+
+        .container {
+            width: 610px;
+            border: 1px solid black;
+            margin: 50px auto;
+            padding: 5px;
+            box-shadow: 0px 0px 20px aqua;
+            border-radius: 5px;
+        }
+
+        .gallery li,
+        .gallery li img,
+        .gallery li span {
+            border-radius: 50%;
+        }
+
+        .gallery li {
+            width: 100px;
+            height: 100px;
+            overflow: hidde;
+            border: 1px solid black;
+            float: left;
+            margin: 10PX;
+            position: relative;
+        }
+
+        .gallery li span {
+            display: block;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(200, 200, 200, 0.5);
+            position: absolute;
+            top: 0px;
+            text-align: center;
+            line-height: 100px;
+            text-shadow: 1px 1px 1px grey;
+            opacity: 0;
+            transition: 500ms;
+            transform: scale(0) rotate(0);
+        }
+
+        .gallery li a:hover span {
+            opacity: 1;
+            transform: scale(1) rotate(360deg);
+        }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div0">
+        <h1>GALERI FOTO & LIGHT BOX</h1>
+    </div>
+    <div class="container">
+        <ul class="gallery">
+            <li>
+                <a href="#">
+                    <img src="thumbail.png" alt="fazznet1">
+                    <span>Fazznet</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="thumbail.png" alt="fazznet1">
+                    <span>Fazznet</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="thumbail.png" alt="fazznet1">
+                    <span>Fazznet</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="thumbail.png" alt="fazznet1">
+                    <span>Fazznet</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="thumbail.png" alt="fazznet1">
+                    <span>Fazznet</span>
+                </a>
+            </li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+</body>
+
+</html>

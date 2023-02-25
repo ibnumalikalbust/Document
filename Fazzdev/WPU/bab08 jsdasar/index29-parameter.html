@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parameter & Argument</title>
+  <style>
+    p {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    // function tambahDuaBilangan(a, b) {
+    //   return a + b;
+    // };
+    // function kaliDuaBilangan(a, b) {
+    //   return a * b;
+    // };
+    // var a = parseInt(prompt("Masukkan Bilangan Petama"));
+    // var b = parseInt(prompt("Masukkan Bilangan Kedua"));
+    // var c = parseInt(prompt("Masukkan Bilangan Ketiga"));
+    // var d = parseInt(prompt("Masukkan Bilangan Keempat"));
+    // var hasil = kaliDuaBilangan(tambahDuaBilangan(a, b), tambahDuaBilangan(c, d));
+    // document.write("<p>Hasilnya Adalah " + hasil + "</p>");
+
+    function kumpulan() {
+      return arguments;
+    }
+    document.write("<p>Cek Console Boz !!!</p>")
+    console.log(kumpulan(1, 2, 3, "hi", true));
+
+    function tambah() {
+      hasil = 0;
+      for (let i = 0; i < arguments.length; i++) {
+        hasil += arguments[i];
+      };
+      return hasil;
+    };
+    var coba = tambah(10, 10, 10);
+    document.write("<p>Hasilnya Adalah " + coba + "</p>")
+  </script>
+</body>
+
+</html>

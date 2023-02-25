@@ -1,0 +1,103 @@
+<?php
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];
+$ridcek = mysqli_query($con, "SELECT * FROM rid_account WHERE rid_username = '$u'");
+$dataser = mysqli_fetch_assoc($ridcek);
+
+if (isset($_POST['change_wa'])) {
+    $c_wa = $_POST['c_wa'];
+    mysqli_query($con, "UPDATE rid_account SET c_wa = '$c_wa' WHERE rid_username = '$u'");
+    redirect('index.php?link1=pengaturan');
+}
+
+if (isset($_POST['change_mail'])) {
+    $email = $_POST['email'];
+    mysqli_query($con, "UPDATE rid_account SET email = '$email' WHERE rid_username = '$u'");
+    redirect('index.php?link1=pengaturan');
+}
+
+if (isset($_POST['change_name'])) {
+    $full_name = $_POST['full_name'];
+    mysqli_query($con, "UPDATE rid_account SET full_name = '$full_name' WHERE rid_username = '$u'");
+    redirect('index.php?link1=pengaturan');
+}
+?>
+
+<div class="card card-style">
+  <div class="content mt-0 mb-2">
+    <div class="list-group list-custom-large mb-4">
+      <a href="#" data-menu="modal-change_pass">
+        <i class="fa font-14 fa-lock bg-green-dark rounded-sm"></i>
+        <span>Change password</span>
+        <strong>Create a new password!</strong>
+        <i class="fa fa-angle-right me-2"></i>
+      </a>
+      <a href="#" data-menu="modal-change_c_wa">
+        <i class="far font-14 fa fa-phone bg-pink-dark rounded-sm"></i>
+        <span>Change whatsapp number</span>
+        <strong>Change your contact whatsapp!</strong>
+        <i class="fa fa-angle-right me-2"></i>
+      </a>
+      <a href="#" data-menu="modal-change_mail">
+        <i class="far font-14 fa fa-envelope bg-pink-dark rounded-sm"></i>
+        <span>Change email</span>
+        <strong>Change your contact email!</strong>
+        <i class="fa fa-angle-right me-2"></i>
+      </a>
+      <a href="#" data-menu="modal-change_name">
+        <i class="far font-14 fa fa-address-card bg-pink-dark rounded-sm"></i>
+        <span>Change Full name</span>
+        <strong>Change your name!</strong>
+        <i class="fa fa-angle-right me-2"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+function rid_changePass() {
+    $('#change_password').submit();
+}
+
+$(document).ready(function () {
+  $("#change_password").submit(function (event) {
+      const newpassword = document.getElementById("newpassword");
+      const newpassword2 = document.getElementById("newpassword2");
+      
+      const changePass = {
+          newpassword: newpassword.value,
+          newpassword2: newpassword2.value
+      };
+      
+      $.ajax({
+          url: rid_request_file() + '?f=change_password',
+          beforeSend: function() {
+              $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>')
+          },
+          type: "POST",
+          data: changePass,
+      }).done(async (data) => {
+          console.log(data);
+          var ridCans = JSON.parse(data);
+          if (ridCans.status == 200) {
+              $('.langsModalAlert').html('<div class="alert alert-success">Successfully.</div>');
+              await sleep(2000);
+              //$('#modal-change_pass').modal('toggle');
+              //location.reload();
+          } else {
+              console.log('this error ' + data);
+              $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+              setTimeout(function () {
+                  $('.langsModalAlert').empty();
+              }, 5000);
+          }
+          $("#langsModal").animate({ scrollTop: 0 }, 100);
+      });
+    event.preventDefault();
+  });
+});
+</script>

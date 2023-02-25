@@ -1,0 +1,13 @@
+body {
+  height: 95vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+main {
+  background-color: aqua;
+  padding: 1rem;
+  border-radius: 25px;
+}

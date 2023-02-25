@@ -1,0 +1,37 @@
+.main {
+  background-color: lightblue;
+}
+.main .main-heading {
+  font-size: 2em;
+}
+.main .main-paragraph {
+  font-size: 1.5em;
+}
+
+.main h1, .main p, .footer h1, .footer p {
+  letter-spacing: 1px;
+}
+
+.main .main-heading {
+  font-size: 2em;
+}
+.container .main {
+  background-color: aqua;
+}
+.main:hover {
+  background-color: lime;
+}
+
+.main .main-heading {
+  font-size: 2em;
+}
+.main .main-paragraph {
+  font-size: 1.5em;
+}
+
+.footer .footer-heading {
+  font-size: 2em;
+}
+.footer .footer-paragraph {
+  font-size: 1.5em;
+}/*# sourceMappingURL=sass6.css.map */

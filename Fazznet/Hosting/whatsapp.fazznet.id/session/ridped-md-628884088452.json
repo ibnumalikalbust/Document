@@ -1,0 +1,50 @@
+{
+  "creds": {
+    "noiseKey": {
+      "private": {
+        "type": "Buffer",
+        "data": "UJ+4u4fRbjKZEcEnhytDcTr9yHsyiBX4Gu6zwMz4PGs="
+      },
+      "public": {
+        "type": "Buffer",
+        "data": "4ZdIwm33FgJBHq/nrBgiYHQ8uxZrkfscZVRaHGPr3CE="
+      }
+    },
+    "signedIdentityKey": {
+      "private": {
+        "type": "Buffer",
+        "data": "6GuwzjIKs9EbbSZsxl4MHDxztFqNM0jORo0AaU7CL30="
+      },
+      "public": {
+        "type": "Buffer",
+        "data": "g4ZRKqpfIuXG7ixCds6bTJigX+ATh5ChrKAAU9i2CAU="
+      }
+    },
+    "signedPreKey": {
+      "keyPair": {
+        "private": {
+          "type": "Buffer",
+          "data": "yMUVA0vJ25r2IOWEfapDovR6o5tVk4KTmQp1dCYPzlE="
+        },
+        "public": {
+          "type": "Buffer",
+          "data": "/aor56+jMnwqhPXFkkcmeOXMcrJ7YNccx+tj1dYCNXs="
+        }
+      },
+      "signature": {
+        "type": "Buffer",
+        "data": "zFnDlPr1SgAdauW0/fUlUD98kvuwVxfR3MwB8uZpx7oEnAXRZxV0NfjhBN2nwHP5uk37IenQ8TAjixvoStKoCA=="
+      },
+      "keyId": 1
+    },
+    "registrationId": 237,
+    "advSecretKey": "D/oUg/g/9/wMgfV6sx4jSEcdBjt3+/vn9N8uHhdQOMg=",
+    "processedHistoryMessages": [],
+    "nextPreKeyId": 1,
+    "firstUnuploadedPreKeyId": 1,
+    "accountSettings": {
+      "unarchiveChats": false
+    }
+  },
+  "keys": {}
+}

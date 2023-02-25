@@ -1,0 +1,26 @@
+<div id="modal-add_device" class="menu menu-box-bottom menu-box-detached rounded-m" 
+         data-menu-height="320" 
+         data-menu-effect="menu-over">
+        <div class="content mb-0">
+            <h1 class="font-700 mb-0">Add Device</h1>
+            <p class="font-11  mt-n1 mb-0">
+                The number must start with the country code.
+            </p>
+            <div class="langsModalAlert"></div>
+            <form class="langsModalForm" id="newnumber" method="POST">
+                <div class="input-style has-icon input-style-1 input-required">
+                    <i class="input-icon fa fa-phone font-11"></i>
+                    <span>Whatsapp number</span>
+                    <em>(required)</em>
+                    <input type="number" placeholder="Whatsapp number" name="nomor" id="nomor" required>
+                </div>
+                <div class="input-style has-icon input-style-1">
+                    <i class="input-icon fa fa-server font-11"></i>
+                    <span>Webhook</span>
+                    <em>(optional)</em>
+                    <input type="text" placeholder="Webhook url" name="webhook" id="webhook">
+                </div>   
+            </form>
+            <button type="submit" class="btn btn-full btn-m shadow-l rounded-s text-uppercase font-900 bg-green1-dark mt-4 " onclick="rid_AddNumbers();">Add</button>
+        </div>
+    </div>

@@ -1,0 +1,1 @@
+[28-Nov-2022 21:28:58 Asia/Jakarta] PHP Fatal error:  require_once(): Failed opening required '../third_party/routeros_api.class.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/gtxcom/nzm.com/application/core/MY_Controller.php on line 67

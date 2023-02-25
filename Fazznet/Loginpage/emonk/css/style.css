@@ -1,0 +1,98 @@
+@font-face{font-family:'montserratregular';src:url(../font/montserrat-regular-webfont.woff2) format("woff2"),url(../font/montserrat-regular-webfont.woff) format("woff");font-weight:400;font-style:normal}
+body{font-family:"montserratregular",sans-serif;background:#010E16;height:100vh;display:-webkit-box;display:flex;-webkit-box-pack:center;justify-content:center;-webkit-box-align:center;align-items:center}
+.container{width:350px;background:-webkit-gradient(linear,left top,left bottom,from(#202734),color-stop(70%,#1D222C));background:linear-gradient(#202734,#1D222C 70%);box-shadow:inset 0 0 0 2px #3D414A,0 2px 3px rgba(0,0,0,0.5);box-sizing:border-box;padding:20px;text-align:center;position:relative;border-radius:15px;transition:.3s;min-height:300px;animation:fadein 1s;-moz-animation:fadein 1s;-webkit-animation:fadein 1s;-o-animation:fadein 1s}
+.main-header{text-align:center;margin:5px auto 10px}
+.main-header .top-border{border-top:10px solid #3B4658;border-left:15px solid transparent;border-right:15px solid transparent;width:50%;position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}
+.main-header img{width:170px}
+main{margin-bottom:12px}
+main .login-form{display:-webkit-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;justify-content:space-around}
+main .login-form > :not(span){margin:3px 0}
+main .login-form input{box-shadow:0 0 4px rgba(0,0,0,0.3);text-align:center}
+main .login-form input[type="text"],main .login-form input[type="password"]{background:#11151B;border:1px solid #3D414A;border-radius:5px;padding:10px;color:#fff;font-size:16px}
+main .login-form input[type="text"]:hover,main .login-form input[type="password"]:hover{border-color:#545a66}
+main .login-form input[type="text"]:focus,main .login-form input[type="password"]:focus{background:#0E1116;border-color:#1E5F99;outline:none}
+main .login-form .option-border{font-size:14px;font-weight:700;color:#676767;position:relative}
+main .login-form .option-border:before,main .login-form .option-border:after{content:"";display:inline-block;width:120px;height:1px;background:#676767;position:absolute;top:50%;left:0}
+main .login-form .option-border:after{left:61%}
+main .login-form .btn{padding:9px;color:#fff;font-size:15px;font-weight:700;background:#0E86CA;border:none;-webkit-transition:background .3s ease-in-out;transition:background .3s ease-in-out;cursor:pointer;margin-top:5px}
+main .login-form .btn:hover{background:#34acf1}
+main .login-form .btn.fb-btn{background:#3B5998}
+main .login-form .btn.fb-btn:hover{background:#4c70ba}
+footer a{text-decoration:none;color:#0886C4;margin-bottom:10px;-webkit-transition:color .3s ease-in-out;transition:color .3s ease-in-out}
+footer a:hover{color:#fff}
+.shine{margin:0 auto 10px;font-weight:700;background:#222 -webkit-gradient(linear,left top,right top,from(#222),to(#222),color-stop(0.5,#fff)) 0 0 no-repeat;-webkit-background-size:150px;color:rgba(0,171,250,0.5);-webkit-background-clip:text;-webkit-animation-name:shine;-webkit-animation-duration:5s;-webkit-animation-iteration-count:infinite;text-shadow:0 0 0 rgba(255,255,255,0.5)}
+.appbar-description{font-size:14px;font-weight:600;color:rgba(255,255,255,0.3);text-shadow:0 0 0 rgba(255,255,255,0.5)}
+.appbar-title{font-size:30px;margin:0 auto}
+nav{position:relative;padding-bottom:12px;left:50%;transform:translateX(-35%);margin-bottom:10px}
+nav .line{height:2px;position:absolute;bottom:0;margin:10px 0 0;background:#FF1847}
+nav ul{padding:0;margin:0;list-style:none;display:-webkit-box;display:flex}
+nav ul li{margin:0 40px 0 0;opacity:.4;-webkit-transition:all .4s ease;transition:all .4s ease}
+nav ul li:hover{opacity:.7}
+nav ul li.active{opacity:1}
+nav ul li:last-child{margin-right:0}
+nav ul li a{text-decoration:none;color:#fff;text-transform:uppercase;display:block;font-weight:600;letter-spacing:.2em;font-size:14px}
+.separator{margin:5px auto 15px;border:0}
+.separator--line{border:0;border-bottom:3px solid #34acf1;width:0;-webkit-animation:separator-width 1s ease-out forwards;animation:separator-width 1s ease-out forwards}
+iframe{float:right;height:24px;width:100%}
+.infoError{background-color:#fff8e1;border-radius:5px;padding:5px;font-size:12px;color:#d9534f;border:1px solid #d9534f}
+.copy{color:#fff;font-size:.9em}
+.paket-voucher{color:#fff;text-align:center;padding:5px;font-size:1rem;margin:5px auto}
+.paket-voucher h3{font-size:1.1rem;margin:0 auto}
+.stats{border:1px solid #34acf1;overflow:auto;padding:5px;margin-top:-1px;font-size:14px;color:#fff;font-weight:600;border-radius:5px;text-shadow:1px 0 0 #333}
+.stats strong{display:block;font-size:11px;font-weight:700}
+.stats div{border-right:1px solid #34acf1;width:33%;float:left;text-align:center}
+.stats div:nth-of-type(3){border:none}
+.beli-voucher{color:#fff;text-shadow:1px 1px 0 #000;letter-spacing:1px;border-radius:10px;height:20px;width:70%;display:inline-block;padding:2px;text-shadow:none;text-decoration:none}
+.birumuda{background:#34acf1;border:2px solid #0B9FD8}
+.birumuda:hover{opacity:.8}
+.btn-merah{background:#ff656c;border:2px solid #e15960}
+.btn-merah:hover{opacity:.8}
+.btn-full{font-size:15px;font-weight:700;color:#fff;width:100%;height:30px;margin:0 auto;cursor:pointer}
+.no-border{margin-bottom:0;color:#fff}
+.no-border tr td,.no-border tr th{border-width:0}
+.table{font-size:12px;width:100%;border-collapse:collapse!important}
+.table td,.table th{padding:5px;border:1px solid #f2f2f2;color:#f3f4f5}
+.table td,a,th{color:#f3f4f5;text-decoration:none}
+.table2{font-size:12px;width:100%;border-collapse:collapse!important;background-color:rgba(255,255,255,0.67);text-align:left;border-radius:10px}
+.table2 td,.table2 th{padding:5px;color:#f3f4f5}
+.table2 tr{border-bottom:1px solid #333}
+.table2 td,a,th{color:#000;text-decoration:none}
+.table2 tr:last-child{border-bottom:none}
+.img-responsive{width:100%;height:auto;margin:10px auto}
+.blink{animation:blink-animation 1s steps(5,start) infinite;-webkit-animation:blink-animation 1s steps(5,start) infinite}
+.circular_image{width: 70px;height: 70px;border-radius: 50%;overflow: hidden;background-color: #31708F;display:inline-block;vertical-align:middle;padding:1px;}
+.circular_image img{width:100%;}
+@keyframes blink-animation {
+to{visibility:hidden}
+}
+@-webkit-keyframes blink-animation {
+to{visibility:hidden}
+}
+@keyframes shine {
+0%{background-position-x:-200%}
+100%{background-position-x:200%}
+}
+@keyframes fadein {
+from{opacity:0}
+to{opacity:1}
+}
+@-moz-keyframes fadein {
+from{opacity:0}
+to{opacity:1}
+}
+@-webkit-keyframes fadein {
+from{opacity:0}
+to{opacity:1}
+}
+@-o-keyframes fadein {
+from{opacity:0}
+to{opacity:1}
+}
+@-webkit-keyframes separator-width {
+0%{width:0}
+100%{width:100%}
+}
+@keyframes separator-width {
+0%{width:0}
+100%{width:100%}
+}

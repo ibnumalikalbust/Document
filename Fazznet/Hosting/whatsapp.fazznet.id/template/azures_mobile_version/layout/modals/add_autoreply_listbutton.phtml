@@ -1,0 +1,132 @@
+<?php 
+$u = $_SESSION['rid_username'];
+$con = $rid['sqlConnect'];
+?>
+<div class="modal fade" id="add_autoreplyh" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h4 class="modal-title" id="langsModalLabel"><?php echo rid_lang('add_numb');?></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="add_autoreply" method="POST">
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel"><?php echo rid_lang('number');?> Sender</label>
+                        <select class="form-control show-tick" id="sender" name="sender">
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik='$u' AND state = 'CONNECTED'");
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . $row['nomor'] . ' (active)</option>';
+                        }
+                        ?>
+                        </select>
+                        <small class="admin-info">Choose sender.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">keyword</label>
+                                <input style="resize: none;" name="keyword" id="keyword" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label">text small</label>
+                                <textarea name="text_small" id="text_small" class="form-control" cols="30" rows="10" style="height: 100px;"></textarea>
+                                <small class="admin-info">Write your message here.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">footer</label>
+                                <input style="resize: none;" name="footer" id="footer" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">title message</label>
+                                <input style="resize: none;" name="title_message" id="title_message" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">buttontext</label>
+                                <input style="resize: none;" name="buttontext" id="buttontext" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">title section</label>
+                                <input style="resize: none;" name="title_section" id="title_section" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">title list 1</label>
+                                <input style="resize: none;" name="title_list_1" id="title_list_1" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">title list keyword 1</label>
+                                <input style="resize: none;" name="title_list_keyword_1" id="title_list_keyword_1" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">title list desc 1</label>
+                                <input style="resize: none;" name="title_list_desc_1" id="title_list_desc_1" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">title list 2</label>
+                                <input style="resize: none;" name="title_list_2" id="title_list_2" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">title list keyword 2</label>
+                                <input style="resize: none;" name="title_list_keyword_2" id="title_list_keyword_2" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">title list desc 2</label>
+                                <input style="resize: none;" name="title_list_desc_2" id="title_list_desc_2" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">title list 3</label>
+                                <input style="resize: none;" name="title_list_3" id="title_list_3" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">title list keyword 3</label>
+                                <input style="resize: none;" name="title_list_keyword_3" id="title_list_keyword_3" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">title list desc 3</label>
+                                <input style="resize: none;" name="title_list_desc_3" id="title_list_desc_3" class="form-control">
+                            </div>
+                        </div>
+                        <div class="data"></div>
+                        <div class="langsModalAlert"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal_close_btn" data-dismiss="modal"><?php echo rid_lang('close');?></button>
+                <button type="button" class="btn btn-primary" onclick="rid_add();"><?php echo rid_lang('save');?></button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+section {
+    padding-top: 5rem;
+}
+
+.jumbotron {
+    background-color: aqua;
+}
+
+.lead {
+    font-size: 16px;
+}
+
+.harga {
+    background-color: aqua;
+}
+
+.card {
+    width: 90%;
+    padding: 10px;
+    border-radius: 5%;
+    margin: auto;
+}
+
+.card img {
+    width: 50%;
+    margin: 50px auto;
+}
+
+.card li {
+    list-style: none;
+}
+
+.unggulan {
+    background-color: aqua;
+}
+
+.kontak a {
+    font-size: 40px;
+}

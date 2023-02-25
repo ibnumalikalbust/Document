@@ -1,0 +1,188 @@
+<style>
+#maypepe {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#maypepe:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+</style>
+
+<div id="modalpepe" class="modal">
+  <span class="modal-content" id="closed">&times; Please waiting for image... tap here to close</span>
+  <img class="modal-content" id="gambar01">
+  <div id="kaption"></div>
+</div>
+<div class="container-fluid">
+    <div>
+        <h3>Create your quote</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">quote maker</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- Vertical Layout -->
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <img src="<?php echo url_wa();?>/image-example/quotemaker.png"></img>
+                <div class="card-body">
+                    <form class="mailing-settings" id="quote_maker" method="POST">
+                        <div class="alert alert-info">
+                            Note: Create your own quote image!.
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label">Text</label>
+                                <textarea name="text" id="text" class="form-control" cols="30" rows="1" style="height: 100px;"></textarea>
+                                <small class="admin-info">Write your quote here.</small>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">Watermark <span></span></label>
+                                <input type="text" class="form-control" id="wm" name="wm" autocomplete="off" required>
+                                <small class="admin-info">Write your name, can't be long!</small>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label" id="mailing-selected-users">Background url image <span></span></label>
+                                <input type="text" class="form-control" id="bg" name="bg" autocomplete="off">
+                                <small class="admin-info">*Optional</small>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Create</button>
+                    </form>
+                    <div class="langsModalAlert"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- #END# Vertical Layout -->
+<script>
+/*function rid_testSend() {
+    $('#test_send').submit();
+}*/
+function sleep(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
+    var form_gender_settings = $('#quote_maker');
+    form_gender_settings.ajaxForm({
+        url: rid_request_file() + '?req=quote_maker',
+        beforeSend: function() {
+            $('.langsModalAlert').html('<div class="alert alert-info">Waiting... This takes quite a bit of time</div>');
+        },
+        type: 'post',
+        success: function(data) {
+           var ridCans = JSON.parse(data);
+            if (ridCans.status == 200) {
+                $('.langsModalAlert').html('<div class="alert alert-success">Succesfully</div>');
+                var modal = document.getElementById("modalpepe");
+                var gambar = document.getElementById("maypepe");
+                var modalImg = document.getElementById("gambar01");
+                var kaption = document.getElementById("kaption");
+                modal.style.display = "block";
+                modalImg.src = ridCans.message;
+                kaption.innerHTML = ridCans.wm;
+                setTimeout(function () {
+                    $('.langsModalAlert').empty();
+                }, 3000);
+            }
+            else{
+                $('.langsModalAlert').html('<div class="alert alert-danger">'+ ridCans.message + '</div>');
+            }
+        }
+    });
+var modal = document.getElementById("modalpepe");
+var span = document.getElementById("closed");
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+</script>
+</div>

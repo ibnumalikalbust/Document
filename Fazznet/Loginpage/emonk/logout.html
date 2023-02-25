@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Logout Hotspot</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content='RingRoad' name='Author' />
+<meta name="theme-color" content="#004E7D">
+<link rel="shortcut icon" type="image/png" href="favicon.png"/>
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<script language="JavaScript">
+    function openLogin() {
+	if (window.name != 'hotspot_logout') return true;
+	open('$(link-login)', '_blank', '');
+	window.close();
+	return false;
+    }
+</script>
+<div class="container">
+	<header class="main-header">
+		<div class="top-border"></div>
+	</header>
+	<main>
+$(if login-by == 'trial')
+<div style="margin:10px auto 0px; text-align: center;color:#fff;font-size:12px;"><h3>Terima Kasih</h3><img class="circular_image" style="background-color:red;" src="img/user.png"/> <h3 style="margin-top: 10px;"> Trial User</h3></div>
+$(elif login-by != 'mac')
+<div style="margin:10px auto 0px; text-align: center;color:#fff;font-size:12px;"><h3>Terima Kasih</h3><img style="background-color:red;" id="ImgUser" class="circular_image" src=""/> <h3 id="user" style="margin: 10px;">$(username)</h3></div>
+$(endif)
+<div class="box" style="padding-top: 10px;margin-bottom: 20px;">
+$(if session-time-left)
+<span style="font-size:12px;font-weight:700;background:rgba(255,255,255,0.8);border-radius:50px;padding:10px;margin:0 auto 10px;color:#333;"> Sisa Waktu &#128344; : <span id="SisaWaktu"></span></span>
+$(else)
+<span style="font-size:12px;font-weight:700;background:rgba(255,255,255,0.8);border-radius:50px;padding:10px;margin:0 auto 10px;color:#333;"> Sisa Waktu &#128344; : No Limit</span>
+$(endif)
+</div>
+<table class="table2">
+	<tr><td style="padding-left: 10px;width:20px;">&#128241; </td><td style="width:20%;">MAC </td><td style="padding-right: 10px;" align="right">$(mac)</td></tr>
+    <tr><td style="padding-left: 10px;">&#127758; </td><td>Terhubung </td><td style="padding-right: 10px;" align="right"><span id="Terhubung"></span></td></tr>
+	<tr><td colspan="3" style="margin-left: 5px;"><i>* Terima kasih telah menggunakan layanan internet kami.</i></td></tr>
+</table>
+<br>
+<form action="$(link-login)" name="login" onSubmit="return openLogin()">
+<button class="btn btn-full btn-merah" type="submit">&#8635; Login Kembali</button>
+</form>
+	</main>
+	<footer>
+<!-- Credit Link - Tolong Jangan Hapus Bagian Ini -->
+<div class="copy">Copyright &copy; <script type="text/javascript">new Date().getFullYear()>2016&&document.write(new Date().getFullYear());</script> <a class="login" href="http://ringroad.net/" id="login" title="Ringroad Network">Template Hotspot</a></div>
+<!-- End Credit Link -->
+	</footer>
+</div>
+<script>
+<!-- Ganti Foto Profile -->
+var usr = document.getElementById('user').innerHTML;
+var imgusr = document.getElementById('ImgUser');
+if (['Lucky', 'Alex', 'John'].indexOf(usr) >= 0) {
+	imgusr.src = "img/ganteng.jpg";
+} else {
+	imgusr.src = "img/user.png";
+};
+</script>
+<script>
+var time = "$(session-time-left)";
+time = time.replace(/w/g,'w ').replace(/d/g,'d ').replace(/h/g,'h ').replace(/m/g,'m ').replace(/s/g,'s ');
+waktu = time.replace(/w /g,'Minggu').replace(/d /g,'Hari').replace(/h /g,'Jam').replace(/m /g,'Menit').replace(/s /g,'Detik');
+sisawaktu = waktu.replace(/Minggu/g,'Minggu ').replace(/Hari/g,'Hari ').replace(/Jam/g,'Jam ').replace(/Menit/g,'Menit ').replace(/Detik/g,'Detik ');
+
+document.getElementById("SisaWaktu").innerHTML = sisawaktu;  
+</script>
+<script>
+var conn = "$(uptime)";
+conn = conn.replace(/w/g,'w ').replace(/d/g,'d ').replace(/h/g,'h ').replace(/m/g,'m ').replace(/s/g,'s ');
+Connect = conn.replace(/w /g,'Minggu').replace(/d /g,'Hari').replace(/h /g,'Jam').replace(/m /g,'Menit').replace(/s /g,'Detik');
+TimeConnect = Connect.replace(/Minggu/g,'Minggu ').replace(/Hari/g,'Hari ').replace(/Jam/g,'Jam ').replace(/Menit/g,'Menit ').replace(/Detik/g,'Detik ');
+
+document.getElementById("Terhubung").innerHTML = TimeConnect; 
+</script>
+</body>
+</html>

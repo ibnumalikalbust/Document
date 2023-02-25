@@ -1,0 +1,114 @@
+<!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3"><?php echo $rid['web_setting']['title'];?></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="<?php echo $rid['site_url'];?>/index.php?link1=home">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Home</span></a>
+            </li>
+            <?php if ($rid['dataUser']['rid_level'] == '1') { ?>
+            <li class="nav-item active">
+                <a class="nav-link" target="_blank" href="<?php echo $rid['site_url'];?>/admin-cp/index.php">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Admin panel</span></a>
+            </li>
+            <?php } ?>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Feature
+            </div>
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <span>All auto reply</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">AVAIBLE:</h6>
+                        <a class="collapse-item" href="<?php echo $rid['site_url'];?>/index.php?link1=auto_reply">Auto reply</a>
+                        <a class="collapse-item" href="<?php echo $rid['site_url'];?>/index.php?link1=auto_reply_button">Auto reply button</a>
+                        <a class="collapse-item" href="<?php echo $rid['site_url'];?>/index.php?link1=autoreply_listbutton">Auto reply list button</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $rid['site_url'];?>/index.php?link1=pesan_s_m">
+                    <span>Bulk/Schedule</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $rid['site_url'];?>/index.php?link1=nomor">
+                    <span>Number contact</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $rid['site_url'];?>/index.php?link1=card_image">
+                    <span>Card Image</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $rid['site_url'];?>/index.php?link1=quotemaker">
+                    <span>Quote Maker</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $rid['site_url'];?>/index.php?link1=ccr">
+                    <span>Custom code reply</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $rid['site_url'];?>/index.php?link1=edit_device">
+                    <span>Edit device</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $rid['site_url'];?>/index.php?link1=test_send">
+                    <span>Test send</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $rid['site_url'];?>/index.php?link1=send_button">
+                    <span>Send Button message</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $rid['site_url'];?>/index.php?link1=pesan_default">
+                    <span>Default message</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $rid['site_url'];?>/index.php?link1=rest_api">
+                    <span>Rest Api</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $rid['site_url'];?>/index.php?link1=pengaturan">
+                    <span>Settings</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Sidebar Message -->
+            <div class="sidebar-card d-none d-lg-flex">
+                <!--<img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="..."> -->
+                <p class="text-center mb-2">From <strong>RIDPEDIA</strong></p>
+                <a class="btn btn-success btn-sm" href="https://wa.me/6281572885606">Buy here!</a>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->

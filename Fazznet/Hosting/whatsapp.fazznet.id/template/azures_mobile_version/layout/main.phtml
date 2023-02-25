@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title><?php echo $rid['title'];?></title>
+<link rel="stylesheet" type="text/css" href="<?php echo $rid['site_url'];?>/template/<?php echo $rid['template'];?>/assets/styles/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $rid['site_url'];?>/template/<?php echo $rid['template'];?>/assets/styles/style.css">
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900|Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<?php echo $rid['site_url'];?>/template/<?php echo $rid['template'];?>/assets/fonts/css/fontawesome-all.min.css">    
+<link rel="apple-touch-icon" sizes="180x180" href="<?php echo $rid['site_url'];?>/template/<?php echo $rid['template'];?>/assets/app/icons/icon-192x192.png">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js?v=<?php echo time();?>" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
+    <script>
+          function rid_request_file() {
+              return "<?php echo $rid['site_url'];?>/req.php";
+          }
+          function base_url() {
+              return "<?php echo $rid['site_url'];?>";
+          }
+          function rid_restart() {
+            return "<?php echo $rid['site_url'];?>/request/restartall.php";
+        }
+        var is_landing, is_register, is_login;
+        <?php if ($rid['is_landing']) { ?>
+        is_landing = true;
+        <?php } else if ($rid['is_login']) { ?>
+        is_login = true;
+        <?php } else if ($rid['is_register']) { ?>
+        is_register = true;
+        <?php } ?>
+        var web_name, web_desc, share_msg_wa; 
+        web_name = "<?php echo $rid['web_setting']['title'];?>";
+        web_desc = "<?php echo $rid['web_setting']['description'];?>"
+        share_msg_wa = "Saya telah menggunakan tools whatsapp dari *" + web_name + "* Untuk kebutuhan saya seperti auto respon, pesan schedule dan masih banyak lagi. Yuk Coba sekarang!! - " + base_url();
+      </script>
+</head>
+    
+<body class="theme-light" data-highlight="green2">
+    
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+    
+<div id="page">
+    
+    <!-- header and footer bar go here-->
+    <div class="header header-fixed header-auto-show header-logo-app">
+        <?php if (($rid['is_landing'] !== true && $rid['is_dashboard'] !== true)) { ?>
+        <a href="#" data-back-button class="header-title header-subtitle">Back</a>
+        <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
+        <?php } else { ?>
+        <a href="<?php echo $rid['site_url'];?>" class="header-title"><?php echo $rid['web_setting']['title'];?></a>
+        <a href="#" data-menu="menu-main" class="header-icon header-icon-1"><i class="fas fa-bars"></i></a>
+        <?php } ?>
+        <a href="#" data-toggle-theme class="header-icon header-icon-2 show-on-theme-dark"><i class="fas fa-sun"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-2 show-on-theme-light"><i class="fas fa-moon"></i></a>
+    </div>
+    <div id="footer-bar" class="footer-bar-5">
+        <a href="<?php echo $rid['site_url'];?>"><i data-feather="home" data-feather-line="1" data-feather-size="21" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-light"></i><span>Home</span></a>
+        <a href="#" data-menu="menu-main"><i data-feather="file" data-feather-line="1" data-feather-size="21" data-feather-color="brown1-dark" data-feather-bg="brown1-fade-light"></i><span>Pages</span></a>
+        <?php if ($rid['loggedin'] == true) { ?>
+        <a href="<?php echo $rid['site_url'];?>/index.php?link1=pengaturan"><i data-feather="settings" data-feather-line="1" data-feather-size="21" data-feather-color="gray2-dark" data-feather-bg="gray2-fade-light"></i><span>Settings</span></a>
+        <?php } ?>
+    </div>
+    
+    <div class="page-content">
+        <div class="page-title page-title-<?php if ($rid['is_landing'] == true) { echo 'large'; } else { echo 'small'; } ?>">
+            <?php if ($rid['is_landing'] == true) { ?>
+            <h2 style="color: white;">
+                <?php echo $rid['web_setting']['title'];?>
+                <br><small><?php echo $rid['web_setting']['description'];?></small>      
+            </h2>
+            <?php } else if ($rid['is_dashboard'] == true) { ?>
+            <h2><?php echo $rid['title'];?></h2>
+            <?php } else { ?>
+            <h2><a href="#" data-back-button><i class="fa fa-arrow-left"></i></a><?php echo $rid['title'];?></h2>
+            <?php } ?>
+            <a href="#" data-menu="menu-main" class="bg-fade-gray1-dark shadow-xl preload-img" data-src="<?php echo $rid['site_url'];?>/template/<?php echo $rid['template'];?>/assets/images/avatars/10s.png"></a>
+        </div>
+        <div class="card header-card shape-rounded" data-card-height="210">
+            <div class="card-overlay bg-highlight opacity-95"></div>
+            <div class="card-overlay dark-mode-tint"></div>
+            <div class="card-bg preload-img" data-src="<?php echo $rid['site_url'];?>/template/<?php echo $rid['template'];?>/assets/images/pictures/20s.jpg"></div>
+        </div>
+        <!-- Load page request content heree -->
+        <?php if ($rid['is_login'] !== true || !$rid['is_register'] !== true || !$rid['is_setting'] !== true) {
+            echo rid_loadPage('slider/main');
+        }?>
+        <?php echo $rid['content'];?>
+        
+        <!-- footer and footer card-->
+        <div class="footer">
+            <div class="card card-style mb-0">
+                <a href="#" class="footer-title pt-4"><?php echo $rid['web_setting']['title'];?><strong>FROM</strong>RIDPEDIA</a>
+                <p class="text-center font-12 mt-n1 mb-3 opacity-70">
+                    <?php echo $rid['web_setting']['description'];?>
+                </p>
+                <p class="boxed-text-l">
+                    App created by : <a href="https://www.ridped.com" target="_blank">https://www.ridped.com</a>
+                </p>
+                <div class="text-center mb-3">
+                    Share now!
+                    <br>
+                    <a href="#" class="shareToWhatsApp icon icon-l bg-whatsapp rounded-s shadow-l"><i class="fab fa-whatsapp font-22"></i><br></a>
+                    <p class="font-11 opacity-70">WhatsApp</p>
+                </div>
+                <p class="footer-copyright pb-3 mb-1">Copyright &copy; <?php echo $rid['web_setting']['title'];?> <span id="copyright-year">2022</span>. All Rights Reserved.</p>
+            </div>
+            <div class="footer-card card shape-rounded" data-card-height="230">
+                <div class="card-overlay bg-highlight opacity-95"></div>
+                <div class="card-bg preload-img" data-src="<?php echo $rid['site_url'];?>/template/<?php echo $rid['template'];?>/assets/images/pictures/20s.jpg"></div>
+            </div>
+
+            <script type="text/javascript">
+                //Activating the function to show the shape at the bottom
+                //$.card_extender();
+            </script>
+        </div>  
+    </div>    
+    <!-- end of page content-->
+
+    <!-- Load sidebar -->
+    <div id="menu-main"
+         class="menu menu-box-right menu-box-detached rounded-m"
+         data-menu-active="nav-welcome"
+         data-menu-effect="menu-over">
+         <?php echo rid_loadPage('sidebar/main');?>
+    </div> 
+
+    <!-- Load all modal here -->
+    <?php 
+    if ($rid['is_dashboard']) {
+        echo rid_loadPage('modals/add_device');
+        echo rid_loadPage('modals/scanqrr');
+    } else if ($rid['is_autoreply']) {
+        echo rid_loadPage('modals/add_autoreply');
+        echo rid_loadPage('modals/edit_autoreply');
+    } else if ($rid['is_autoreply_button']) {
+        echo rid_loadPage('modals/add_autoreply_button');
+        echo rid_loadPage('modals/edit_autoreply_button');
+    } else if ($rid['is_autoreply_listbutton']) {
+        echo rid_loadPage('modals/add_autoreply_listbutton');
+        echo rid_loadPage('modals/edit_autoreply_listbutton');
+    } else if ($rid['is_editdevice']) {
+        echo rid_loadPage('modals/edit_device');
+    } else if ($rid['is_numbercontact']) {
+        echo rid_loadPage('modals/add_numb_contact');
+        echo rid_loadPage('modals/edit_numb_contact');
+    } else if ($rid['is_pesansm']) {
+        echo rid_loadPage('modals/add_bulkschedule');
+        echo rid_loadPage('modals/add_bulkschedule_two');
+    } else if ($rid['is_setting']) {
+        echo rid_loadPage('modals/change_password');
+        echo rid_loadPage('modals/change_c_wa');
+        echo rid_loadPage('modals/change_mail');
+        echo rid_loadPage('modals/change_name');
+    }
+    echo rid_loadPage('modals/delete_device');
+    ?>
+
+    
+</div>    
+
+<!-- check session users -->
+<script type="text/javascript">
+    if (!(is_landing || is_register || is_login)) {
+        setInterval(check_sesi, 5000);
+        async function check_sesi() {
+          await $.get(rid_request_file(), {f: 'check_session'}, async function(anjayani) {
+            var r_s = JSON.parse(anjayani);
+            var msg;
+            if (r_s.status == false) {
+                if (r_s.msg == 'NotLogged') {
+                    msg = 'Sesi telah expired!';
+                } else if (r_s.msg == 'Account was deleted!') {
+                    msg = 'Your session is not valid!.';
+                } else {
+                    msg = 'Your session was expired!';
+                }
+                alert(msg);
+                window.location.href = base_url() + '/index.php?link1=logout';
+            }
+          })
+        }
+    }
+</script>
+<script type="text/javascript" src="<?php echo $rid['site_url'];?>/template/<?php echo $rid['template'];?>/assets/scripts/bootstrap.min.js?v=<?php echo time();?>"></script>
+<script type="text/javascript" src="<?php echo $rid['site_url'];?>/template/<?php echo $rid['template'];?>/assets/scripts/custom.js?v=<?php echo time();?>"></script>
+</body>
+</html>

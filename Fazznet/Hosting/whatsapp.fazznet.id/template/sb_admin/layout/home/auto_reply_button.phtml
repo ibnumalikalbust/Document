@@ -1,0 +1,491 @@
+<?php 
+$con = $rid['sqlConnect'];
+$u = $_SESSION['rid_username'];
+$datadefp = $rid['dataUser'];
+if ($rid['web_setting']['autoreply_button'] == '1' && $datadefp['send_button'] == '1') { ?>
+<div class="container-fluid">
+    <div>
+        <h3><?php echo $rid['title'];?></h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page"><?php echo $rid['title'];?></li>
+            </ol>
+        </nav>
+    </div>
+    <!-- Widgets -->
+    <div class="row clearfix">
+    <div class="card">
+        <div class="card-body">
+			<button class="btn btn-info float-right" onclick="rid_AddAutoReply();"><?php echo rid_lang('add_auto_reply');?></button>
+            <h6 class="card-title"><?php echo rid_lang('auto_reply');?></h6>
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom:0;">
+                    <div class=" add_category_form_alert"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <br>
+            <div class="table-responsive">
+                <table id="example" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                           <th><?php echo rid_lang('number');?></th>
+                           <th>image</th>
+                           <th>content</th>
+                           <th>footer</th>
+                           <th>keyword</th>
+                           <th>text button</th>
+                           <th>keyword auto reply</th>
+                           <th>external link</th>
+                           <th>external link name</th>
+                           <th>external telp</th>
+                           <th>external telp name</th>
+                           <th>keyword auto reply 2</th>
+                           <th>text button 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM autoreply_button WHERE username = '$u'");
+                        while ($row = mysqli_fetch_assoc($q)) { ?>
+                        <tr id="<?= $row['id'];?>" data-selected="<?= $row['id'];?>">
+                            <td><?= $row['make_by']; ?></td>
+                            <td><?= $row['image']; ?></td>
+                            <td><?= $row['content']; ?></td>
+                            <td><?= $row['footer']; ?></td>
+                            <td><?= $row['keyword']; ?></td>
+                            <td><?= $row['text_button']; ?></td>
+                            <td><?= $row['keyword_auto_reply']; ?></td>
+                            <td><?= $row['external_link']; ?></td>
+                            <td><?= $row['external_link_name']; ?></td>
+                            <td><?= $row['external_telp']; ?></td>
+                            <td><?= $row['external_telp_name']; ?></td>
+                            <td><?= $row['keyword_auto_replytwo']; ?></td>
+                            <td><?= $row['text_button_two']; ?></td>
+                            <td>
+                                <button onclick="rid_edits(`<?= $row["id"];?>`,`<?= $row["content"]; ?>`,`<?= $row["footer"]; ?>`,`<?= $row["keyword"]; ?>`,`<?= $row["text_button"]; ?>`,`<?= $row["keyword_auto_reply"]; ?>`,`<?= $row["external_link"]; ?>`,`<?= $row["external_link_name"]; ?>`,`<?= $row["external_telp"]; ?>`,`<?= $row["external_telp_name"]; ?>`,`<?= $row["keyword_auto_replytwo"]; ?>`,`<?= $row["text_button_two"]; ?>`);" type="button" class="btn bg-danger admn_table_btn">Edit</button>
+                                <button onclick="rid_delete('<?= $row["id"];?>','hide');" type="button" class="btn bg-danger admn_table_btn"><?php echo rid_lang('delete');?></button>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    </div>
+    <!-- #END# Widgets -->
+</div>
+
+<div class="modal fade" id="edit_autoreplyh" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h4 class="modal-title" id="langsModalLabel">Edit</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="edit_autoreply" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel"><?php echo rid_lang('number');?> Sender</label>
+                                <input style="resize: none;" name="id" id="id" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">keyword</label>
+                                <input style="resize: none;" name="keyword_edit" id="keyword_edit" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Image</label>
+                                <input type="text" id="media_edit" name="media_edit" class="form-control">
+                            </div>
+                            <small class="admin-info">jpg/png</small>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label">Content</label>
+                                <textarea name="content_edit" id="content_edit" class="form-control" cols="30" rows="10" style="height: 100px;"></textarea>
+                                <small class="admin-info">Write your message here.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Footer</label>
+                                <input style="resize: none;" name="foote_editr" id="footer_edit" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">External link</label>
+                                <input style="resize: none;" name="external_link_edit" id="external_link_edit" class="form-control" placeholder="ex: https://xxx">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">External link Button name</label>
+                                <input style="resize: none;" name="external_link_name_edit" id="external_link_name_edit" class="form-control" placeholder="Visit my website">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">External telp</label>
+                                <input style="resize: none;" name="external_telp_edit" id="external_telp_edit" class="form-control" placeholder="ex: 62815xxxx">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">External telp Button name</label>
+                                <input style="resize: none;" name="external_telp_name_edit" id="external_telp_name_edit" class="form-control" placeholder="ex: Call me!">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Keyword auto reply</label>
+                                <input style="resize: none;" name="keyword_auto_reply_edit" id="keyword_auto_reply_edit" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Text button for keyword auto reply</label>
+                                <input style="resize: none;" name="text_button_edit" id="text_button_edit" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">keyword auto reply 2</label>
+                                <input style="resize: none;" name="keyword_auto_replytwo_edit" id="keyword_auto_replytwo_edit" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Text button for keyword auto reply 2</label>
+                                <input style="resize: none;" name="text_button_two_edit" id="text_button_two_edit" class="form-control">
+                            </div>
+                        </div>
+                        <div class="data"></div>
+                        <div class="langsModalAlert"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal_close_btn" data-dismiss="modal"><?php echo rid_lang('close');?></button>
+                <button type="button" class="btn btn-primary" onclick="rid_edit();"><?php echo rid_lang('save');?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModal1Label"><?php echo rid_lang('delete');?> Auto reply</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php echo rid_lang('sure');?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo rid_lang('close');?></button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo rid_lang('delete');?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="add_buttonh" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h4 class="modal-title" id="langsModalLabel"><?php echo rid_lang('add_numb');?></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="add_button" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel"><?php echo rid_lang('number');?> Sender</label>
+                        <select class="form-control show-tick" id="make_by" name="make_by">
+                        <?php
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik='$u' AND state = 'CONNECTED'");
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . $row['nomor'] . ' (active)</option>';
+                        }
+                        ?>
+                        </select>
+                        <small class="admin-info">Choose sender.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">keyword</label>
+                                <input style="resize: none;" name="keyword" id="keyword" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Image link</label>
+                                <input type="text" id="media" name="media" class="form-control">
+                            </div>
+                            <small class="admin-info">jpg/png</small>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label">Content</label>
+                                <textarea name="content" id="content" class="form-control" cols="30" rows="10" style="height: 100px;"></textarea>
+                                <small class="admin-info">Write your message here.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Footer</label>
+                                <input style="resize: none;" name="footer" id="footer" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">External link</label>
+                                <input style="resize: none;" name="external_link" id="external_link" class="form-control" placeholder="ex: https://xxx">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">External link Button name</label>
+                                <input style="resize: none;" name="external_link_name" id="external_link_name" class="form-control" placeholder="Visit my website">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">External telp</label>
+                                <input style="resize: none;" name="external_telp" id="external_telp" class="form-control" placeholder="ex: 62815xxxx">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">External telp Button name</label>
+                                <input style="resize: none;" name="external_telp_name" id="external_telp_name" class="form-control" placeholder="ex: Call me!">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Keyword auto reply</label>
+                                <input style="resize: none;" name="keyword_auto_reply" id="keyword_auto_reply" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Text button for keyword auto reply</label>
+                                <input style="resize: none;" name="text_button" id="text_button" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">keyword auto reply 2</label>
+                                <input style="resize: none;" name="keyword_auto_replytwo" id="keyword_auto_replytwo" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">Text button for keyword auto reply 2</label>
+                                <input style="resize: none;" name="text_button_two" id="text_button_two" class="form-control">
+                            </div>
+                        </div>
+                        <div class="data"></div>
+                        <div class="langsModalAlert"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal_close_btn" data-dismiss="modal"><?php echo rid_lang('close');?></button>
+                <button type="button" class="btn btn-primary" onclick="rid_add();"><?php echo rid_lang('save');?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+function rid_edit() {
+    $('#edit_autoreply').submit();
+}
+
+function rid_add() {
+    $('#add_button').submit();
+}
+
+$(document).ready(function () {
+  $("#edit_autoreply").submit(function (event) {
+      const id = document.getElementById("id");
+      const keyword = document.getElementById("keyword_edit");
+      const media = document.getElementById("media_edit");
+      const content = document.getElementById("content_edit");
+      const footer = document.getElementById("footer_edit");
+      const external_link = document.getElementById("external_link_edit");
+      const external_link_name = document.getElementById("external_link_name_edit");
+      const external_telp = document.getElementById("external_telp_edit");
+      const external_telp_name = document.getElementById("external_telp_name_edit");
+      const keyword_auto_reply = document.getElementById("keyword_auto_reply_edit");
+      const text_button = document.getElementById("text_button_edit");
+      const keyword_auto_replytwo = document.getElementById("keyword_auto_replytwo_edit");
+      const text_button_two = document.getElementById("text_button_two_edit");
+      
+      const editbutton = {
+          id: id.value,
+          keyword: keyword.value,
+          media: media.value,
+          content: content.value,
+          footer: footer.value,
+          external_link: external_link.value,
+          external_link_name: external_link_name.value,
+          external_telp: external_telp.value,
+          external_telp_name: external_telp_name.value,
+          keyword_auto_reply: keyword_auto_reply.value,
+          text_button: text_button.value,
+          keyword_auto_replytwo: keyword_auto_replytwo.value,
+          text_button_two: text_button_two.value
+      };
+      
+      $.ajax({
+          url: rid_request_file() + '?f=edit_abutton',
+          beforeSend: function() {
+              $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>')
+          },
+          type: "POST",
+          data: editbutton,
+      }).done(async (data) => {
+          console.log(data);
+          var ridCans = JSON.parse(data);
+          if (ridCans.status == 200) {
+              await sleep(2000);
+              $('#langsModal').modal('hide');
+              location.reload();
+          } else {
+              console.log('this error ' + data);
+              $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+              setTimeout(function () {
+                  $('.langsModalAlert').empty();
+              }, 5000);
+          }
+          $("#langsModal").animate({ scrollTop: 0 }, 100);
+      });
+    event.preventDefault();
+  });
+});
+
+$(document).ready(function () {
+  $("#add_button").submit(function (event) {
+      const make_by = document.getElementById("make_by");
+      const keyword = document.getElementById("keyword");
+      const media = document.getElementById("media");
+      const content = document.getElementById("content");
+      const footer = document.getElementById("footer");
+      const external_link = document.getElementById("external_link");
+      const external_link_name = document.getElementById("external_link_name");
+      const external_telp = document.getElementById("external_telp");
+      const external_telp_name = document.getElementById("external_telp_name");
+      const keyword_auto_reply = document.getElementById("keyword_auto_reply");
+      const text_button = document.getElementById("text_button");
+      const keyword_auto_replytwo = document.getElementById("keyword_auto_replytwo");
+      const text_button_two = document.getElementById("text_button_two");
+      
+      const addbutton = {
+          make_by: make_by.value,
+          keyword: keyword.value,
+          media: media.value,
+          content: content.value,
+          footer: footer.value,
+          external_link: external_link.value,
+          external_link_name: external_link_name.value,
+          external_telp: external_telp.value,
+          external_telp_name: external_telp_name.value,
+          keyword_auto_reply: keyword_auto_reply.value,
+          text_button: text_button.value,
+          keyword_auto_replytwo: keyword_auto_replytwo.value,
+          text_button_two: text_button_two.value
+      };
+      
+      $.ajax({
+          url: rid_request_file() + '?f=add_button',
+          beforeSend: function() {
+              $('.langsModalAlert').html('<div class="alert alert-info">Waiting...</div>')
+          },
+          type: "POST",
+          data: addbutton,
+      }).done(async (data) => {
+          console.log(data);
+          var ridCans = JSON.parse(data);
+          if (ridCans.status == 200) {
+              await sleep(2000);
+              $('#langsModal').modal('hide');
+              location.reload();
+          } else {
+              console.log('this error ' + data);
+              $('.langsModalAlert').html('<div class="alert alert-danger">'+ridCans.message+'</div>');
+              setTimeout(function () {
+                  $('.langsModalAlert').empty();
+              }, 5000);
+          }
+          $("#langsModal").animate({ scrollTop: 0 }, 100);
+      });
+    event.preventDefault();
+  });
+});
+
+function rid_edits(id,content,footer,keyword,text_button,keyword_auto_reply,external_link,external_link_name,external_telp,external_telp_name,keyword_auto_replytwo,text_button_two) {
+    $('#edit_autoreplyh').modal('show');
+    document.getElementById("id").setAttribute("value", id);
+    document.getElementById("content_edit").value = content;
+    document.getElementById("footer_edit").value = footer;
+    document.getElementById("keyword_edit").value = keyword;
+    document.getElementById("text_button_edit").value = text_button;
+    document.getElementById("keyword_auto_reply_edit").value = keyword_auto_reply;
+    document.getElementById("external_link_edit").value = external_link;
+    document.getElementById("external_link_name_edit").value = external_link_name;
+    document.getElementById("external_telp_edit").value = external_telp;
+    document.getElementById("external_telp_name_edit").value = external_telp_name;
+    document.getElementById("keyword_auto_replytwo_edit").value = keyword_auto_replytwo;
+    document.getElementById("text_button_two_edit").value = text_button_two;
+}
+
+function rid_AddAutoReply() {
+    $('#add_buttonh').modal('show');
+}
+
+function rid_delete(key,type = 'show') {
+  if (key == '') {
+    return false;
+  }
+  if (type == 'hide') {
+    $('#DeleteModal').find('.btn-primary').attr('onclick', "rid_delete('"+key+"')");
+    $('#DeleteModal').modal('show');
+    return false;
+  }
+  $('#' + key).fadeOut(300, function () {
+    $(this).remove();
+  });
+  $.get(rid_request_file(), {f: 'edit_abutton', act: 'del', id:key});
+}
+</script>
+<?php } else if ($datadefp['send_button'] == '2') { ?>
+<center><h1>You do not have access to use this</h1></center>
+<?php } else { ?>
+<center><h1>This Feature disabled</h1></center>
+<?php } ?>

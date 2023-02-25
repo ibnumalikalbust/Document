@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>csstiga17</title>
+        <style>
+            h1 {
+                text-align: center;
+            }
+            .container {
+                border: 1px solid black;
+            }
+            .div1 {
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                text-align: center;
+                line-height: 100px;
+                animation: animasi2 1s linear infinite alternate;
+            }
+            @keyframes animasi1 {
+                from {
+                    width: 100px;
+                }
+                to {
+                    width: 200px;
+                }
+            }
+            @keyframes animasi2 {
+                0% {
+                    width: 0%;
+                    margin-left: 0%;
+                    background-color: red;
+                }
+                25% {
+                    width: 25%;
+                    margin-left: 0%;
+                    background-color: orange;
+                }
+                50% {
+                    width: 50%;
+                    margin-left: 0%;
+                    background-color: yellow;
+                }
+                75% {
+                    width: 75%;
+                    margin-left: 0%;
+                    background-color: lime;
+                }
+                100% {
+                    width: 100%;
+                    margin-left: 0%;
+                    background-color: green;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="div0">
+            <h1>ANIMATION</h1>
+        </div>
+        <div class="container">
+            <div class="div1"></div>
+        </div>
+    </body>
+</html>

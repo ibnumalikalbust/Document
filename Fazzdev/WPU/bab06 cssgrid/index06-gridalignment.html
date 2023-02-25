@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid 6</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .container {
+            width: 600px;
+            height: 100px;
+            margin: 10px auto;
+            border: 1px solid black;
+            padding: 5px;
+            display: grid;
+            grid-template-columns: 250px 250px;
+            gap: 5px;
+        }
+
+        .div1 {
+            background-color: lime;
+            border: 1px solid black;
+        }
+
+        .container1 {
+            justify-items: start;
+        }
+
+        .container2 {
+            justify-items: end;
+        }
+
+        .container3 {
+            justify-items: center;
+        }
+
+        .container4 {
+            justify-items: stretch;
+        }
+
+        .container5 {
+            align-items: start;
+        }
+
+        .container6 {
+            align-items: end;
+        }
+
+        .container7 {
+            align-items: center;
+        }
+
+        .container8 {
+            align-items: stretch;
+        }
+
+        .container9 {
+            place-items: start;
+        }
+
+        .container10 {
+            place-items: end;
+        }
+
+        .container11 {
+            place-items: center;
+        }
+
+        .container12 {
+            place-items: stretch;
+        }
+
+        .container13 {
+            justify-content: start;
+        }
+
+        .container14 {
+            justify-content: end;
+        }
+
+        .container15 {
+            justify-content: center;
+        }
+
+        .container16 {
+            justify-content: stretch;
+        }
+
+        .container17 {
+            justify-content: space-around;
+        }
+
+        .container18 {
+            justify-content: space-between;
+        }
+
+        .container19 {
+            justify-content: space-evenly;
+        }
+
+        .container20 {
+            justify-content: none;
+        }
+
+        .container21 {
+            align-content: start;
+        }
+
+        .container22 {
+            align-content: end;
+        }
+
+        .container23 {
+            align-content: center;
+        }
+
+        .container24 {
+            align-content: stretch;
+        }
+
+        .container25 {
+            align-content: space-around;
+        }
+
+        .container26 {
+            align-content: space-between;
+        }
+
+        .container27 {
+            align-content: space-evenly;
+        }
+
+        .container28 {
+            align-content: none;
+        }
+
+        .container29 {
+            place-content: start;
+        }
+
+        .container30 {
+            place-content: end;
+        }
+
+        .container31 {
+            place-content: center;
+        }
+
+        .container32 {
+            place-content: stretch;
+        }
+
+        .container33 {
+            place-content: space-around;
+        }
+
+        .container34 {
+            place-content: space-between;
+        }
+
+        .container35 {
+            place-content: space-evenly;
+        }
+
+        .container36 {
+            place-content: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div0">
+        <h1>GRID 6 - GRID ALIGNMENT</h1>
+    </div>
+    <div class="container container1">
+        <div class="div1">justify-items: start</div>
+        <div class="div1">justify-items: start</div>
+        <div class="div1">justify-items: start</div>
+        <div class="div1">justify-items: start</div>
+    </div>
+    <div class="container container2">
+        <div class="div1">justify-items: end</div>
+        <div class="div1">justify-items: end</div>
+        <div class="div1">justify-items: end</div>
+        <div class="div1">justify-items: end</div>
+    </div>
+    <div class="container container3">
+        <div class="div1">justify-items: center</div>
+        <div class="div1">justify-items: center</div>
+        <div class="div1">justify-items: center</div>
+        <div class="div1">justify-items: center</div>
+    </div>
+    <div class="container container4">
+        <div class="div1">justify-items: stretch</div>
+        <div class="div1">justify-items: stretch</div>
+        <div class="div1">justify-items: stretch</div>
+        <div class="div1">justify-items: stretch</div>
+    </div>
+    <div class="container container5">
+        <div class="div1">align-items: start</div>
+        <div class="div1">align-items: start</div>
+        <div class="div1">align-items: start</div>
+        <div class="div1">align-items: start</div>
+    </div>
+    <div class="container container6">
+        <div class="div1">align-items: end</div>
+        <div class="div1">align-items: end</div>
+        <div class="div1">align-items: end</div>
+        <div class="div1">align-items: end</div>
+    </div>
+    <div class="container container7">
+        <div class="div1">align-items: center</div>
+        <div class="div1">align-items: center</div>
+        <div class="div1">align-items: center</div>
+        <div class="div1">align-items: center</div>
+    </div>
+    <div class="container container8">
+        <div class="div1">align-items: stretch</div>
+        <div class="div1">align-items: stretch</div>
+        <div class="div1">align-items: stretch</div>
+        <div class="div1">align-items: stretch</div>
+    </div>
+    <div class="container container9">
+        <div class="div1">place-items: start</div>
+        <div class="div1">place-items: start</div>
+        <div class="div1">place-items: start</div>
+        <div class="div1">place-items: start</div>
+    </div>
+    <div class="container container10">
+        <div class="div1">place-items: end</div>
+        <div class="div1">place-items: end</div>
+        <div class="div1">place-items: end</div>
+        <div class="div1">place-items: end</div>
+    </div>
+    <div class="container container11">
+        <div class="div1">place-items: center</div>
+        <div class="div1">place-items: center</div>
+        <div class="div1">place-items: center</div>
+        <div class="div1">place-items: center</div>
+    </div>
+    <div class="container container12">
+        <div class="div1">place-items: stretch</div>
+        <div class="div1">place-items: stretch</div>
+        <div class="div1">place-items: stretch</div>
+        <div class="div1">place-items: stretch</div>
+    </div>
+    <div class="container container13">
+        <div class="div1">justify-content: start</div>
+        <div class="div1">justify-content: start</div>
+        <div class="div1">justify-content: start</div>
+        <div class="div1">justify-content: start</div>
+    </div>
+    <div class="container container14">
+        <div class="div1">justify-content: end</div>
+        <div class="div1">justify-content: end</div>
+        <div class="div1">justify-content: end</div>
+        <div class="div1">justify-content: end</div>
+    </div>
+    <div class="container container15">
+        <div class="div1">justify-content: center</div>
+        <div class="div1">justify-content: center</div>
+        <div class="div1">justify-content: center</div>
+        <div class="div1">justify-content: center</div>
+    </div>
+    <div class="container container16">
+        <div class="div1">justify-content: stretch</div>
+        <div class="div1">justify-content: stretch</div>
+        <div class="div1">justify-content: stretch</div>
+        <div class="div1">justify-content: stretch</div>
+    </div>
+    <div class="container container17">
+        <div class="div1">justify-content: space-around</div>
+        <div class="div1">justify-content: space-around</div>
+        <div class="div1">justify-content: space-around</div>
+        <div class="div1">justify-content: space-around</div>
+    </div>
+    <div class="container container18">
+        <div class="div1">justify-content: space-between</div>
+        <div class="div1">justify-content: space-between</div>
+        <div class="div1">justify-content: space-between</div>
+        <div class="div1">justify-content: space-between</div>
+    </div>
+    <div class="container container19">
+        <div class="div1">justify-content: space-evenly</div>
+        <div class="div1">justify-content: space-evenly</div>
+        <div class="div1">justify-content: space-evenly</div>
+        <div class="div1">justify-content: space-evenly</div>
+    </div>
+    <div class="container container20">
+        <div class="div1">justify-content: none</div>
+        <div class="div1">justify-content: none</div>
+        <div class="div1">justify-content: none</div>
+        <div class="div1">justify-content: none</div>
+    </div>
+    <div class="container container21">
+        <div class="div1">align-content: start</div>
+        <div class="div1">align-content: start</div>
+        <div class="div1">align-content: start</div>
+        <div class="div1">align-content: start</div>
+    </div>
+    <div class="container container22">
+        <div class="div1">align-content: end</div>
+        <div class="div1">align-content: end</div>
+        <div class="div1">align-content: end</div>
+        <div class="div1">align-content: end</div>
+    </div>
+    <div class="container container23">
+        <div class="div1">align-content: center</div>
+        <div class="div1">align-content: center</div>
+        <div class="div1">align-content: center</div>
+        <div class="div1">align-content: center</div>
+    </div>
+    <div class="container container24">
+        <div class="div1">align-content: stretch</div>
+        <div class="div1">align-content: stretch</div>
+        <div class="div1">align-content: stretch</div>
+        <div class="div1">align-content: stretch</div>
+    </div>
+    <div class="container container25">
+        <div class="div1">align-content: space-around</div>
+        <div class="div1">align-content: space-around</div>
+        <div class="div1">align-content: space-around</div>
+        <div class="div1">align-content: space-around</div>
+    </div>
+    <div class="container container26">
+        <div class="div1">align-content: space-between</div>
+        <div class="div1">align-content: space-between</div>
+        <div class="div1">align-content: space-between</div>
+        <div class="div1">align-content: space-between</div>
+    </div>
+    <div class="container container27">
+        <div class="div1">align-content: space-evenly</div>
+        <div class="div1">align-content: space-evenly</div>
+        <div class="div1">align-content: space-evenly</div>
+        <div class="div1">align-content: space-evenly</div>
+    </div>
+    <div class="container container28">
+        <div class="div1">align-content: none</div>
+        <div class="div1">align-content: none</div>
+        <div class="div1">align-content: none</div>
+        <div class="div1">align-content: none</div>
+    </div>
+    <div class="container container29">
+        <div class="div1">place-content: start</div>
+        <div class="div1">place-content: start</div>
+        <div class="div1">place-content: start</div>
+        <div class="div1">place-content: start</div>
+    </div>
+    <div class="container container30">
+        <div class="div1">place-content: end</div>
+        <div class="div1">place-content: end</div>
+        <div class="div1">place-content: end</div>
+        <div class="div1">place-content: end</div>
+    </div>
+    <div class="container container31">
+        <div class="div1">place-content: center</div>
+        <div class="div1">place-content: center</div>
+        <div class="div1">place-content: center</div>
+        <div class="div1">place-content: center</div>
+    </div>
+    <div class="container container32">
+        <div class="div1">place-content: stretch</div>
+        <div class="div1">place-content: stretch</div>
+        <div class="div1">place-content: stretch</div>
+        <div class="div1">place-content: stretch</div>
+    </div>
+    <div class="container container33">
+        <div class="div1">place-content: space-around</div>
+        <div class="div1">place-content: space-around</div>
+        <div class="div1">place-content: space-around</div>
+        <div class="div1">place-content: space-around</div>
+    </div>
+    <div class="container container34">
+        <div class="div1">place-content: space-between</div>
+        <div class="div1">place-content: space-between</div>
+        <div class="div1">place-content: space-between</div>
+        <div class="div1">place-content: space-between</div>
+    </div>
+    <div class="container container35">
+        <div class="div1">place-content: space-evenly</div>
+        <div class="div1">place-content: space-evenly</div>
+        <div class="div1">place-content: space-evenly</div>
+        <div class="div1">place-content: space-evenly</div>
+    </div>
+    <div class="container container36">
+        <div class="div1">place-content: none</div>
+        <div class="div1">place-content: none</div>
+        <div class="div1">place-content: none</div>
+        <div class="div1">place-content: none</div>
+    </div>
+</body>

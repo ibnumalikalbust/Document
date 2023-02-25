@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>Hello World</h1>
+    <p>Javascript = JScript = Ecmascript</p>
+    <script>
+      var nama = prompt("masukkan nama:");
+      alert("halo, " + nama);
+      var tanya1 = confirm("kamu nanya?");
+      if (tanya1 === true) {
+        var tanya2 = confirm("kamu bertanya-tanya?");
+        if (tanya2 === true) {
+          alert("nih aku kasih tau ya, wahai " + nama);
+          alert("rambut aku model cepmek ya");
+        } else {
+          alert("ih, kamu benar benar jahat");
+        }
+      } else {
+        alert("ih, kamu jahat deh");
+      }
+      var lagi = true;
+      while (lagi === true) {
+        var lagi = confirm("lagi..?");
+      }
+      alert("terima kasih");
+    </script>
+  </body>
+</html>

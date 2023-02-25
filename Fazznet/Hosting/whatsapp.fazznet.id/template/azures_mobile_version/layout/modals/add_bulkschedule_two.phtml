@@ -1,0 +1,64 @@
+<?php
+$u = $_SESSION['rid_username'];
+$con = $rid['sqlConnect'];
+?>
+<div class="modal fade" id="kirimpesan2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><?php echo rid_lang('send');?> <?php echo rid_lang('message');?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <label>sender</label>
+                    <br>
+                    <select class="form-control js-example-basic-multiple" name="device" style="width: 100%">
+                        <?php
+
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM device WHERE pemilik='$u' AND state = 'CONNECTED'");
+
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . ' (' . $row['nomor'] . ')</option>';
+                        }
+                        ?>
+                    </select>
+                    <br>
+                    <input type="hidden" name="pesan2" value="yo">
+                    <label> Media </label>
+                    <input type="file" name="media" class="form-control">
+                    <p class="text-small text-danger">Maximal 1mb </p>
+                    <br>
+                    <label> <?php echo rid_lang('schedule');?> * </label>
+                    <input type="date" name="tgl"  class="form-control">
+                    <br>
+                    <label> Time * </label>
+                    <input type="time" name="jam"  class="form-control">
+                    <br>
+                    <label>To :</label>
+                    <br>
+                    <select class="form-control js-example-basic-multiple" name="target[]" multiple="multiple" style="width: 100%">
+                        <?php
+
+                        $u = $_SESSION['rid_username'];
+                        $q = mysqli_query($con, "SELECT * FROM nomor WHERE make_by='$u'");
+
+                        while ($row = mysqli_fetch_assoc($q)) {
+                            echo '<option value="' . $row['nomor'] . '">' . $row['nama'] . ' (' . $row['nomor'] . ')</option>';
+                        }
+                        ?>
+                    </select>
+                    <br>
+                    <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="kirimpesan2" class="btn btn-info"><?php echo rid_lang('save');?></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>layouting14</title>
+        <style>
+            body {
+                height: 2000px;
+            }
+            h1 {
+                text-align: center;
+                margin-top: 50px;
+            }
+            .container {
+                width: 601px;
+                padding: 10px;
+                border: 1px solid black;
+                margin: auto;
+                box-sizing: border-box;
+                position: relative;
+            }
+            h2 {
+                margin-left: 50px;
+            }
+            li {
+                display: inline-block;
+                padding: 5px 10px;
+                border-right: 1px solid black;
+            }
+            li a {
+                text-decoration: none;
+                background-color: green;
+                color: orange;
+                font-size: 16px;
+                padding: 5px;
+                border-radius: 5px;
+            }
+            li a:hover {
+                color: red;
+                font-size: 17px;
+                padding: 4px;
+            }
+            .photos {
+                width: 100%;
+                height: 200px;
+                background-color: yellow;
+            }
+            .photos p {
+                text-align: center;
+                line-height: 200px;
+            }
+            .float1, .float2, .float3 {
+                width: 193px;
+                margin: 10px auto;
+                padding: 5px;
+                text-align: justify;
+                box-sizing: border-box;
+            }
+            .float1 {
+                background-color: red;
+                float: left
+            }
+            .float2 {
+                background-color: green;
+                float: left;
+            }
+            .float3 {
+                background-color: blue;
+                float: right;
+            }
+            .footer {
+                clear: both;
+                text-align: center;
+                background-color: brown;
+            }
+            .footer p {
+                padding: 5px;
+            }
+            .twitter {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                background-image: url(ribbon.png);
+                position: absolute;
+                top: -14px;
+                right: -17px;                
+            }
+            .topbar {
+                background-color: red;
+                text-align: center;
+                line-height: 40px;
+                height: 40px;
+                position: fixed;
+                top: 0px;
+                right: 0px;
+                left: 0px;
+                z-index: 9;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="div0">
+            <h1>LATIHAN AKHIR</h1>
+        </div>
+        <div class="container">
+            <div class="topbar">TOPBAR</div>
+            <a href="https://twitter.com/ibnumalikalbust" class="twitter" target="blank"></a>
+            <div class="header">
+                <h2>MY WEBSITE</h2>
+                <ul>
+                    <li><a href="#">home</a></li>
+                    <li><a href="#">about</a></li>
+                    <li><a href="#">product</a></li>
+                    <li><a href="#">service</a></li>
+                    <li><a href="#">contact</a></li>
+                </ul>
+            </div>
+            <div class="photos">
+                <p>GAMBAR</p>
+            </div>
+            <div class="content">
+                <div class="float1"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, et voluptate. Earum nesciunt iure ratione necessitatibus qui dicta recusandae magnam est fugit voluptatibus sed et non incidunt placeat distinctio molestias, mollitia doloribus asperiores hic sapiente quasi explicabo excepturi ipsum? Vel quaerat tempore officiis facilis est, architecto possimus! Accusamus quod aliquam, optio repudiandae nemo, possimus asperiores in dicta officia assumenda perferendis quo voluptate earum laudantium porro dolorem! Quo quos, nulla officia quae, quam distinctio adipisci odit eius, ea suscipit libero? Incidunt corrupti amet est eos iure quam! Officiis, repellat. Provident sunt molestias voluptate necessitatibus aut tenetur quos porro! Ullam, quaerat reprehenderit.</p></div>
+                <div class="float2"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates error dolorem magnam. Debitis distinctio velit quidem deleniti, cupiditate aliquam magnam explicabo adipisci enim earum ea, quos illum maxime, reiciendis unde modi eveniet dolores temporibus minima voluptatem optio accusantium. Cum magnam vel odit officia fugiat provident laudantium quae eligendi! Dolores vel iusto sint molestiae molestias, voluptatum consequuntur consectetur aliquam rem, tempora, qui deleniti architecto libero facilis sunt amet! Nostrum dolore vel ut modi, adipisci eaque quos molestiae laborum ipsum, repellendus tempora iste iusto dignissimos sequi delectus, voluptatibus inventore culpa voluptates hic! Doloribus expedita, quam voluptates nisi laborum quibusdam nostrum explicabo pariatur.</p></div>
+                <div class="float3"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam molestiae amet, numquam maiores dolorum, in eum quos explicabo, tempore ipsum quidem sint excepturi minima cum ut ducimus suscipit nostrum doloribus. Quae dicta sunt, perspiciatis atque incidunt modi sapiente est praesentium voluptatem, laboriosam non natus sequi delectus fugiat perferendis, nostrum temporibus placeat velit dolorum porro ratione possimus iure? Hic molestiae veniam magnam architecto maiores labore nemo repudiandae nostrum nam aliquam sit quis, possimus ipsa a omnis, repellendus inventore laborum aut. Autem fugiat perferendis pariatur odit adipisci hic, praesentium, iste incidunt maxime debitis impedit accusantium consequatur voluptates laudantium eos? Iusto, autem necessitatibus!</p></div>     
+            </div>
+            <div class="footer">
+                <p>all right reserved - copyright 2022</p>
+            </div>
+        </div>
+    </body>
+</html>

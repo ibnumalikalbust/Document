@@ -1,0 +1,45 @@
+<?php
+$u = $_SESSION['rid_username'];
+$con = $rid['sqlConnect'];
+?>
+<div class="modal fade" id="edit_autoreplyh" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h4 class="modal-title" id="langsModalLabel">Edit</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="langsModalAlert"></div>
+                <form id="edit_autoreply" method="POST">
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel"><?php echo rid_lang('number');?> ID</label>
+                                <input type="number" style="resize: none;" name="id" id="id" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-lins">
+                                <label class="form-lasbel">webhook</label>
+                                <input style="resize: none;" name="webhook" id="webhook" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                              <label class="form-label">auto_read</label>
+                                <input type="number" name="auto_read" id="auto_read" class="form-control" required>
+                            </div>
+                            <small>*Set to 0 for disabled, set to 1 for enabled</small>
+                        </div>
+                        <div class="data"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal_close_btn" data-dismiss="modal"><?php echo rid_lang('close');?></button>
+                <button type="button" class="btn btn-primary" onclick="rid_edit();"><?php echo rid_lang('save');?></button>
+            </div>
+        </div>
+    </div>
+</div>

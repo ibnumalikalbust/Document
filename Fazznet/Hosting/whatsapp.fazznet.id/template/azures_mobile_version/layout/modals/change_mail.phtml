@@ -1,0 +1,20 @@
+<div id="modal-change_mail" class="menu menu-box-bottom menu-box-detached rounded-m" 
+         data-menu-height="320" 
+         data-menu-effect="menu-over">
+        <div class="content mb-0">
+            <h1 class="font-700 mb-0">Change email</h1>
+            <p class="font-11  mt-n1 mb-0">
+                Please write a new email.
+            </p>
+            <form action="" method="POST">
+                <div class="langsModalAlert"></div>
+                <div class="input-style has-icon input-style-1 input-required">
+                    <i class="input-icon fa fa-envelope font-11"></i>
+                    <span>Email</span>
+                    <em>(required)</em>
+                    <input type="email" placeholder="Write a new mail" name="email" id="email" required value="<?php echo $rid['dataUser']['email'];?>">
+                </div>
+                <button type="submit" class="btn btn-full btn-m shadow-l rounded-s text-uppercase font-900 bg-green1-dark mt-4" name="change_mail">Save</button>
+            </form>
+        </div>
+    </div>

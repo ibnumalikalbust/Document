@@ -1,0 +1,69 @@
+/interface bridge
+add name=LAN
+add name=WAN
+
+/interface bridge port
+add bridge=WAN interface=ether1
+add bridge=LAN interface=ether2
+add bridge=LAN interface=ether3
+
+/ip dns
+set allow-remote-requests=yes servers=8.8.8.8
+
+/ip firewall nat
+add action=masquerade chain=srcnat out-interface=WAN
+
+/ip dhcp-client
+add dhcp-options=hostname,clientid interface=WAN
+
+/ip dhcp-server
+add address-pool=pool1 disabled=no interface=LAN name=dhcp1
+
+/ip dhcp-server network
+add address=10.10.10.0/24 gateway=10.10.10.1
+
+/ip pool
+add name=pool1 ranges=10.10.10.2-10.10.10.254
+
+Firewall Mangle
+Chain		: Prerouting
+Dst. Address	: Semua IP Network
+Action		: Accept
+
+Firewall Mangle
+Chain		: Prerouting
+In. Interface	: Ether Ke Internet
+Action		: Mark Connection
+Connection Mark	: (Koneksi 1 & Koneksi 2)
+
+Firewall Mangle
+Chain		: Prerouting
+In. Interface	: Ether Ke Lokal
+PCC		: (Dibagi Berapa)(Urutan Nomer) 
+Action		: Mark Connection
+Connection Mark	: (Koneksi 1 & Koneksi 2)
+
+Firewall Mangle
+Chain		: Prerouting
+In. Interface	: Ether Ke Lokal
+Connection Mark	: (Koneksi 1 & Koneksi 2)
+Action		: Mark Routing
+Routing Mark	: (Rute 1 & Rute 2)
+
+Firewall Mangle
+Chain		: Output
+Connection Mark	: (Koneksi 1 & Koneksi 2)
+Action		: Mark Routing
+Routing Mark	: (Rute 1 & Rute 2)
+
+Route Loadbalance
+Dst Address	: 0.0.0.0/0
+Gateway		: IP Modem Ke Internet
+Check Gateway	: Ping
+Routing Mark	: (Rute 1 & Rute 2)
+
+Route Failover
+Dst Address	: 0.0.0.0/0
+Gateway		: IP Modem Ke Internet
+Distance	: (2 karena pilihan kedua)
+Routing Mark	: (Rute 1 & Rute 2)

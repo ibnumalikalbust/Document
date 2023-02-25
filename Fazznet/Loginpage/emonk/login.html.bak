@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="theme-color" content="#004E7D">
+<meta content='RingRoad' name='Author' />
+<title></title>
+<link rel="shortcut icon" type="image/png" href="favicon.png"/>
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script  src="js/custom.js"></script>
+</head>
+<body>
+<div class="container">
+	<header class="main-header">
+		<div class="top-border"></div>
+<h1 class="appbar-title shine">Emonk.net</h1>
+<span class="appbar-description">Internet Unlimited Tanpa Batas Kuota</span>
+	</header>
+<hr class="separator separator--line" />
+	<main>
+<nav>
+  <ul>
+    <li class="active"><a href="" onclick="voucher();">Voucher</a></li>
+    <li><a href="" onclick="member();">Member</a></li>
+  </ul>
+</nav>
+    <form name="login" class="login-form" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="false" />
+        <input id="username" class="" name="username" type="text" autocomplete="off" required/>
+        <input id="password" class="password" name="password" placeholder="Password" autocomplete="off" type="hidden" required />
+    $(if error)
+    <div id="infoError" class="infoError">
+<script type="text/javascript">
+	var error = "$(error)";
+	var error1 = "user $(username) has reached uptime limit";
+	var error2 = "user $(username) has reached traffic limit";
+	var error3 = "no valid profile found";
+	var error4 = "invalid username or password";
+	var error5 = "user &lt;$(username)&gt; not found";
+	var error6 = "simultaneous session limit reached";
+	var error7 = "no more sessions are allowed for user $(username)";
+	if (error == error1 || error == error2 || error == error3){
+		window.location.href = "expired.html";
+	} else if (error == error4){
+		window.location.href = "invalid.html";
+	} else if (error == error5){
+		document.getElementById("infoError").innerHTML = "Member atau Voucher Tidak Ditemukan";
+	} else if (error == error6 || error == error7){
+		window.location.href = "not-allowed.html";
+	} else {
+		document.getElementById("infoError").innerHTML = "$(error)";
+	}
+</script>
+	</div>
+    $(endif)
+		<input type="submit" class="btn" value="LOGIN">
+		<span class="option-border">OR</span>
+		$(if trial == 'yes')
+		<button class="btn fb-btn" onclick="location.href = '$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)';">Gratis 5 Menit</button>
+		$(endif)
+    </form>
+<div class="box">
+            <div class="paket-voucher">
+			<h3 class="blink">&#9889; Info CS 0857112233 &#9889;</h3>
+            <strong>Paket Voucher</strong>
+            </div>
+			<div class="stats">
+              <div> <strong>&#9200; 24 Jam</strong> 2000</div>
+              <div> <strong>&#9203; AKTIF</strong> 1 Hari</div>
+              <div> <a class="btn birumuda beli-voucher" target="_blank" href="intent://wa.me/628123456789?text=saya%20ingin%20beli%20voucher%206jam#Intent;scheme=http;action=android.intent.action.VIEW;end;">&#128176; Beli</a>
+              </div>
+            </div>
+            <div class="stats">
+              <div> <strong>&#9200; 28 hari</strong> 20.000</div>
+              <div> <strong>&#9203; AKTIF</strong> 1 Hari</div>
+              <div> <a class="btn birumuda beli-voucher" target="_blank" href="intent://wa.me/628123456789?text=saya%20ingin%20beli%20voucher%2024jam#Intent;scheme=http;action=android.intent.action.VIEW;end;">&#128176; Beli</a>
+              </div>
+            </div>
+            
+</div>
+
+	</main>
+	<footer>
+<!-- Credit Link - Tolong Jangan Hapus Bagian Ini -->
+<div class="copy">Copyright &copy; <script type="text/javascript">new Date().getFullYear()>2016&&document.write(new Date().getFullYear());</script> <a class="login" href="http://ringroad.net/" id="login" title="Ringroad Network">Template Hotspot</a></div>
+<!-- End Credit Link -->
+	</footer>
+</div>
+$(if chap-id)
+<form name="sendin" action="$(link-login-only)" method="post">
+<input type="hidden" name="username" />
+<input type="hidden" name="password" />
+<input type="hidden" name="dst" value="$(link-orig)" />
+<input type="hidden" name="popup" value="false" />
+</form>
+<script type="text/javascript" src="md5.js"></script>
+<script type="text/javascript">
+function doLogin() {
+	document.sendin.username.value = document.login.username.value;
+	document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+	document.sendin.submit();
+	return false;
+}
+</script>
+$(endif)
+<script type="text/javascript">
+var host = window.location.hostname;
+document.title = "Login Hotspot - " + host, window.onload = voucher();
+function kodevoucher() {
+    var e = document.getElementById("username").value //.toLowerCase(); //.toUpperCase();
+    document.getElementById("username").value = e, document.getElementById("password").value = e
+}
+function voucher() {
+    document.getElementById("username").oninput = kodevoucher, document.getElementById("username").placeholder = "Kode Voucher", document.getElementById("password").type = "hidden"
+}
+function member() {
+    document.getElementById("username").oninput = "", document.getElementById("username").placeholder = "Username", document.getElementById("password").type = "password"
+}
+</script>
+</body>
+</html>
