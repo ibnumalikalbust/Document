@@ -1,0 +1,9 @@
+Halo Kak [FullName], Kenalin Aku dari [NamaPerusahaan] yang bergerak di bidang [Bidang Perusahaan].
+
+Kami Sedang mengadakan promo discount 30% dalam rangka [nama hari spesial] yang akan berlaku mulai dari sekarang dan berakhir pukul 22.00 Malam.
+                                                       {contoh: HUT RI ke 75}
+Untuk itu jangan sampai terlewatkan ya kak! 
+
+Langsung aja order di [Link Order] dan gunakan kode promo ini [kode promo] untuk mendapatkan potongan 30% ya kak!
+
+

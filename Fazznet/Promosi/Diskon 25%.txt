@@ -1,0 +1,11 @@
+Halo Kak [FullName],
+
+Kita dari [NamaPerusahaanAnda] Sedang adakan promo Gebyar 25% kak,
+
+Untuk pembelian [NamaProdukAnda] Dari Harga [hargamu] diskon 25% menjadi [totalhargamu] kak.
+
+Kakak cukup gunakan kode kupon ini [KodeKuponAnda] untuk mengklaim potongan 25% loh kak,
+
+Jadi tunggu apa lagi kak? Langsung aja Order di link dibawah ini ya!
+
+[Link Pemesanan Anda]

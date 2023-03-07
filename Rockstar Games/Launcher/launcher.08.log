@@ -1,0 +1,71 @@
+[2023-03-05 16:27:00.144] [DISPLAY] [Main ] [main] Working directory: C:\Program Files\Rockstar Games\Launcher
+[2023-03-05 16:27:00.156] [DISPLAY] [Main ] [minmode] Running in Steam mode
+[2023-03-05 16:27:00.156] [DISPLAY] [Main ] [minmode] Steam App Id: 271590
+[2023-03-05 16:27:00.156] [DISPLAY] [Main ] [minmode] Title Id: gta5
+[2023-03-05 16:27:00.156] [DISPLAY] [Main ] [minmode] Location: C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V
+[2023-03-05 16:27:00.156] [DISPLAY] [Main ] [launcher] Opening log file.
+[2023-03-05 16:27:00.158] [DISPLAY] [Main ] [main] Command line: "C:\Program Files\Rockstar Games\Launcher\Launcher.exe" -skipPatcherCheck -steamAppId=271590 @args.txt
+[2023-03-05 16:27:00.158] [DISPLAY] [Main ] [main] Build type: FMB
+[2023-03-05 16:27:00.159] [DISPLAY] [Main ] [main] Version: 1.0.69.1334
+[2023-03-05 16:27:00.159] [DISPLAY] [Main ] [main] Parameters:
+[2023-03-05 16:27:00.159] [DISPLAY] [Main ] [main]     C:\Program Files\Rockstar Games\Launcher\Launcher.exe
+[2023-03-05 16:27:00.159] [DISPLAY] [Main ] [main]     -skipPatcherCheck
+[2023-03-05 16:27:00.159] [DISPLAY] [Main ] [main]     -steamAppId=271590
+[2023-03-05 16:27:00.159] [DISPLAY] [Main ] [main]     @args.txt
+[2023-03-05 16:27:00.168] [DISPLAY] [Main ] [titlemanager] Could not get title list cache from disk; no titles known to be installed.
+[2023-03-05 16:27:00.168] [WARNING] [Main ] [titlemanager] MTL install location not set, using exe location: C:\Program Files\Rockstar Games\Launcher
+[2023-03-05 16:27:00.168] [DISPLAY] [Main ] [preqmanager] Could not get preq list from disk; no preqs known to be installed.
+[2023-03-05 16:27:00.170] [WARNING] [Main ] [settingsmanager] Couldn't read settings file C:\ProgramData\Rockstar Games\Launcher\settings_machine.dat; using defaults.
+[2023-03-05 16:27:00.171] [DISPLAY] [Main ] [svc] Service version: 1.0.69.1334 (1.0.69.1334)
+[2023-03-05 16:27:00.174] [DISPLAY] [Main ] [main] Current environment (prod) different to previous launch (); updating environment setting
+[2023-03-05 16:27:00.242] [DISPLAY] [Main ] [fileutils] Version: 2.1.6.7 | 1.0.69.1334 | FFP
+[2023-03-05 16:27:02.749] [WARNING] [Main ] [svc] Handshake with service timed out. Setting message protocol to version 0.
+[2023-03-05 16:27:12.246] [WARNING] [bgsvc] [svc_transactionqueue] 1 transaction(s) are timing out when sending ping.
+[2023-03-05 16:27:12.246] [WARNING] [bgsvc] [svc_transactionqueue] Service timed out.  1 queued transaction(s) timed out, 1 queued transaction(s) total.
+[2023-03-05 16:27:12.248] [WARNING] [bgsvc] [svc_transactionqueue] Service timed out.  1 queued transaction(s) timed out, 0 queued transaction(s) total.
+[2023-03-05 16:27:12.259] [WARNING] [bgsvc] [svc_transactionqueue] Service timed out.  1 queued transaction(s) timed out, 0 queued transaction(s) total.
+[2023-03-05 16:27:12.261] [ ERROR ] [Main ] [svc] Service was requested to restart, restarting!
+[2023-03-05 16:27:12.261] [WARNING] [bgsvc] [svc_transactionqueue] Service timed out.  1 queued transaction(s) timed out, 0 queued transaction(s) total.
+[2023-03-05 16:27:12.261] [WARNING] [Main ] [svc_transactionqueue] Failing all transactions due to error with the service!
+[2023-03-05 16:27:12.261] [ ERROR ] [Main ] [svc_mem] Service reports allocation failure.
+[2023-03-05 16:27:22.277] [WARNING] [net2 ] [titlemanager] Background service unavailable: Titles file cannot be written.
+[2023-03-05 16:27:28.153] [WARNING] [Main ] [svc] Handshake with service timed out. Setting message protocol to version 0.
+[2023-03-05 16:27:28.188] [ ERROR ] [Main ] [svc] Service pipe has disconnected unexpectedly, restarting!
+[2023-03-05 16:27:28.188] [WARNING] [Main ] [svc_transactionqueue] Failing all transactions due to error with the service!
+[2023-03-05 16:27:28.188] [ ERROR ] [Main ] [svc_mem] Service reports allocation failure.
+[2023-03-05 16:27:29.511] [DISPLAY] [bgsvc] [svc] Received response from service.
+[2023-03-05 16:27:29.555] [DISPLAY] [net1 ] [title] Current version for title [pv] Launcher : 1.0.69.1334
+[2023-03-05 16:27:29.734] [DISPLAY] [Main ] [systemtray] System tray: enabled
+[2023-03-05 16:27:29.742] [DISPLAY] [Workr] [idownloader] Starting download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/launcher_online_config.xml'
+[2023-03-05 16:27:30.091] [DISPLAY] [Workr] [idownloader] Completed download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/launcher_online_config.xml' (status: 0/200)
+[2023-03-05 16:27:30.091] [DISPLAY] [Workr] [titlemanager] Downloading title list...
+[2023-03-05 16:27:30.103] [DISPLAY] [Workr] [idownloader] Starting download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/title_metadata.json'
+[2023-03-05 16:27:30.369] [DISPLAY] [Workr] [idownloader] Completed download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/title_metadata.json' (status: 0/200)
+[2023-03-05 16:27:30.408] [DISPLAY] [Workr] [titlemanager] Downloading default title list (SCS)...
+[2023-03-05 16:27:30.408] [DISPLAY] [Workr] [idownloader] Starting download of 'https://rgl-prod.ros.rockstargames.com/launcher/11/LauncherServices/App.asmx/GetDefaultApps?accessToken='
+[2023-03-05 16:27:32.743] [DISPLAY] [Workr] [idownloader] Completed download of 'https://rgl-prod.ros.rockstargames.com/launcher/11/LauncherServices/App.asmx/GetDefaultApps?accessToken=' (status: 0/200)
+[2023-03-05 16:27:32.743] [DISPLAY] [Workr] [titlemanager] Title list updated.
+[2023-03-05 16:27:32.743] [DISPLAY] [Workr] [launcher] Checking for self-update...
+[2023-03-05 16:27:32.753] [DISPLAY] [Workr] [idownloader] Starting download of 'https://rgl-prod.ros.rockstargames.com/launcher/11/LauncherServices/App.asmx/GetBuildManifestFullNoAuth?branchAccessToken=BRANCHACCESS token="oycU8RCtEzy+8MSxqsI9/MyYLms86FYOUPUzOZslOuJvK9HyabwG6p5+g5f4d5Qe7O/xu/ZN7FrescMpGnPYxg==",signature="H8QGEB0pXIwl/n2dRbj/uD5Ai6TPMjEAYr9a8mP/8Zg="'
+[2023-03-05 16:27:35.214] [DISPLAY] [Workr] [idownloader] Completed download of 'https://rgl-prod.ros.rockstargames.com/launcher/11/LauncherServices/App.asmx/GetBuildManifestFullNoAuth?branchAccessToken=BRANCHACCESS token="oycU8RCtEzy+8MSxqsI9/MyYLms86FYOUPUzOZslOuJvK9HyabwG6p5+g5f4d5Qe7O/xu/ZN7FrescMpGnPYxg==",signature="H8QGEB0pXIwl/n2dRbj/uD5Ai6TPMjEAYr9a8mP/8Zg="' (status: 0/200)
+[2023-03-05 16:27:35.219] [DISPLAY] [Workr] [statuschecker] Title Rockstar Games Launcher: 0.0 KB / 234.54 MB
+[2023-03-05 16:27:35.219] [DISPLAY] [Workr] [selfupdate] Updating launcher...
+[2023-03-05 16:27:36.693] [DISPLAY] [Admin] [idownloader] Starting download of 'https://rgl-prod.ros.rockstargames.com/launcher/11/LauncherServices/App.asmx/RetrieveFileChunkNoAuthMulti'
+[2023-03-05 16:27:38.562] [DISPLAY] [Admin] [idownloader] Completed download of 'https://rgl-prod.ros.rockstargames.com/launcher/11/LauncherServices/App.asmx/RetrieveFileChunkNoAuthMulti' (status: 0/200)
+[2023-03-05 16:27:46.710] [DISPLAY] [Admin] [idownloader] Starting download of 'https://rgl-prod.ros.rockstargames.com/launcher/11/LauncherServices/App.asmx/RetrieveFileChunkNoAuthMulti'
+[2023-03-05 16:27:48.564] [DISPLAY] [Admin] [idownloader] Completed download of 'https://rgl-prod.ros.rockstargames.com/launcher/11/LauncherServices/App.asmx/RetrieveFileChunkNoAuthMulti' (status: 0/200)
+[2023-03-05 16:28:06.402] [DISPLAY] [Workr] [downloadprogress] Dl: D|211832600|29|11|0|0
+[2023-03-05 16:28:06.412] [DISPLAY] [Workr] [titleupdater] Launcher needs to restart to be made up-to-date.
+[2023-03-05 16:28:06.412] [DISPLAY] [Workr] [titleupdater] Installing prerequisites for title launcher
+[2023-03-05 16:28:06.412] [WARNING] [Workr] [preqmanager] Prerequisite not found: C:\Program Files\Rockstar Games\Launcher\Redistributables\SocialClub\Social-Club-Setup.exe
+[2023-03-05 16:28:06.514] [DISPLAY] [Workr] [titleupdater] Update of Rockstar Games Launcher succeeded; needs restart to complete.
+[2023-03-05 16:28:06.626] [DISPLAY] [Workr] [selfupdate] Applying downloaded self-update...
+[2023-03-05 16:28:06.900] [DISPLAY] [Workr] [title] Installed launcher version in registry updated: 1.0.69.1334 -> 1.0.70.1389
+[2023-03-05 16:28:06.900] [DISPLAY] [Workr] [title] Updated version via [sfv] for title Rockstar Games Launcher : 1.0.70.1389
+[2023-03-05 16:28:07.118] [DISPLAY] [Workr] [title] Updated version via [sfv] for title Rockstar Games Launcher : 1.0.70.1389
+[2023-03-05 16:28:07.128] [DISPLAY] [Workr] [selfupdate] Self-update applied, need to restart.
+[2023-03-05 16:28:07.136] [DISPLAY] [Workr] [launcher] Restarting to apply self-update...
+[2023-03-05 16:28:07.136] [DISPLAY] [Workr] [lifecycle] Setting to restart after exit.
+[2023-03-05 16:28:07.136] [DISPLAY] [Workr] [launcher] Shutdown requested: false, false
+[2023-03-05 16:28:07.145] [DISPLAY] [Main ] [launcher] StartShutdown - Now in progress
+[2023-03-05 16:28:07.252] [DISPLAY] [Main ] [app] Application quit requested (exit code: 0)

@@ -1,0 +1,138 @@
+[2023-03-05 16:28:09.758] [DISPLAY] [Main ] [sysinfo] OS Version: Major: 10 Minor: 0 Build: 22000 Service Pack: 
+[2023-03-05 16:28:09.767] [DISPLAY] [Main ] [sysinfo] DX Version from SystemInfo: 
+[2023-03-05 16:28:09.767] [DISPLAY] [Main ] [sysinfo] DX Version from SystemInfo: 
+[2023-03-05 16:28:09.768] [DISPLAY] [Main ] [main] Working directory: C:\Program Files\Rockstar Games\Launcher
+[2023-03-05 16:28:09.779] [DISPLAY] [Main ] [minmode] Running in Steam mode
+[2023-03-05 16:28:09.779] [DISPLAY] [Main ] [minmode] Steam App Id: 271590
+[2023-03-05 16:28:09.779] [DISPLAY] [Main ] [minmode] Title Id: gta5
+[2023-03-05 16:28:09.779] [DISPLAY] [Main ] [minmode] Location: C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V
+[2023-03-05 16:28:09.779] [DISPLAY] [Main ] [launcher] Opening log file.
+[2023-03-05 16:28:09.781] [DISPLAY] [Main ] [main] Command line: "C:\Program Files\Rockstar Games\Launcher\Launcher.exe" -skipPatcherCheck -steamAppId=271590 @args.txt -upgrade
+[2023-03-05 16:28:09.781] [DISPLAY] [Main ] [main] Build type: FMB
+[2023-03-05 16:28:09.781] [DISPLAY] [Main ] [main] Version: 1.0.70.1389
+[2023-03-05 16:28:09.781] [DISPLAY] [Main ] [main] Parameters:
+[2023-03-05 16:28:09.781] [DISPLAY] [Main ] [main]     C:\Program Files\Rockstar Games\Launcher\Launcher.exe
+[2023-03-05 16:28:09.781] [DISPLAY] [Main ] [main]     -skipPatcherCheck
+[2023-03-05 16:28:09.781] [DISPLAY] [Main ] [main]     -steamAppId=271590
+[2023-03-05 16:28:09.781] [DISPLAY] [Main ] [main]     @args.txt
+[2023-03-05 16:28:09.781] [DISPLAY] [Main ] [main]     -upgrade
+[2023-03-05 16:28:09.801] [DISPLAY] [Main ] [titlemanager] Installed titles:
+[2023-03-05 16:28:09.801] [DISPLAY] [Main ] [titlemanager]  Title                             Progress               Version              Location                                                    
+[2023-03-05 16:28:09.806] [DISPLAY] [Main ] [preqmanager] Could not get preq list from disk; no preqs known to be installed.
+[2023-03-05 16:28:09.810] [DISPLAY] [Main ] [svc] Service version: 1.0.70.1389 (1.0.70.1389)
+[2023-03-05 16:28:09.916] [DISPLAY] [Main ] [fileutils] Version: 2.1.6.7 | 1.0.70.1389 | FFP
+[2023-03-05 16:28:09.934] [DISPLAY] [Workr] [selfupdate] Up-to-date.
+[2023-03-05 16:28:10.050] [DISPLAY] [Main ] [systemtray] System tray: enabled
+[2023-03-05 16:28:10.524] [DISPLAY] [bgsvc] [svc] Received response from service.
+[2023-03-05 16:28:10.552] [DISPLAY] [Workr] [idownloader] Starting download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/launcher_online_config.xml'
+[2023-03-05 16:28:10.933] [DISPLAY] [Workr] [idownloader] Completed download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/launcher_online_config.xml' (status: 0/200)
+[2023-03-05 16:28:10.933] [DISPLAY] [Workr] [titlemanager] Downloading title list...
+[2023-03-05 16:28:10.947] [DISPLAY] [Workr] [idownloader] Starting download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/title_metadata.json'
+[2023-03-05 16:28:11.136] [DISPLAY] [Workr] [idownloader] Completed download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/title_metadata.json' (status: 0/200)
+[2023-03-05 16:28:11.184] [DISPLAY] [Workr] [titlemanager] Downloading default title list (SCS)...
+[2023-03-05 16:28:11.184] [DISPLAY] [Workr] [idownloader] Starting download of 'https://rgl-prod.ros.rockstargames.com/launcher/11/LauncherServices/App.asmx/GetDefaultApps?accessToken='
+[2023-03-05 16:28:13.189] [DISPLAY] [Workr] [idownloader] Completed download of 'https://rgl-prod.ros.rockstargames.com/launcher/11/LauncherServices/App.asmx/GetDefaultApps?accessToken=' (status: 0/200)
+[2023-03-05 16:28:13.190] [DISPLAY] [Workr] [titlemanager] Title list updated.
+[2023-03-05 16:28:13.190] [DISPLAY] [Workr] [launcher] Checking for prerequisite updates...
+[2023-03-05 16:28:13.278] [DISPLAY] [Workr] [preqmanager] The Social Club version available matches that currently installed (both: 2.1.6.7)
+[2023-03-05 16:28:13.278] [DISPLAY] [Workr] [titleupdater] Installing prerequisites for title launcher
+[2023-03-05 16:28:13.279] [DISPLAY] [Workr] [preqmanager] Installer version: 2.1.6.7
+[2023-03-05 16:28:13.279] [DISPLAY] [Workr] [preqmanager] About to launch process: C:\Program Files\Rockstar Games\Launcher\Redistributables\SocialClub\Social-Club-Setup.exe (with commandline: /silent)
+[2023-03-05 16:28:19.106] [DISPLAY] [Main ] [launcher] Social Club UI has started.
+[2023-03-05 16:28:19.108] [DISPLAY] [Main ] [external] Notifying Social Club UI about external launch...
+[2023-03-05 16:28:19.108] [DISPLAY] [Admin] [external] Setting up Steam title...
+[2023-03-05 16:28:19.108] [DISPLAY] [Admin] [idownloader] Starting download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/title_metadata.json'
+[2023-03-05 16:28:19.563] [DISPLAY] [Admin] [idownloader] Completed download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/title_metadata.json' (status: 0/200)
+[2023-03-05 16:28:19.620] [DISPLAY] [Admin] [external] Ready to attempt a launch.
+[2023-03-05 16:28:23.488] [DISPLAY] [Main ] [launcher] Time to start up: 13851 ms
+[2023-03-05 16:28:23.499] [DISPLAY] [Main ] [ui_mainwindow] Using DPI 192,192
+[2023-03-05 16:28:23.499] [DISPLAY] [Main ] [ui_mainwindow] Using UI Scale: 2.00
+[2023-03-05 16:28:23.500] [DISPLAY] [Main ] [ui_mainwindow] Centering on monitor: 160,300 (2560 x 1200)
+[2023-03-05 16:28:23.570] [DISPLAY] [Main ] [systemtray] System tray: enabled
+[2023-03-05 16:31:24.017] [DISPLAY] [Main ] [launcher] Presence Event - Signed In
+[2023-03-05 16:31:24.017] [DISPLAY] [Main ] [launcher] User 'HABIBULL4H' is now signed in
+[2023-03-05 16:31:24.038] [DISPLAY] [Main ] [launcher] Presence Event :: Went Online
+[2023-03-05 16:31:24.038] [DISPLAY] [Main ] [external] Preparing to update/launch...
+[2023-03-05 16:31:24.039] [DISPLAY] [Admin] [titlemanager] Downloading title list...
+[2023-03-05 16:31:24.039] [DISPLAY] [Admin] [idownloader] Starting download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/title_metadata.json'
+[2023-03-05 16:31:24.245] [WARNING] [Main ] [settingsmanager] Couldn't read settings file C:\Users\Habibullah\Documents\Rockstar Games\Launcher\Profiles\5945EDE1\settings_account.dat; using defaults.
+[2023-03-05 16:31:24.289] [DISPLAY] [Main ] [scuicallbacks] Enabling Downloading
+[2023-03-05 16:31:24.430] [DISPLAY] [Main ] [launcher] Friend Event - Friends are Available
+[2023-03-05 16:31:24.492] [DISPLAY] [Admin] [idownloader] Completed download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/title_metadata.json' (status: 0/200)
+[2023-03-05 16:31:24.673] [DISPLAY] [Admin] [titlemanager] Downloading title list (SCS)...
+[2023-03-05 16:31:24.768] [DISPLAY] [Main ] [scuicallbacks] Setting updated
+[2023-03-05 16:31:24.768] [DISPLAY] [Main ] [scuicallbacks] Launch requested
+[2023-03-05 16:31:24.768] [DISPLAY] [Main ] [scuicallbacks] Launch requested by user: gta5, 
+[2023-03-05 16:31:24.768] [DISPLAY] [Main ] [external] Attempting external title launch...
+[2023-03-05 16:31:26.803] [DISPLAY] [Admin] [titlemanager] Title list updated.
+[2023-03-05 16:31:26.804] [DISPLAY] [Admin] [external] Ready to attempt a launch.
+[2023-03-05 16:31:26.804] [DISPLAY] [Admin] [external] Attempting Steam launch. User is 'ibnumalikalbustomi'
+[2023-03-05 16:31:32.059] [DISPLAY] [Main ] [launcher] Showing code redemption screen...
+[2023-03-05 16:32:02.448] [DISPLAY] [Main ] [scuicallbacks] Setting updated
+[2023-03-05 16:32:02.448] [DISPLAY] [Main ] [scuicallbacks] Launch requested
+[2023-03-05 16:32:02.448] [DISPLAY] [Main ] [scuicallbacks] Launch requested by user: gta5, 
+[2023-03-05 16:32:02.448] [DISPLAY] [Main ] [external] Attempting external title launch...
+[2023-03-05 16:32:02.448] [DISPLAY] [Admin] [external] Attempting Steam launch. User is 'ibnumalikalbustomi'
+[2023-03-05 16:32:04.868] [DISPLAY] [Main ] [external] Preparing to update/launch...
+[2023-03-05 16:32:08.169] [DISPLAY] [Admin] [titlemanager] Downloading title list...
+[2023-03-05 16:32:08.169] [DISPLAY] [Admin] [idownloader] Starting download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/title_metadata.json'
+[2023-03-05 16:32:08.623] [DISPLAY] [ 7840] [gamelaunch] RGL is up to date (current: 1.0.70.1389, minimum: 1.0.33.319)
+[2023-03-05 16:32:08.624] [DISPLAY] [ 7840] [gamelaunch] Grand Theft Auto V is up to date (current: 1.0.2845.0, minimum: 1.0.2060.0)
+[2023-03-05 16:32:08.709] [DISPLAY] [Admin] [idownloader] Completed download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/title_metadata.json' (status: 0/200)
+[2023-03-05 16:32:08.908] [DISPLAY] [Admin] [titlemanager] Downloading title list (SCS)...
+[2023-03-05 16:32:11.035] [DISPLAY] [Admin] [titlemanager] Title list updated.
+[2023-03-05 16:32:11.038] [DISPLAY] [Admin] [external] Ready to attempt a launch.
+[2023-03-05 16:32:11.038] [DISPLAY] [Admin] [titlemanager] Downloading title list...
+[2023-03-05 16:32:11.039] [DISPLAY] [Admin] [idownloader] Starting download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/title_metadata.json'
+[2023-03-05 16:32:11.810] [DISPLAY] [Admin] [idownloader] Completed download of 'https://gamedownloads-rockstargames-com.akamaized.net/public/title_metadata.json' (status: 0/200)
+[2023-03-05 16:32:11.991] [DISPLAY] [Admin] [titlemanager] Downloading title list (SCS)...
+[2023-03-05 16:32:13.080] [DISPLAY] [Main ] [cloudsaveop] Cloud Save sync requested for title 'gta5'
+[2023-03-05 16:32:13.111] [DISPLAY] [Main ] [cloudsaveop] Starting cloud save enabled check for title 'gta5'
+[2023-03-05 16:32:14.147] [DISPLAY] [Admin] [titlemanager] Title list updated.
+[2023-03-05 16:32:18.477] [DISPLAY] [Main ] [cloudsaveop] Received cloud saves enabled state for title 'gta5' = enabled
+[2023-03-05 16:32:18.477] [DISPLAY] [Main ] [cloudsaveop] Identifying potential cloud save conflicts for title 'gta5'
+[2023-03-05 16:32:21.237] [DISPLAY] [Main ] [cloudsaveop] Received modification list of cloud save files for title 'gta5'
+[2023-03-05 16:32:21.237] [DISPLAY] [Main ] [cloudsaveop] Retrieving conflict metadata for title 'gta5'
+[2023-03-05 16:32:21.268] [DISPLAY] [Main ] [cloudsaveop] Downloaded conflict metadata for title 'gta5'
+[2023-03-05 16:32:21.268] [DISPLAY] [Main ] [cloudsaveop] Posting updated files for title 'gta5'
+[2023-03-05 16:32:21.298] [DISPLAY] [Main ] [cloudsaveop] File uploading completed for title 'gta5'
+[2023-03-05 16:32:21.298] [DISPLAY] [Main ] [cloudsaveop] Getting update files for title 'gta5'
+[2023-03-05 16:32:21.329] [DISPLAY] [Main ] [cloudsaveop] File downloading completed for title 'gta5'
+[2023-03-05 16:32:21.329] [DISPLAY] [Main ] [cloudsaveop] Deleting updated files for title 'gta5'
+[2023-03-05 16:32:21.361] [DISPLAY] [Main ] [cloudsaveop] Files deletion completed for title 'gta5'
+[2023-03-05 16:32:21.361] [DISPLAY] [Main ] [cloudsaveop] Swapping updated files in place for title 'gta5'
+[2023-03-05 16:32:21.392] [DISPLAY] [Main ] [cloudsaveop] Finished syncing cloud saves for title 'gta5'
+[2023-03-05 16:32:22.284] [DISPLAY] [net1 ] [audio] Valid Audio Device: true
+[2023-03-05 16:32:24.848] [DISPLAY] [ 7840] [gamelaunch] Launching game...
+[2023-03-05 16:32:24.849] [DISPLAY] [ 7840] [gamelaunch]  Path: C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe
+[2023-03-05 16:32:24.849] [DISPLAY] [ 7840] [gamelaunch]  Command Line: "C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe" -skipPatcherCheck @args.txt -upgrade @commandline.txt -enableCrashpad -useSteam -steamAppId=271590 -scCommerceProvider=4 -scUseFQDNAvatars
+[2023-03-05 16:32:24.849] [DISPLAY] [ 7840] [gamelaunch]  Working Directory: C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V
+[2023-03-05 16:35:05.306] [DISPLAY] [Main ] [sysinfo] DX Version from SystemInfo: 
+[2023-03-05 16:35:05.306] [DISPLAY] [Main ] [sysinfo] DX Version from SystemInfo: 
+[2023-03-05 16:35:05.307] [DISPLAY] [Main ] [sysinfo] Drive C:\ has 258.59 GB free, 475.67 GB total
+[2023-03-05 16:35:05.378] [DISPLAY] [Main ] [sysinfo] OS Version: Major: 10 Minor: 0 Build: 22000 Service Pack: 
+[2023-03-05 16:35:05.384] [DISPLAY] [Main ] [sysinfo] DX Version from SystemInfo: 
+[2023-03-05 16:35:05.385] [DISPLAY] [Main ] [sysinfo] DX Version from SystemInfo: 
+[2023-03-05 16:35:05.385] [DISPLAY] [Main ] [sysinfo] Drive C:\ has 258.59 GB free, 475.67 GB total
+[2023-03-05 16:35:05.417] [DISPLAY] [Main ] [sysinfo] OS Version: Major: 10 Minor: 0 Build: 22000 Service Pack: 
+[2023-03-05 16:36:08.632] [DISPLAY] [ 7840] [gamelaunch] Game exited with code 0x1 (1)
+[2023-03-05 16:36:08.632] [DISPLAY] [ 7840] [crashdetection] Game left no exit file.
+[2023-03-05 16:36:08.632] [ ERROR ] [ 7840] [crashdetection] Exit code 0x1 indicates an unexpected game termination
+[2023-03-05 16:36:08.702] [DISPLAY] [Main ] [cloudsaveop] Cloud Save sync requested for title 'gta5'
+[2023-03-05 16:36:08.719] [DISPLAY] [Main ] [cloudsaveop] Starting cloud save enabled check for title 'gta5'
+[2023-03-05 16:36:08.720] [DISPLAY] [Main ] [cloudsaveop] Received cloud saves enabled state for title 'gta5' = enabled
+[2023-03-05 16:36:08.720] [DISPLAY] [Main ] [cloudsaveop] Identifying potential cloud save conflicts for title 'gta5'
+[2023-03-05 16:36:10.418] [DISPLAY] [Main ] [cloudsaveop] Received modification list of cloud save files for title 'gta5'
+[2023-03-05 16:36:10.418] [DISPLAY] [Main ] [cloudsaveop] Retrieving conflict metadata for title 'gta5'
+[2023-03-05 16:36:10.435] [DISPLAY] [Main ] [cloudsaveop] Downloaded conflict metadata for title 'gta5'
+[2023-03-05 16:36:10.435] [DISPLAY] [Main ] [cloudsaveop] Posting updated files for title 'gta5'
+[2023-03-05 16:36:10.451] [DISPLAY] [Main ] [cloudsaveop] File uploading completed for title 'gta5'
+[2023-03-05 16:36:10.451] [DISPLAY] [Main ] [cloudsaveop] Getting update files for title 'gta5'
+[2023-03-05 16:36:10.468] [DISPLAY] [Main ] [cloudsaveop] File downloading completed for title 'gta5'
+[2023-03-05 16:36:10.468] [DISPLAY] [Main ] [cloudsaveop] Deleting updated files for title 'gta5'
+[2023-03-05 16:36:10.486] [DISPLAY] [Main ] [cloudsaveop] Files deletion completed for title 'gta5'
+[2023-03-05 16:36:10.486] [DISPLAY] [Main ] [cloudsaveop] Swapping updated files in place for title 'gta5'
+[2023-03-05 16:36:10.503] [DISPLAY] [Main ] [cloudsaveop] Finished syncing cloud saves for title 'gta5'
+[2023-03-05 16:36:12.270] [DISPLAY] [ 7840] [launcher] Shutdown requested: false, false
+[2023-03-05 16:36:12.271] [DISPLAY] [Main ] [launcher] StartShutdown - Now in progress
+[2023-03-05 16:36:13.585] [DISPLAY] [Main ] [app] Application quit requested (exit code: 0)

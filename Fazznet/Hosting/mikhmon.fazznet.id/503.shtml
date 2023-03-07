@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAZZNET</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-size: 10rem;
+        }
+
+        h2 {
+            font-size: 3rem;
+        }
+
+        button {
+            padding: 1rem;
+            margin: 1rem;
+            width: 80%;
+            max-width: 20rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            background-color: #128c7e;
+            color: white;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>503</h1>
+    <h2>Service Unavailable</h2>
+    <a id="tombol"><button>LAPORKAN KE ADMIN</button></a>
+    <script>
+        const wa = "https://wa.me/6288801026000?text=503%20"
+        const url = window.location.href;
+        const href = wa + url;
+        const link = document.getElementById('tombol');
+        tombol.setAttribute('href', href);
+    </script>
+</body>
+
+</html>

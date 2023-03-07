@@ -1,0 +1,1446 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+	<title>Rockstar Games - Social Club</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+    
+<style>body{display:none}</style>
+    <link rel="stylesheet" type="text/css" href="https://s.rsg.sc/scui/ext/scui/20230227bgcb/css/desktop/combined.min.css" onerror="cssErr=1" />
+
+    <script>
+var baseUrl = 'https://s.rsg.sc/scui/ext/scui/';
+var tmContainerId = 'GTM-TH4564G';
+var globals = {
+  versionNum:'423686',
+  mfaEnabled: true,
+  mfaAccountRecoveryAllowed: false,
+  supportedTitles: null,
+  tmContainerId: tmContainerId,
+  uaTrackerId: 'UA-15984839-32',
+  externalUrl: 'https://www.googletagmanager.com/gtm.js?id=' + tmContainerId,
+  baseUrl: baseUrl,
+  baseAssetUrl: baseUrl + '20230227bgcb/',
+  webpackPublicPath: 'https://s.rsg.sc/scui/ext/scui/20230227bgcb/js/build/',
+  apiUrl: '',
+  crewEmblemUrl: 'https://prod.cloud.rockstargames.com/crews/sc/{0}/{1}/publish/emblem/emblem_{2}.png',
+  waitingResponse: false,
+  isAm: true,
+  isAmCd: true,
+  isAmEc: true,
+  isAmUI: true,
+  size: 'desktop',
+  signUpReCaptchaEnabled: false,
+  signInReCaptchaEnabled: false,
+  signInArkoseEnabled: false,
+  signUpArkoseEnabled: false,
+  passResetArkoseEnabled: false,
+  scsServiceEnabled: true,
+  accountsServiceEnabled: true,
+  crewsServiceEnabled: true,
+  friendsServiceEnabled: true,
+  messagingServiceEnabled: true,
+  registrationServiceEnabled: true,
+  statsServiceEnabled: true,
+  gameachievementsServiceEnabled: true,
+  avatarUrl: 'https://a.rsg.sc/',
+  storeImageBaseUrl: 'https://prod.cloud.rockstargames.com/titles/{0}/{1}/',
+  storeOriginMap: {"T2":"https://secure.xsolla.com"},
+  redirectUrlWhitelist:'support.rockstargames.com,support.steampowered.com,rockstargames.com,socialclub.rockstargames.com',
+  advertsEnabled:true,
+  isOnlineMode:true,
+  passMin:8,
+  passMax:30,
+  passMaxSignin:128,
+  passChars:" `-=~!@#$%^&*()_+[]\\{}|;':\",./<>?",
+  pattern:/^[A-z0-9\ \`\-\=\~\!\@\#\$\%\^\&\*\(\)\_\+\[\]\\\{\}\|\;\'\:\"\,\.\/\<\>\?]{8,30}$/,
+  isOs: true,
+  osDt: '2018-09-10',
+  ip: '202.67.46.229',
+  cc: 'ID',
+  ajaxTimeout: 30000,
+  slowAjaxMsgTimeout: 8000,
+  scBaseUrl: 'http://socialclub.rockstargames.com/',
+  homePageFriendsDelay: 3000,
+  expireSocialCountsDays:7,
+  avatarCloudBase:'https://a.rsg.sc/'
+};
+globals.cssBase = globals.baseAssetUrl + 'css';
+
+
+if (window.RGSC_JS_READY_TO_ACCEPT_COMMANDS == undefined) {
+  function waitForJs() { globals.awaitingJsLoad = true; }
+  window.RGSC_JS_READY_TO_ACCEPT_COMMANDS = waitForJs;
+}
+</script>
+
+</head>
+<body>
+    
+<header id="headerWrapper">
+    <div id="header">
+        <div class="headerMask"></div>
+        <h1><a href="http://socialclub.rockstargames.com/" tabindex="-1">Rockstar Games Social Club</a></h1>
+        <div class="offlineMode">
+            <p rel="localize[offlineTitle]">Offline Mode</p>
+        </div>
+        <nav>
+            <ul id="mainNav">
+                <li class="home" id="homeButton" tabindex="1"><a id="homeLink"><span rel="localize[Home]">Home</span></a></li>
+                <li class="stats" id="accomplishHeaderBtn" tabindex="2"><a id="statsLink"><span rel="localize[Accomplishments]">Accomplishments</span></a></li>
+                <li class="social" id="socialButton" tabindex="5" data-services="friends,accounts,crews"><a id="socialLink"><span rel="localize[Social]">Social</span></a></li>
+                <li class="crew" id="crewButton" tabindex="6" data-services="crews"><a id="crewLink"><span rel="localize[Crew]">Crew</span></a></li>
+                <li class="store" id="storeButton" tabindex="7"><a id="storeLink"><span rel="localize[Store]">Store</span></a></li>
+            </ul>
+        </nav>
+        <div id="headerLogin">
+            <span class="headerLoginText">
+                <p><a id="headerLoginButton" rel="localize[SigninShort]" tabindex="8">Sign In</a> <span rel="localize[Or]">or</span></p>
+                <a class="btn button buttonGold" id="joinClub" rel="localize[CreateAccount]" tabindex="9">Create Account</a>
+            </span>
+            <span class="headerLoginTextOffline">
+            <a class="button buttonGold" id="joinClubOffline" tabindex="10" rel="localize[OfflineCreate]">Load or Create Profile</a></span>
+        </div>
+
+        <div id="headerLoginOptions">
+            <i class="status"></i>
+            <a id="headerLoginUser" href="#" data-services="accounts,friends,crews" class="doNotRemove" tabindex="8">
+                <img id="signedInUserAvatar" src="https://s.rsg.sc/scui/ext/scui/images/avatars/32x32/default.png" alt="" width="32" height="32" class="avatarImg smallAvatar" />
+                <span class="username"></span>
+            </a>
+            <a id="headerLoginOptionsButton" href="#" tabindex="9"><i class="scicon-settings"></i></a>
+            <div id="headerLoginOptionsDrop">
+                <ul>
+                    <li><a href="#" id="menuSettings" data-services="accounts" tabindex="10"><i class="scicon-nav_settings"></i><span rel="localize[Settings]">Settings</span></a></li>
+                    <li>
+                        <a href="#" id="menuMessages" data-services="messaging" tabindex="11">
+                            <i class="scicon-nav_messages"></i>
+                            <span rel="localize[Messages]">Messages</span>
+                            <span class="count"></span>
+                        </a>
+                    </li>
+                    <li><a href="#" id="menuExit" tabindex="14"><i class="scicon-nav_return"></i><span rel="localize[BackToGame]">Back to game</span></a></li>
+                    <li><a href="#" id="menuQuitGame" tabindex="15"><i class="scicon-nav_power"></i><span rel="localize[QuitGame]">Quit game</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="launcherControls">
+            <div class="minimise"><span>minimise</span></div>
+            <div class="close"><span>close</span></div>
+        </div>
+
+    </div>
+</header>
+
+<div id="notificationPanel" class="panel"></div>
+
+<div id="wrapper">
+    <div id="product_info_wrapper"></div>
+    <div id="signupPanelsWrapper" class="panel">
+        <div id="signupPanels">
+
+            <div id="signUpSteps">
+                <span rel="localize[SignUpStep]">Sign up</span>
+                <span class="signUpStepCount" rel="localize[StepOne]">1 of</span>
+                <span class="totalSignUpSteps"></span>
+            </div>
+
+            <div id="dob" class="signupPanel panel">
+                <div class="inner">
+
+                    <a tabindex="25" class="previousPanel btn btnGrey btnLarge" id="registrationBack" rel="localize[Cancel]">cancel</a>
+
+                    <h1 rel="localize[AccountDetails]">Account Details</h1>
+
+                    <p class="intro"></p>
+
+                    <form action="#" method="post" id="formAccountDetails" autocomplete="off">
+                        <fieldset id="AccountDetailsForm">
+                            <div id="signupDetailsContainer">
+                                <p class="clearfix">
+                                    <label for="signUpNickname" rel="localize[Nickname]">Nickname</label>
+                                    <span id="checkName" rel="localize[CheckingNickname]" class="waitMessage">Checking availability...</span>
+                                    <input type="text" name="signUpNickname" id="signUpNickname" class="text noEnterSubmit" maxlength="16" tabindex="12" rel="localize[EnterNickname]" placeholder="Enter Nickname" />
+                                    <input type="hidden" name="signUpNicknameChecked" id="signUpNicknameChecked" class="text" />
+                                    <span id="verifyNickSpinner"></span>
+                                </p>
+                                <p class="clearfix">
+                                    <label for="signUpEmail" rel="localize[Email]">Email</label>
+                                    <input type="text" name="signUpEmail" id="signUpEmail" class="text" maxlength="100" tabindex="13" rel="localize[EnterEmail]" placeholder="Enter Email" />
+                                    <input type="hidden" name="signUpEmailChecked" id="signUpEmailChecked" class="text" />
+                                    <input type="text" name="signUpEmailConfirm" id="signUpEmailConfirm" class="text" maxlength="100" tabindex="14" rel="localize[ReEnterEmail]" placeholder="Re-enter Email" />
+                                    <input type="hidden" name="signUpEmailConfirmChecked" id="signUpEmailConfirmChecked" class="text" />
+                                    <span id="verifyEmailSpinner"></span>
+                                </p>
+                                <p class="clearfix">
+                                    <label for="signUpPassword" rel="localize[Password]">Password</label>
+                                    <input type="password" autocomplete="off" name="signUpPassword" id="signUpPassword" class="text" maxlength="30" tabindex="15" rel="localize[EnterPassword]" placeholder="Enter Password" />
+                                    <input type="password" autocomplete="off" name="signUpPasswordConf" id="signUpPasswordConf" class="text" maxlength="30" tabindex="16" rel="localize[ReEnterPassword]" placeholder="Re-enter Password" />
+                                </p>
+                            </div>
+                            <div id="signupDobContainer" class="clearfix">
+                                <p>
+                                    <label for="dayOfBirth" rel="localize[DOB]">Date of Birth:</label>
+                                    <select name="dayOfBirth" id="dayOfBirth" class="tab" tabindex="17"></select>
+                                </p>
+                                <p>
+                                    <select name="monthOfBirth" id="monthOfBirth" class="tab" tabindex="18">
+                                        <option value="1" rel="localize[January]">January</option>
+                                        <option value="2" rel="localize[February]">February</option>
+                                        <option value="3" rel="localize[March]">March</option>
+                                        <option value="4" rel="localize[April]">April</option>
+                                        <option value="5" rel="localize[May]">May</option>
+                                        <option value="6" rel="localize[June]">June</option>
+                                        <option value="7" rel="localize[July]">July</option>
+                                        <option value="8" rel="localize[August]">August</option>
+                                        <option value="9" rel="localize[September]">September</option>
+                                        <option value="10" rel="localize[October]">October</option>
+                                        <option value="11" rel="localize[November]">November</option>
+                                        <option value="12" rel="localize[December]">December</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <select name="yearOfBirth" id="yearOfBirth" class="tab" tabindex="19">
+                                        <option value="">-</option>
+                                    </select>
+                                </p>
+                            </div>
+                        </fieldset>
+                        <p id="signupCountryContainer" class="clearfix">
+                            <label for="signUpCountry" rel="localize[Country]">Country/Region</label>
+                            <select tabindex="20" name="signUpCountry" id="signUpCountry" class="tab"></select>
+                            <span class="loadingText" rel="localize[Loading]">Loading...</span>
+                            <span class="loadFailed" rel="localize[SignUpCountryLoadFailed]">ERROR: Failed to load country/region list. Unable to create a new Social Club account at this time. Please try again later.</span>
+                        </p>
+                        <div id="signupMailingListContainer" class="clearfix">
+                            <label for="signUpMailingList" rel="localize[MailingList]" rel="localize[MailingList]">Rockstar Games <br />Mailing List</label>
+                            <input type="checkbox" name="signUpMailingList" id="signUpMailingList" class="text noEnterSubmit" tabindex="21" />
+                            <span rel="localize[MailingListDesc]">I would like to receive the early word on all Rockstar game announcements, official launches, contests, special events, and more.</span>
+                        </div>
+                        <div class="errors"></div>
+                    </form>
+
+                    <div id="submitDOBWrapper">
+                        <a class="btn btnPurple btnLarge btnRounded shiftTab" id="submitAccount" rel="localize[Continue]" tabindex="24">Continue</a>
+                        <span></span>
+                        <a id="lnkCreateOfflineProfile" class="buttonPlainText nothanks-text" rel="localize[CreateLocalProfile]">No thanks, I just want to create a local profile</a>
+                        <div class="options">
+                            <p>
+                                <span class="tooltip-beneath">
+                                    <input type="checkbox" name="signUpOptions" id="signupRememberMe" class="checkbox" tabindex="22">
+                                    <label for="signupRememberMe" rel="localize[RememberMe]">Remember me</label>
+                                    <span class="tip" rel="localize[SelectToPlayOffline]">This must be selected to be able to play in offline mode.</span>
+                                </span>
+                                <span>
+                                    <input type="checkbox" name="signUpOptions" id="signupAutoSignIn" class="checkbox" tabindex="23">
+                                    <label for="signupAutoSignIn" rel="localize[AutoSignin]">Auto Sign In</label>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="onlinePolicies" class="signupPanel panel">
+                <div class="inner">
+                    <a href="#" class="previousPanel btn btnGrey btnLarge tab" id="registrationBack" rel="localize[Back]" tabindex="22">back</a>
+
+                    <p class="buttonPara">
+                        <a href="#" id="buttonPrivacy" class="policyButtons btn btnRounded btnLarge btnPurple shiftTab" rel="localize[Continue]" tabindex="23">Continue</a>
+                        <a href="#" id="privacyDisagree" class="privacyButton policyButtons btn btnRounded btnLarge btnRed tab" rel="localize[Disagree]" tabindex="24">Disagree</a>
+                        <a href="#" id="privacyAgree" class="privacyButton policyButtons btn btnRounded btnLarge btnPurple shiftTab" rel="localize[Agree]" tabindex="25">Agree</a>
+                        <a href="#" id="termsDisagree" class="termsButton policyButtons btn btnRounded btnLarge btnRed tab" rel="localize[Disagree]" tabindex="26">Disagree</a>
+                        <a href="#" id="termsAgree" class="termsButton policyButtons btn btnRounded btnLarge btnPurple shiftTab" rel="localize[Agree]" tabindex="27">Agree</a>
+                        <a href="#" id="eulaDisagree" class="eulaButton policyButtons btn btnRounded btnLarge btnRed tab" rel="localize[Disagree]" tabindex="28">Disagree</a>
+                        <a href="#" id="eulaAgree" class="eulaButton policyButtons btn btnRounded btnLarge btnPurple shiftTab" rel="localize[Agree]" tabindex="29">Agree</a>
+                    </p>
+
+                    <h1 rel="localize[OnlinePolicies]">Online Policies</h1>
+
+                    <div id="onlinePoliciesContainer" class="box-wrap antiscroll-wrap antiscroll-always-on">
+                        <div class="loading"></div>
+                        <div class="box">
+                            <div class="antiscroll-inner">
+
+                                <div id="introTextContainer" class="text">
+
+                                    <p rel="localize[PolicyOne]" id="SignUpPolicyOne">
+                                        Your use of this software is subject to the EULA located in the game manual and at <a href="http://www.rockstargames.com/eula" class="RGSCLoadExt">www.rockstargames.com/eula</a> and the online Code of Conduct located at <a href="http://www.rockstargames.com/conduct" class="RGSCLoadExt">www.rockstargames.com/conduct</a>
+                                    </p>
+
+                                    <p rel="localize[PolicyTwo]" id="SignUpPolicyTwo">
+                                        Your use of the Social Club service is subject to the Terms & Conditions located at <a href="http://www.rockstargames.com/legal" class="RGSCLoadExt">www.rockstargames.com/legal</a> and the Privacy Policy located at <a href="http://www.rockstargames.com/privacy" class="RGSCLoadExt">www.rockstargames.com/privacy</a>
+                                    </p>
+
+                                    <p rel="localize[PolicyThree]">
+                                        By registering for this service, you consent to the Terms, Privacy Policy and End User License Agreement, including the data transfer provisions of the Privacy Policy.
+                                    </p>
+
+                                    <p rel="localize[PolicyFour]">
+                                        These documents are available for your review by selecting the options below.
+                                    </p>
+
+                                    <div class="loadingMask"><span class="loading"></span></div>
+                                </div>
+
+                                <div id="privacyTextContainer" class="text" tabindex="100">
+                                    <h5 name="privacyTitle" rel="localize[PrivacyPolicy]">Privacy Policy</h5>
+                                    <div id="privacyPolicyText" class="text"></div>
+                                </div>
+
+                                <div id="termsTextContainer" class="text" tabindex="101">
+                                    <h5 name="termsTitle" rel="localize[TermsofService]">Terms of Service</h5>
+                                    <div id="termsServiceText" class="text"></div>
+                                </div>
+
+                                <div id="eulaTextContainer" class="text" tabindex="102">
+                                    <h5 name="eulaTitle" rel="localize[Eula]">End User License Agreement</h5>
+                                    <div id="eulaText" class="text"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="signUpReCaptchaContainer" class="signupPanel panel" style="display:none">
+                <div class="inner">
+                    <a tabindex="22" class="previousPanel btn btnGrey btnLarge" id="signupCaptchaBack" rel="localize[Cancel]">cancel</a>
+                    <h1 rel="localize[reCaptchaTitle]">Verification</h1>
+                    
+                    <form id="signUpReCaptchaInputForm">
+                        <p class="infoText" style="padding: 20px 0;" rel="localize[reCaptchaText]">Please complete this verification step to complete your Social Club registration.</p>
+                        <div class="errors"></div>
+
+                        <div id="updateDetails" class="clearfix" style="display:none">
+                            <p class="nickname" style="display:none">
+                                <label for="signUpNicknameUpdate" rel="localize[Nickname]">Nickname</label>
+                                <input type="text" name="signUpNicknameUpdate" id="signUpNicknameUpdate" class="text noEnterSubmit" maxlength="16" tabindex="12" rel="localize[EnterNickname]" placeholder="Enter Nickname" />
+                                <input type="hidden" name="signUpNicknameUpdateChecked" id="signUpNicknameUpdateChecked" class="text" />
+                                <span id="verifyNickUpdateSpinner"></span>
+                            </p>
+                            <p class="email" style="display:none">
+                                <label for="signUpEmailUpdate" rel="localize[Email]">Email</label>
+                                <input type="text" name="signUpEmailUpdate" id="signUpEmailUpdate" class="text" maxlength="100" tabindex="13" rel="localize[EnterEmail]" placeholder="Enter Email" />
+                                <input type="hidden" name="signUpEmailUpdateChecked" id="signUpEmailUpdateChecked" class="text" />
+                                <span id="verifyEmailUpdateSpinner"></span>
+                            </p>
+                        </div>
+                        <div id="signUpReCaptchaInput" class="reCaptchaContainer clearfix"></div>
+                        <a href="#" id="signupCaptchaSubmit" class="policyButtons btn btnRounded btnLarge btnPurple tab" rel="localize[Continue]" tabindex="15">Continue</a>
+                    </form>
+                    <div class="troubleSigningUp" style="display: none;float:left;">
+                        <h1 rel="localize[IsThisYours]">Is this your account?</h1>
+                        <div class="buttonResetWrapper" style="display: block;">
+                            <a href="#" class="btn btnPurple btnRounded btnLarge resetPassword shiftTab" id="buttonSignUpPasswordReset" rel="localize[Reset]">Reset</a>
+                            <div id="resetSpinnerSignUp"></div>
+                        </div>
+                        <p class="resetSuccessMsg" rel="localize[ResetSuccess]" style="display: none;">
+                            Thank you, please check your inbox for the reset password email.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="signUpConfirm" class="signupPanel panel">
+                <div class="inner">
+                    <h1 rel="localize[Success]">Congratulations</h1>
+                    <div class="text">
+                        <h3 id="signUpConfirmGreeting">
+                            <span rel="localize[AccountCreatedThankYou]">Thank you,</span><span> </span><span class="nickname purple"></span>.
+                            <br/>
+                            <span rel="localize[AccountCreatedMsg]">You have successfully created a Social Club account.</span>
+                        </h3>
+                        <p id="lblCreateAccountError"></p>
+                    </div>
+                    <a href="#" class="btn btnPurple btnLarge btnRounded" id="signUpConfirmButton" rel="localize[Continue]">Continue</a>
+                </div>
+            </div>
+            <div class="loadingMask"><span class="loading"></span></div>
+        </div>
+    </div>
+    <div id="panelsWrapper">
+        <div id="launcherSignInLoading" class="panel">
+            <div class="contentWrapper">
+                <div class="loadingMask" id="loading_launcher_signin"><span class="loading"></span></div>
+            </div>
+        </div>
+        <div id="launcherSignInError" class="launcherAuthPanel panel">
+            <div class="inner">
+                <h1 class="launcherSignInErrorTitle" rel="localize[AuthError]">Authentication Error</h1>
+                <div class="errorContainer box-wrap antiscroll-wrap">
+                    <div class="box">
+                        <div class="antiscroll-inner">
+                            <div class="text">
+                                <h3 class="launcherSignInErrorSubTitle" rel="localize[ErrorHasOccurred]">Sorry, an error has occurred.</h3>
+                                <p></p>
+                                <p class="errorDescription"></p>
+                                <p class="errorSubMessage"></p>
+                                <p class="errorCodeDescription"></p>
+                                <div class="scui_ver">
+                                    <span class="version"></span>
+                                    <span class="versionSDK"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panelButtonWrapper">
+                    <a id="buttonLauncherSignInRetry" class="btn btnGrey btnRounded btnLarge" rel="localize[Retry]">Retry</a>
+                    <a id="buttonLauncherSignInQuit" class="btn btnRed btnRounded btnLarge" rel="localize[Quit]">Quit</a>
+                </div>
+            </div>
+        </div>
+        <div id="launcherConnectionChanged" class="launcherAuthPanel panel">
+            <div class="inner">
+                <h1 class="launcherConnectionChangedTitle" id="launcherConnectionDisconnectedTitle" rel="localize[LauncherConnectionDisconnected]">Disconnected</h1>
+                <h1 class="launcherConnectionChangedTitle" id="launcherConnectionNotSignedInTitle" rel="localize[LauncherConnectionNotSignedIn]">Not signed in</h1>
+                <div class="errorContainer box-wrap antiscroll-wrap">
+                    <div class="box">
+                        <div class="antiscroll-inner">
+                            <div class="text">
+                                <h3 class="launcherConnectionChangedSubTitle" rel="localize[LauncherConnectionDisconnectedSub]">Disconnected from Rockstar Games Launcher. Rockstar Games services remain accessible.</h3>
+                                <p></p>
+                                <p class="launcherConnectionReconnectingDesc"></p>
+                                <p class="launcherConnectionSignInDesc"></p>
+                                <p class="launcherConnectionMaxSignInAttempts"></p>
+                                <div class="scui_ver">
+                                    <span class="version"></span>
+                                    <span class="versionSDK"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panelButtonWrapper">
+                    <a id="buttonLauncherConnectionChangedQuit" class="btn btnRed btnRounded btnLarge" rel="localize[Quit]">Quit</a>
+                    <a id="buttonLauncherConnectionChangedReconnect" class="btn btnPurple btnRounded btnLarge" rel="localize[Reconnect]">Reconnect</a>
+                </div>
+            </div>
+        </div>
+        <div id="signOut" class="panel">
+            <div class="inner">
+                <h1 rel="localize[SignOutConfirm]">Sign Out?</h1>
+                <p rel="localize[LoseProgress]">If you are playing a game, you will lose any unsaved progress.</p>
+                <div class="panelButtonWrapper">
+                    <a href="#" class="btn btnGrey btnRounded btnLarge" id="buttonSignOutNo" rel="localize[Cancel]">Cancel</a>
+                    <a href="#" class="btn btnRed btnRounded btnLarge" id="buttonSignOutYes" rel="localize[SignOut]">Sign out</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="homefeedPanel" class="panel"></div>
+
+        <div id="launcherStyle" class="panel">
+            <ul id="launcherPics"></ul>
+            <div id="launcherStyleContent" class="clearfix">
+                <p class="ver"></p>
+
+                <h1 class="headerText"></h1>
+
+                <div class="dialogue">
+                    <p></p>
+                </div>
+
+                <div class="loading">
+                    <p></p><div class="loadingSpinner"></div>
+                </div>
+
+                <div class="progressBar">
+                    <p></p>
+                    <div class="progressBarTotal">
+                        <span></span>
+                    </div>
+                </div>
+
+                <div class="buttons"></div>
+            </div>
+        </div>
+
+        <div id="accomplishPanel" class="panel">
+            <div class="sideMenuCol">
+                <ul class="sideMenu">
+                    <li><a href="#" id="awardsLink2"><i></i><span rel="localize[Accomplishments]">Accomplishments</span></a></li>
+                </ul>
+                <div id="compareSelect">
+                    <span class="spinner"></span>
+                    <h5 rel="localize[SelectFriend]">select friend</h5>
+                    <a class="close" title="close" rel="localize[Close]">close</a>
+                    <div id="compareSelectContainer" class="box-wrap antiscroll-wrap">
+                        <div class="box">
+                            <div class="antiscroll-inner">
+                                <ul id="compareSelectList"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="comparedFriend">
+                    <div id="comparedFriendInfo">
+                        <img width="32" height="32" class="avatar" alt="" src="https://s.rsg.sc/scui/ext/scui/images/avatars/32x32/default.png" id="comparedFriendAvatar">
+                        <div class="info">
+                            <h6 rel="localize[ComparingWith]">Comparing with</h6>
+                            <p id="comparedFriendNickname">nickname</p>
+                        </div>
+                    </div>
+                </div>
+                <a id="compareAccomplish" class="btn btnGrey btnLarge" data-services="friends"><span rel="localize[Compare]">Compare with friend</span></a>
+            </div>
+            <div class="contentWrapper">
+                <div class="topStrip clearfix">
+                    <div id="achievementsHeader" class="content">
+                        <h5 class="myStatsTitle" rel="localize[MyAccomplishments]">My Accomplishments</h5>
+                        <h5 class="friendStatsTitle"></h5><h5 class="yourStatsTitle" rel="localize[You]">you</h5>
+                        <h5 class="titleRowDetail"><span class="totalPts"></span> <span rel="localize[PTS]">PTS</span></h5>
+                    </div>
+                </div>
+                <div class="loadingMask"><span class="loading"></span></div>
+                <div id="statsContainer" class="box-wrap antiscroll-wrap">
+                    <div class="box">
+                        <div class="antiscroll-inner">
+                            <div class="overview">
+                                <div id="achievementsContent" class="content">
+                                    <table id="achievementstable">
+                                        <tbody id="achievementsData2"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="selectProfile" class="panel">
+            <div class="inner">
+
+                <div class="profileList profilesExist">
+                    <h1 rel="localize[SelectProfile]">Select Profile</h1>
+                    <h3><span id="profileCount">0</span>&nbsp;<span rel="localize[ProfilesFound]">profiles found</span></h3>
+                    <div id="existingProfilesContainer" class="box-wrap antiscroll-wrap">
+                        <div class="box">
+                            <div class="antiscroll-inner">
+                                <div id="existingProfiles" class="profileListWrapper"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="needAccountLink btn btnOrange btnLarge">
+                        <div class="createAccountText" rel="localize[CreateAccount]">Create Account</div>
+                    </a>
+                    <div class="offlineMode offline-LocalProfiles">
+                        <p class="offlineMsg" rel="localize[OfflineSignin]"><strong>Offline Mode:</strong> Sign in is currently limited to saved accounts. Please connect to the Internet to access all services.</p>
+                    </div>
+                    <div class="offlineMode offline-NoLocalProfiles">
+                        <h1 rel="localize[NoOfflineMode]">Offline mode not available</h1>
+                        <p class="OfflineMsgNoSignin" rel="localize[OfflineSigninNotAvailable]">Offline play is only available for accounts that have previously signed in on this machine (with "Remember me" ticked) while connected to the Internet and while Social Club Services are available. You have not previously signed in on this machine so offline play is not available.</p>
+                    </div>
+                </div>
+
+                <div class="profileList noProfiles">
+                    <h1 rel="localize[CreateAccount]">Create Account</h1>
+                    <div id="noExistingProfiles" class="noExistingProfiles"></div>
+                    <a class="needAccountLink btn btnOrange btnLarge">
+                        <div class="createAccountText" rel="localize[CreateAccount]">Create Account</div>
+                    </a>
+                </div>
+                <div class="troubleSigningIn">
+                    <h1 rel="localize[SignInTrouble]">Having trouble signing in?</h1>
+                    <form action="#" id="signInEmailPasswordResetForm" class="signInEmailPasswordResetForm resetPasswordForm">
+                        <p><span rel="localize[RecoverPassword]">To recover your password please enter your email address. We will send you a link allowing you to reset your password.</span></p>
+                        <fieldset>
+                            <p>
+                                <input type="text" name="signInEmailRetrieve-Profile" id="signInEmailRetrievePassword" class="text" placeholder="Email" rel="localize[Email]"/>
+                            </p>
+                        </fieldset>
+                        <div class="buttonResetWrapper" style="display: block;">
+                            <a href="#" class="btn btnPurple btnRounded btnLarge resetPassword shiftTab" id="buttonSignInPasswordReset" rel="localize[Reset]">Reset</a>
+                            <div id="resetSpinner"></div>
+                        </div>
+                        <div class="errors"></div>
+                    </form>
+                    <p class="clearfix">
+                        <div id="resetPasswordReCaptchaInput" class="reCaptchaContainer clearfix"></div>
+                    </p>
+                    <p class="resetSuccessMsg" rel="localize[ResetSuccess]" style="display: none;">
+                        Thank you, please check your inbox for the reset password email.
+                    </p>
+                    <a href="#" class="btn btnRed btnRounded btnLarge buttonSignInQuitGame" rel="localize[QuitGame]" tabindex="6">Quit Game</a>
+                    <a href="#" class="btn btnGrey btnRounded btnLarge" id="buttonCancelPasswordReset" rel="localize[Cancel]">Cancel</a>
+                </div>
+
+                <div id="signInProfile" class="signIn">
+                    <form id="formSignInProfile" action="#" method="post" class="formSignIn">
+                        <h3>
+                            <span rel="localize[SigninShort]">Sign in</span>
+                            <span class="devInfo">[DEV]</span>
+                        </h3>
+                        <fieldset>
+                            <p>
+                                        <label for="signInEmailProfile" rel="localize[Email]">Email</label>
+                                        <input type="text" name="signInEmailProfile" id="signInEmailProfile" class="text" placeholder="Email" rel="localize[Email]" tabindex="1" />
+
+                            </p>
+                            <p>
+                                <label for="signInPasswordProfile" rel="localize[Password]">Password</label>
+                                <input type="password" autocomplete="off" name="signInPasswordProfile" id="signInPasswordProfile" maxlength="128" class="text" placeholder="Password" rel="localize[Password]" tabindex="2" />
+                            </p>
+                        </fieldset>
+                        <p class="forgot"><a class="forgotPasswordLink tab" rel="localize[ForgotPassword]" tabindex="3">Forgot password?</a></p>
+                        <label id="lblSignInErrorProfile" class="SignInError"></label>
+                        <div class="errors"></div>
+                        <div class="noExistingProfiles"></div>
+                        <div class="clearfix">
+                            <div id="signInReCaptchaInput" class="reCaptchaContainer clearfix"></div>
+                        </div>
+                        <p class="orCreateAccount"><span rel="localize[NotRegistered]">Not registered?</span> <a href="#" tabindex="7" class="shiftTab" rel="localize[CreateNewAccount]">Create a new account</a><span>.</span></p>
+                        <div id="signinAction" class="clearfix">
+                            <fieldset class="options">
+                                <p>
+                                    <span class="tooltip-beneath">
+                                        <input type="checkbox" name="signInOptionsProfile" id="rememberMeProfile" class="checkbox" tabindex="4" />
+                                        <label for="rememberMeProfile" rel="localize[RememberMe]">Remember me</label>
+                                        <span class="tip" rel="localize[SelectToPlayOffline]">This must be selected to be able to play in offline mode.</span>
+                                    </span>
+                                    <span>
+                                        <input type="checkbox" name="signInOptionsProfile" id="autoSignInProfile" class="checkbox" tabindex="4" />
+                                        <label for="autoSignInProfile" rel="localize[AutoSignin]">Auto Sign In</label>
+                                    </span>
+                                </p>
+                                <input type="hidden" id="signInProfileRockstarId" />
+                            </fieldset>
+
+                            <div class="buttonSignInWrapper">
+                                <a href="#" class="btn btnPurple btnRounded btnLarge buttonSignIn tab" id="buttonSignInProfile" rel="localize[SigninShort]" tabindex="6">Sign In</a>
+                                <span class="waitMessage" rel="localize[SigningIn]"></span>
+                            </div>
+                            <a href="#" class="btn btnRed btnRounded btnLarge buttonSignInQuitGame" rel="localize[QuitGame]" tabindex="7">Quit Game</a>
+                        </div>
+                    </form>
+                    <div class="offlineMode offline-LocalProfiles">
+                        <p class="offlineMsg" rel="localize[OfflineSignin]"><strong>Offline Mode:</strong> Sign in is currently limited to saved accounts. Please connect to the Internet to access all services.</p>
+                    </div>
+
+                    <div class="offlineMode offline-NoLocalProfiles">
+                        <h1 rel="localize[NoOfflineMode]">Offline mode not available</h1>
+                        <p class="OfflineMsgNoSignin" rel="localize[OfflineSigninNotAvailable]">Offline play is only available for accounts that have previously signed in on this machine (with "Remember me" ticked) while connected to the Internet and while Social Club Services are available. You have not previously signed in on this machine so offline play is not available.</p>
+                    </div>
+                    <div class="previousSignInErrorMessage">
+                        <span rel="localize[previousSignInErrorMessage1]">There seems to have been a problem during your previous attempt to sign in. Please continue to the next page, and complete the required fields.</span>
+                        <span rel="localize[previousSignInErrorMessage2]">If you have forgotten your password, you can also request a password reset on the next page.</span>
+                        <div class="buttonGoToSignInWrapper"><a href="#" class="btn btnPurple btnRounded btnLarge" id="buttonGoToSignIn" rel="localize[ContinueToSignin]">Continue to Sign In</a></div>
+                    </div>
+                </div>
+                <div id="createProfileOffline" class="signIn">
+                    <h3><span rel="localize[OrCreate]">Or Create Profile</span></h3>
+                    <form action="#" method="post" class="formSignIn">
+                        <label id="lblCreateProfileError" class="SignInError"></label>
+                        <fieldset>
+                            <p>
+                                <label for="createProfileNickname" rel="localize[Nickname]">Nickname</label>
+                                <input type="text" name="createProfileNickname" id="createProfileNickname" class="text" maxlength="16" />
+                            </p>
+                        </fieldset>
+                        <div class="errors"></div>
+                    </form>
+                    <div class="buttonSignInWrapper"><a href="#" class="btn btnPurple btnRounded buttonSignIn" id="buttonCreateProfileOffline" rel="localize[Create]">Create</a><span class="waitMessage" rel="localize[CreatingProfile]">creating profile...</span></div>
+                </div>
+                <div class="loadingMask" id="loading_selectprofile"><p rel="localize[Loading]">Loading...</p><span class="loading"></span></div>
+            </div>
+        </div>
+        <div id="mfaSignIn" class="panel">
+            <div class="inner">
+                <h3><span rel="localize[MfaTitle]">2-Step Verification</span></h3>
+                <form class="formSignIn verify">
+                    <p><strong><span id="mfaEmail"></span></strong><span id="mfaSelectedDeviceMsg"></span></p>
+                    <fieldset class="verificationInput clearfix">
+                        <input type="text" name="verification" id="verification" class="text" placeholder="Verification code" rel="localize[MfaCodeLabel]" tabindex="1"/>
+                        <div class="buttonSignInWrapper">
+                            <a id="mfaSubmitBtn" href="#" class="btn btnPurple btnRounded btnLarge" tabindex="3" rel="localize[MfaSubmit]">Submit</a>
+                            <span class="waitMessage" rel="localize[SigningIn]"></span>
+                        </div>
+                    </fieldset>
+                    <div class="clearfix">
+                        <fieldset class="options">
+                            <p>
+                                <span>
+                                    <input type="checkbox" name="rememberDevice" id="rememberDevice" class="checkbox" tabindex="2" />
+                                    <label for="rememberDevice" rel="localize[MfaRememberDevice]">Remember this device</label>
+                                </span>
+                            </p>
+                        </fieldset>
+                    </div>
+                    <div id="resendCodeContainer" class="buttons clearfix"></div>
+                </form>
+                <div id="mfaAlternativeContainer"></div>
+            </div>
+        </div>
+        <div id="policyPanel" class="panel">
+            <div class="box-wrap antiscroll-wrap antiscroll-always-on">
+                <div class="box">
+                    <div class="antiscroll-inner">
+                        <div class="text" id="policyText"></div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="policyVersion" value="test"/>
+            <div id="policyButtonWrapper">
+                <a class="btn btnRed btnRounded btnLarge" id="policyDisagree" rel="localize[Disagree]">I do not accept</a>
+                <a class="btn btnPurple btnRounded btnLarge" id="policyAgree" rel="localize[Agree]">I accept</a>
+            </div>
+        </div>
+        <div id="eulaPanel" class="signupPanel panel">
+            <div class="inner">
+                <h1 rel="localize[Eula]">End User Licensing Agreement</h1>
+                <h2 rel="localize[PleaseAgree]">Please Agree to the Following</h2>
+                <div class="text" id="eulaText"></div>
+                <input type="hidden" id="eulaVersion" value="test" />
+                <div id="policyAgreeButtonWrapper">
+                    <a class="btn btnRed btnRounded btnLarge" id="eulaDisagree" rel="localize[Disagree]">I do not accept</a>
+                    <a class="btn btnPurple btnRounded btnLarge" id="eulaAgree" rel="localize[Agree]">I accept</a>
+                </div>
+            </div>
+        </div>
+        <div id="activation" class="panel">
+            <div class="inner">
+                <h1 class="title" rel="localize[Activation]">Activation</h1>
+
+                <div id="activationContent" class="box-wrap antiscroll-wrap">
+                    <div class="box">
+                        <div class="antiscroll-inner">
+                            <div id="activationCodeEntry">
+                                <p class="message" rel="localize[PleaseEnter]">
+                                    Please enter your activation code.
+                                </p>
+                                <p id="legalText1" class="legal" rel="localize[LegalActivation]"></p>
+                                <form id="formActivation" action="#" method="post" onsubmit="return false;">
+                                    <label id="lblActivation"></label>
+                                    <fieldset>
+                                        <p class="requestCode">
+                                            <label for="requestCode" rel="localize[RequestCode]">Request Code</label>
+                                            <input type="text" name="requestCode" id="requestCode" class="text" style="width: 400px;" disabled="disabled" />
+                                        </p>
+                                        <p class="activationCodeInput">
+                                            <label for="activationCode" rel="localize[ActivationCode]">Activation Code</label>
+                                            <input type="text" name="activationCode" id="activationCode" class="text" style="width: 400px;" maxlength="50" placeholder="XXXX-XXXX-XXXX-XXXX" tabindex="20" />
+                                        </p>
+                                        <p class="activationDesc">
+                                            <span id="activationDesc"></span>
+                                        </p>
+                                    </fieldset>
+                                    <label id="legalActivation" style="display: none;">
+                                        <input type="checkbox" tabindex="21" id="legalCheckBox" />
+                                        <p id="legalText2" class="legal" rel="localize[LegalActivationCheckbox]"></p>
+                                    </label>
+                                    <label id="activationError" class="errorText"></label>
+                                    <input type="hidden" id="ContentId" />
+                                    <div class="errors"></div>
+                                </form>
+                                <p id="redemptionCodeLegal" class="legal"></p>
+                            </div>
+                            <div id="activationVoucherContents"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="linkSteam">
+                    <p class="message"></p>
+                    <div id="linkSteamAccounts">
+                        <h2 rel="localize[SteamLinkAccounts]">Link these accounts?</h2>
+                        <div class="clearfix">
+                            <div class="accountPanel clearfix SC">
+                                <a class="avatar">
+                                    <img width="45" height="45" src="">
+                                </a>
+                                <div class="text">
+                                    <h4 class="username"></h4>
+                                    <h5 class="email"></h5>
+                                </div>
+                                <span></span>
+                            </div>
+                            <div class="link">+</div>
+                            <div class="accountPanel clearfix STEAM">
+                                <span></span>
+                                <div class="text">
+                                    <h4 class="username"></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="currentLink"><span class="purple username"></span> <span class="alreadyLinked"></span></h2>
+                        <ul class="clearfix linkedAccounts"></ul>
+                    </div>
+                </div>
+
+                <div id="activationWrapper" class="activationWrapper">
+                    <a id="buttonCheck" class="btnLarge btn btnPurple btnRounded shiftTab" rel="localize[Check]" tabindex="22">Check</a>
+                    <a id="buttonActivate" class="btnLarge btn btnPurple btnRounded shiftTab" rel="localize[i20]" tabindex="23">Activate</a>
+                    <a id="buttonDeactivate" class="btnLarge btn btnPurple btnRounded" rel="localize[i28]" tabindex="24">Deactivate</a>
+                    <a id="buttonActivateOk" class="btnLarge btn btnPurple btnRounded" rel="localize[Ok]" tabindex="25">Ok</a>
+                    <a id="buttonCancel" class="btnLarge btn btnGrey btnRounded" rel="localize[Back]" tabindex="26">Back</a>
+                    <a id="buttonBackToCodeEntry" class="btnLarge btn btnGrey btnRounded" rel="localize[Back]" tabindex="27">Back</a>
+                    <a id="buttonQuitGame" class="btnLarge btn btnRed btnRounded" rel="localize[QuitGame]" tabindex="28">Quit Game</a>
+                    <span id="spanActivate" class="waitMessage" rel="localize[i31]">attempting activation...</span>
+                    <span id="spanDeactivate" class="waitMessage" rel="localize[i31]">attempting deactivation...</span>
+                </div>
+            </div>
+        </div>
+        <div id="cloudSave" class="panel">
+            <div class="inner">
+                <form>
+                    <h1><span class="title online" rel="localize[CloudSaves]">Cloud Saves</span>
+                    </h1>
+                    <div class="cloudSaveContent">
+                        <p class="localBackupPreamble hide" rel="localize[LocalBackupPreamble]">You have elected to restore a local backup. Please review the information below and select which files you'd like to restore.</p>
+                        <p class="choicePreamble hide" rel="localize[CloudSaveChoicePreamble]">Please choose whether to enabled Cloud saves.</p>
+                        <p class="preamble hide" rel="localize[CloudSavePreamble]">Your local save files conflict with the ones stored on the Cloud. Please choose one of the below options to continue.</p>
+                        <div class="choice binary clearfix hide">
+                            <div class="enable">
+                                <h3><i class="scicon-cloud-up cloud-icon"></i> <span rel="localize[EnableCloud]">Enable Cloud Saves</span></h3>
+                                <div>
+                                    <p rel="localize[EnableCloudDesc]">Allow save games to be uploaded and stored in the Cloud.</p>
+                                    <p><strong></strong></p>
+                                </div>
+                            </div>
+                            <div class="disable">
+                                <h3><i class="scicon-cloud-disabled cloud-icon"></i> <span rel="localize[DisableCloud]">Disable Cloud Saves</span></h3>
+                                <div>
+                                    <p rel="localize[DisableCloudDesc]">Prevent save games from being uploaded and stored in the Cloud.</p>
+                                    <p><strong></strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chooseSave cloudSave binary clearfix hide">
+                            <div class="useLocal">
+                                <div>
+                                    <h3 class="clearfix"><i class="scicon-localsave cloud-icon"></i> <span rel="localize[KeepLocal]">Keep Local Data</span></h3>
+                                    <p rel="localize[CloudDelCloud]">Delete all Cloud saves and replace them with data stored on this computer.</p>
+                                    <p><strong></strong></p>
+                                </div>
+                            </div>
+                            <div class="useCloud">
+                                <div>
+                                    <h3 class="clearfix"><i class="scicon-cloud cloud-icon"></i> <span rel="localize[KeepCloud]">Keep Cloud Data</span></h3>
+                                    <p rel="localize[CloudDelLocal]">Delete all local saves and replace them with data stored in the Cloud.</p>
+                                    <p><strong></strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chooseSave localBackup triple clearfix hide">
+                            <div class="useCurrent">
+                                <div>
+                                    <h3 class="clearfix"><i class="scicon-localsave cloud-icon"></i> <span rel="localize[LocalBackupKeepCurrent]">Keep Current Data</span></h3>
+                                    <p rel="localize[LocalBackupKeepCurrentDesc]">Continue using the current data.</p>
+                                    <p><strong></strong></p>
+                                </div>
+                            </div>
+                            <div class="useLocalBackup1">
+                                <div>
+                                    <h3 class="clearfix"><i class="scicon-localsave-restore cloud-icon"></i> <span rel="localize[LocalBackupUseLocalBackup1]">Use Local Backup 1 Data</span></h3>
+                                    <p rel="localize[LocalBackupUseLocalBackup1Desc]">Use data from Local Backup 1. Your current save data will be backed up locally first.</p>
+                                    <p><strong></strong></p>
+                                </div>
+                            </div>
+                            <div class="useLocalBackup2">
+                                <div>
+                                    <h3 class="clearfix"><i class="scicon-localsave-restore cloud-icon"></i> <span rel="localize[LocalBackupUseLocalBackup2]">Use Local Backup 2 Data</span></h3>
+                                    <p rel="localize[LocalBackupUseLocalBackup2Desc]">Use data from Local Backup 2. Your current save data will be backed up locally first.</p>
+                                    <p><strong></strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chooseMulti hide">
+                            <table class="optionSummary">
+                                <tr>
+                                    <td>
+                                        <input name="radioAll" id="radioAllLocal" type="checkbox" value="useLocal"><label for="radioAllLocal" /><i class="scicon-localsave"></i><span rel="localize[KeepAllLocal]">Keep all local files</span>
+                                    </td>
+                                    <td>
+                                        <input name="radioAll" id="radioAllCloud" type="checkbox" value="useCloud"><label for="radioAllCloud" /><i class="scicon-cloud"></i><span rel="localize[KeepAllCloud]">Keep all Cloud files</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="optionSummary localBackup hide">
+                                <tr>
+                                    <td>
+                                        <input name="radioAll" id="radioAllCurrent" type="checkbox" value="useCurrent"><label for="radioAllCurrent" /><i class="scicon-localsave"></i><span rel="localize[LocalBackupKeepAllCurrent]">Keep all current files</span>
+                                    </td>
+                                    <td>
+                                        <input name="radioAll" id="radioAllLocalBackup1" type="checkbox" value="useLocalBackup1"><label for="radioAllLocalBackup1" /><i class="scicon-localsave-restore"></i><span rel="localize[LocalBackupRestoreAllBackup1]">Restore all backup 1</span>
+                                    </td>
+                                    <td>
+                                        <input name="radioAll" id="radioAllYou have elected to restore a local backupLocalBackup2" type="checkbox" value="useLocalBackup2"><label for="radioAllLocalBackup2" /><i class="scicon-localsave-restore"></i><span rel="localize[LocalBackupRestoreAllBackup2]">Restore all backup 2</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="optionDetailsWrapper box-wrap antiscroll-wrap">
+                                <div class="box">
+                                    <div class="antiscroll-inner">
+                                        <table class="optionDetails"></table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttonActions">
+                        <input type="reset" class="hide" />
+                        <a href="#" class="ignore btn btnGrey btnLarge" rel="localize[Ignore]">Ignore</a>
+                        <div class="right">
+                            <a href="#" class="confirm btn btnPurple btnLarge" rel="localize[Continue]">Continue</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="activationLauncher" class="panel">
+            <div class="inner">
+                <h1 class="title" rel="localize[Activation]">Activation</h1>
+                <h5>Please enter your Serial Key</h5>
+                <p>Please enter your Serial Key below. Your key can be found inside the game box or in the email you recieved after purchasing the game.</p>
+                <div id="activationForm" class="clearfix">
+                    <input type="text" name="activationInput" id="activationInput" maxlength="16">
+                    <a id="activationSubmit" class="btn btnPurple btnRounded" rel="localize[i20]">Activate</a>
+                </div>
+                <h5>Don't have a Serial Key?</h5>
+                <p>If you don't have a serial key; or haven't purchased <strong>Grand Theft Auto V</strong> yet, you can purchase a digital key at the <a href="#">Rockstar Warehouse</a>.</p>
+                <p>Once you receive your key, come back to this screen and enter it.</p>
+                <p>If you have purchased the game, but are having problems accessing it, please contact <a href="#">Customer Service</a>.</p>
+            </div>
+        </div>
+        <div id="serverError" class="panel">
+            <div class="inner">
+                <h1 class="serverErrorTitle" rel="localize[ServerError]">Server Error</h1>
+                <div class="errorContainer box-wrap antiscroll-wrap">
+                    <div class="box">
+                        <div class="antiscroll-inner">
+                            <div class="text">
+                                <h3 class="serverErrorSubTitle" rel="localize[ErrorHasOccurred]">Sorry, an error has occurred.</h3>
+                                <p></p>
+                                <p class="errorDescription"></p>
+                                <p class="errorSubMessage"></p>
+                                <p class="errorCodeDescription"></p>
+                                <div class="scui_ver">
+                                    <span class="version"></span>
+                                    <span class="versionSDK"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panelButtonWrapper">
+                    <a id="buttonServerErrorClose" class="btn btnGrey btnRounded btnLarge" rel="localize[Close]">Close</a>
+                    <a id="buttonServerErrorHome" class="btn btnPurple btnRounded btnLarge" rel="localize[Home]">Home</a>
+                    <a id="buttonServerErrorQuit" class="btn btnRed btnRounded btnLarge" rel="localize[QuitGame]">Quit Game</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="messagePanel" class="panel">
+            <div class="inner">
+                <h1 id="messageTitle">Message Title</h1>
+                <p id="messageShortDesc"></p>
+                 <br />
+                <p id="messageLongDesc"></p>
+                <div id="messagePanelButtonWrapper">
+                    <a id="buttonCloseMessage" class="btn btnGrey btnRounded btnLarge closeCurrentPanel" rel="localize[Close]" tabindex="23">Close</a>
+                    <a id="buttonCancelMessage" class="btn btnGrey btnRounded btnLarge" rel="localize[Cancel]" tabindex="22">Cancel</a>
+                    <a id="buttonOkMessage" class="btn btnPurple btnRounded btnLarge" rel="localize[Ok]" tabindex="21">Ok</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="confirmPanel" class="panel">
+            <div class="inner">
+                <h1 id="confirmPanelTitle"></h1>
+                <span id="confirmPanelImage"></span>
+                <span class="confirmPanelTextWrapper">
+                    <p id="confirmPanelText"></p>
+                    <p id="confirmPanelTextLong"></p>
+                </span>
+                <div id="confirmPanelButtonWrapperYesNo" class="confirmPanelButtonWrapper">
+                    <a class="btn btnPurple btnRounded" id="confirmPanelYes" rel="localize[Yes]">Yes</a>
+                    <a class="btn btnPurple btnRounded" id="confirmPanelNo" rel="localize[Back]">Back</a>
+                    <a class="buttonCancelConfirm btn btnPurple btnRounded" rel="localize[Cancel]">Cancel</a>
+                    <a class="buttonQuitConfirm btn btnPurple btnRounded" rel="localize[QuitGame]">Quit Game</a>
+                </div>
+                <div id="confirmPanelButtonWrapperOk" class="confirmPanelButtonWrapper">
+                    <a class="btn btnPurple btnRounded" id="confirmPanelOk" rel="localize[Ok]">Ok</a>
+                    <a class="buttonCancelConfirm btn btnPurple btnRounded" rel="localize[Cancel]">Cancel</a>
+                </div>
+                <div class="confirmPanelOptionsWrapper">
+                    <div id="confirmPanelOptions" class="confirmPanelOptions"></div>
+                    <div id="confirmPanelOptionsButtonWrapper" class="confirmPanelButtonWrapper">
+                        <a class="btn btnPurple btnRounded" id="confirmPanelSubmit" rel="localize[Submit]">Submit</a>
+                        <a class="buttonCancelConfirm btn btnPurple btnRounded" rel="localize[Cancel]">Cancel</a>
+                    </div>
+                </div>
+                <div id="confirmPanelButtonWrapperRetry" class="confirmPanelButtonWrapper">
+                    <a class="btn btnPurple btnRounded btnLarge" id="confirmPanelRetry" rel="localize[Retry]">Retry</a>
+                </div>
+                <div id="confirmPanelButtonWrapperCancel" class="confirmPanelButtonWrapper">
+                    <a class="buttonCancelConfirm btn btnPurple btnRounded btnLarge" rel="localize[Cancel]">Cancel</a>
+                </div>
+            </div>
+        </div>
+        <div id="messagesPanel" class="panel">
+            <div class="contentWrapper">
+                <div class="topStrip clearfix">
+                    <div id="messagesHeader" class="content">
+                        <h5><span rel="localize[Messages]">Messages</span></h5>
+                        <a href="#" id="newMessage" class="btn btnGrey btnRounded" rel="localize[NewMessage]">New Message</a>
+                        <a href="#" id="cancelMessage" class="btn btnGrey btnRounded" rel="localize[Cancel]">Cancel</a>
+                    </div>
+                </div>
+                <div id="messagesContainer" class="box-wrap">
+                    <div id="messagesList" class="content antiscroll-wrap">
+                        <div class="box">
+                            <div class="antiscroll-inner"></div>
+                        </div>
+                    </div>
+                    <div id="messageThread" class="content antiscroll-wrap">
+                        <div class="box">
+                            <div class="antiscroll-inner">
+                                <div id="replyMessageInput" class="clearfix messageInput">
+                                    <h5><span rel="localize[ReplyTo]">Reply to</span>
+                                        <span id="replyToNickname"></span>
+                                    </h5>
+                                    <div class="input" id="newReplyDiv">
+                                       <div class="js-ime-wrapper">
+                                           <textarea rows="5" id="newReplyEntry" name="newReplyEntry" class="newMessageEntry" data-allow-ime-input="true" placeholder="Your message..." maxlength="255" rel="localize[EnterMessageHere]"></textarea>
+                                       </div>
+                                        <span class="help-block"></span>
+                                    </div>
+                                    <a class="sendReply btn btnGold btnRounded shiftTab disabled" rel="localize[Send]" href="#">Send</a>
+                                    <span class="characterCountWrapper"><span class="characterCount">0</span>/255 <span rel="localize[CharactersUsed]">characters used</span></span>
+                                    <a class="blockUser btn btnRed btnRounded" rel="localize[Block]" href="#">Block</a>
+                                    <div class="clearfix opStatus">
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                                <div id="messageThreadList" class="content"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="newMessageInput" class="messageInput">
+                        <div id="friendsSearch">
+                            <form id="msgFriendSearchForm" action="#">
+                                <label for="newMessageName" rel="localize[FriendsName]">Friends Name</label>
+                                <div class="input">
+                                    <div class="ui-widget" id="friendSearchInput">
+                                        <input type="text" name="newMessageName" id="newMessageName" class="text" placeholder="Friends name..." rel="localize[EnterFriendName]" maxlength="16" />
+                                    </div>
+                                    <span class="help-block"></span>
+                                </div>
+                            </form>
+                        </div>
+
+                        <h5><span rel="localize[SendMessageTitle]">Send a new message</span></h5>
+                        <div class="input" id="newMessageDiv">
+                            <div class="js-ime-wrapper new-message-input-ime">
+                                <textarea rows="5" id="newMessageEntry" name="newMessageEntry" class="newMessageEntry" data-allow-ime-input="true" placeholder="Your message..." maxlength="255" rel="localize[EnterMessageHere]"></textarea>
+                            </div>
+                            <span class="help-block"></span>
+                        </div>
+                        <a class="sendMessage btn btnGold btnRounded disabled" rel="localize[Send]" href="#">Send</a>
+                        <span class="characterCountWrapper"><span class="characterCount">0</span>/255 <span rel="localize[CharactersUsed]">characters used</span></span>
+                        <div class="clearfix opStatus">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="loadingMask" id='loading_messages'><span class="loading"></span></div>
+            </div>
+        </div>
+        <div id="friendsPanel" class="panel">
+            <div class="sideMenuCol">
+                <div class="sideMask"></div>
+                <ul class="sideMenu">
+                    <li><a href="#" id="myFriendsLink" class="hasCount" data-services="accounts,friends"><i></i><span rel="localize[MyFriends]">Friends</span><span class="count"></span></a></li>
+                    <li><a href="#" id="friendInvitesLink" class="hasCount" data-services="accounts,friends"><i></i><span rel="localize[FriendInvites]">Friend Invites</span><span class="count"></span></a></li>
+                    <li><a href="#" id="findPlayerLink" data-services="accounts,friends"><i></i><span rel="localize[FindPlayer]">Find Players</span></a></li>
+                    <li><a href="#" id="myCrewsLink" data-services="crews"><i></i><span rel="localize[MyCrews]">My Crews</span></a>
+                        <div id="crewCardTag" class=""></div>
+                    </li>
+                    <li><a href="#" id="crewMembersLink" data-services="crews"><i></i><span rel="localize[CrewMembers]">Crew Members</span></a></li>
+                    <li><a href="#" id="crewInvitesLink" data-services="crews"><i></i><span rel="localize[CrewInvites]">Crew Invites</span><span class="count"></span></a></li>
+                    <li><a href="#" id="findCrewLink" data-services="crews"><i></i><span rel="localize[FindCrew]">Find Crew</span></a></li>
+                    <li><a href="#" id="gameInvitesLink" class="hasCount"><i></i><span rel="localize[GameInvites]">Game Invites</span><span class="count"></span></a></li>
+                </ul>
+            </div>
+            <div class="contentWrapper">
+                <div class="loadingMask" id='loading_friends'><span class="loading"></span></div>
+                <div id="friendsContainer" class="box-wrap antiscroll-wrap">
+                    <div class="box">
+                        <div class="antiscroll-inner">
+                            <div class="topStrip clearfix">
+                                <div id="friendSearch">
+                                    <form id="friendSearchForm">
+                                        <input type="text" id="friendSearchbox" placeholder="Search by name" rel="localize[Search]" maxlength="16" />
+                                        <a id="friendSearchLink" class="searchButton"><span>Search</span></a>
+                                        <span class="errors"></span>
+                                    </form>
+                                    <span class="searchTip"></span>
+                                    <h5 id="friendSearchTerm"><span rel="localize[YouSearchedFor]">You searched for</span> <span class="purple"></span></h5>
+                                </div>
+                                <div id="gameInvitesHeader">
+                                    <h3><span rel="localize[PendingGame]">Pending Game Invites:</span> <span class="purple">0</span></h3>
+                                </div>
+                            </div>
+                            <div class="overview">
+                                <div id="friendsList" class="content clearfix"></div>
+                                <div id="friendInvitesList" class="content"></div>
+                                <div id="findFriends" class="content">
+                                    <div id="findFriendsIntro">
+                                        <h3 rel="localize[FindPlayersBy]">Find players by searching for...</h3>
+                                        <ul>
+                                            <li rel="localize[SocialClubName]">Social Club name</li>
+                                        </ul>
+                                    </div>
+                                    <div id="findFriendsList"></div>
+                                </div>
+
+                                <div id="crewsList" class="content"></div>
+                                <div id="crewMembersList" class="content"></div>
+                                <div id="crewInvitesHeader" class="content"></div>
+                                <div id="crewInvitesList" class="content"></div>
+                                <div id="crewRequestsList" class="content"></div>
+                                <div id="findCrews" class="content"></div>
+
+                                <div id="gameInvitesList" class="content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="friendProfilePanel" class="panel">
+            <div class="contentWrapper">
+                <div class="loadingMask contentWrapper watermarkBg">
+                    <span class="loading"></span>
+                </div>
+            <div id="profileHidden"></div>
+                <div id="user">
+                    <div class="header clearfix">
+                        <div id="cardInfoVitals"></div>
+                        <div id="gamesPanel">
+                        </div>
+                    </div>
+                    <ul class="nav clearfix"></ul>
+                    <div id="userFriends" class="box-wrap antiscroll-wrap">
+                        <div class="box">
+                            <div class="antiscroll-inner"></div>
+                        </div>
+                    </div>
+                    <div id="userCrews" class="box-wrap antiscroll-wrap">
+                        <div class="box">
+                            <div class="antiscroll-inner"></div>
+                        </div>
+                    </div>
+                    <div id="userAccounts" class="box-wrap antiscroll-wrap">
+                        <div class="box">
+                            <div class="antiscroll-inner"></div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+        <div id="editProfile" class="panel">
+                <div class="sideMenuCol">
+                    <ul class="sideMenu">
+                        <li><a href="#" id="myProfileLink" data-services="accounts"><span rel="localize[Profile]">Profile</span></a></li>
+                        <li><a href="#" id="privacyLink" data-services="accounts"><span rel="localize[Privacy]">Privacy</span></a></li>
+                        
+                        <li><a href="#" id="gameSettingsLink" data-services="accounts"><span rel="localize[GameSettings]">Game Settings</span></a></li>
+                        <li><a href="#" id="blockListLink" data-services="accounts"><span rel="localize[BlockList]">Block List</span><span class="count"></span></a></li>
+                        <li><a href="#" id="lnkChangeAvatar" data-services="accounts"><span rel="localize[ChangeAvatar]">Change Avatar</span></a></li>
+                        <li class="network"><a href="#" id="myNetworkDetails" data-services="accounts"><span rel="localize[NetworkInformation]">Network Information</span></a></li>
+                    </ul>
+                    <div class="scui_ver">
+                        <span class="version"></span>
+                        <span class="versionSDK"></span>
+
+                    </div>
+                </div>
+                <div class="contentWrapper">
+                    <div class="topStrip clearfix">
+                        <div id="myProfileHeader" class="content">
+                            <h5 rel="localize[ProfileSettings]">Profile Settings</h5>
+                        </div>
+                        <div id="privacySettingsHeader" class="content">
+                            <h5 rel="localize[PrivacySettings]">Privacy Settings</h5>
+                        </div>
+                        <div id="gameSettingsHeader" class="content">
+                            <h5 rel="localize[GameSettings]">Game Settings</h5>
+                        </div>
+                    </div>
+                    <div class="loadingMask"><span class="loading"></span></div>
+                    <div id="editProfileContainer" class="box-wrap antiscroll-wrap">
+                        <div class="box">
+                            <div class="antiscroll-inner">
+                                <div class="overview">
+                                    <div id="myProfile" class="content">
+                                            <form class="toggleOptionsForm" onsubmit="return false;" style="margin-top: 12px;">
+                                                <p class="clearfix">
+                                                    <label class="mainLabel" for="radioAutoSignIn" rel="localize[AutoSignin]">Auto Sign In</label>
+                                                    <span id="toggleAutoSignIn" class="toggleOptions">
+                                                        <a href="#" class="first selected" data-ui-name="disabledOption">
+                                                            <input type="radio" name="radioAutoSignIn" value="disabled">
+                                                            <span rel="localize[Disabled]">Disabled</span>
+                                                        </a>
+                                                        <a href="#" class="last" data-ui-name="enabledOption">
+                                                            <input type="radio" name="radioAutoSignIn" value="enabled">
+                                                            <span rel="localize[Enabled]">Enabled</span>
+                                                        </a>
+                                                        <span class="privacyChangeAlert"></span>
+                                                    </span>
+                                                </p>
+                                                <p class="clearfix">
+                                                    <label class="mainLabel" for="radioHideNotifications" rel="localize[HideNotifications]">Hide Notifications</label>
+                                                    <span id="toggleHideNotifications" class="toggleOptions">
+                                                        <a href="#" class="first selected" data-ui-name="disabledOption">
+                                                            <input type="radio" name="radioHideNotifications" value="disabled">
+                                                            <span rel="localize[Disabled]">Disabled</span>
+                                                        </a>
+                                                        <a href="#" class="last" data-ui-name="enabledOption">
+                                                            <input type="radio" name="radioHideNotifications" value="enabled">
+                                                            <span rel="localize[Enabled]">Enabled</span>
+                                                        </a>
+                                                        <span class="privacyChangeAlert"></span>
+                                                    </span>
+                                                </p>
+                                            </form>
+                                            <ul id="profileSettings" style="clear: left;">
+                                                <li class="clearfix">
+                                                    <a href="https://socialclub.rockstargames.com/settings" class="rowAnchor clearfix RGSCLoadExt" style="display: block;">
+                                                        <span class="settingLabel" rel="localize[OtherSettings]"></span>
+                                                        <span class="edit">https://socialclub.rockstargames.com/settings</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div id="privacySettings" class="content clearfix">
+                                            <form id="privacySettingsForm" class="toggleOptionsForm" onsubmit=" return false; ">
+
+                                                <fieldset data-ui-name="linkedAccountsSettings">
+                                                    <h2><span rel="localize[MyLinkedAccounts]">My Linked Accounts</span></h2>
+                                                    <p rel="localize[DetermineWhoLinkedAccounts]">Determine who can see your Linked Accounts information on your Social Club profile page, in your mini-profile, Crew page, and other areas of the Social Club where your Nickname is visible.</p>
+                                                    <div id="linkedAccountOptions">
+                                                    </div>
+                                                    <div class="errors"></div>
+                                                </fieldset>
+                                                <fieldset data-ui-name="profileSettings">
+                                                    <h2><span rel="localize[ProfileSettingsTitle]">My Profile Page and Info</span></h2>
+                                                    <p rel="localize[ProfileSettingsDesc]">Manage certain information on your Social Club profile page and areas where your Nickname is visible.</p>
+                                                    <p class="clearfix">
+                                                        <label class="mainLabel" for="sc" rel="localize[ProfileLocation]">Profile Visibility</label>
+
+                                                        <span id="togglePrivacyProfile" class="toggleOptions">
+                                                        </span>
+                                                    </p>
+
+                                                    
+
+                                                    <p class="clearfix">
+                                                        <label class="mainLabel" for="profile_location" rel="localize[ShowCountry]">Show my country/region</label>
+
+                                                        <span id="togglePrivacyCountry" class="toggleOptions">
+                                                        </span>
+                                                    </p>
+                                                    <div class="errors"></div>
+                                                </fieldset>
+                                                <fieldset data-ui-name="gameStatsSettings">
+                                                    <h2><span rel="localize[SinglePlayerProf]">My Single Player & Profile Page Game Stats</span></h2>
+                                                    <p rel="localize[ManageSingle]">Manage who can see stats on your profile page and who can see your single player game stats through other Social Club features. This setting does not control multiplayer stats and multiplayer history outside of your profile page.</p>
+                                                    <p class="clearfix">
+                                                        <label class="mainLabel" for="gameplay_visibility" rel="localize[GameStatsVis]">Game stats visibility</label>
+
+                                                        <span id="togglePrivacyStats" class="toggleOptions">
+                                                        </span>
+                                                    </p>
+                                                    <div class="errors"></div>
+                                                </fieldset>
+
+                                            </form>
+                                        </div>
+                                        <div id="accountSettings" class="content"></div>
+                                        <div id="gameSettings" class="content clearfix">
+                                            <form id="gameSettingsForm" class="toggleOptionsForm" onsubmit="return false;">
+
+                                                <fieldset id="gameSettingsNone">
+                                                    <h2><span rel="localize[GameSettings]">Game Settings</span></h2>
+                                                    <p rel="localize[GameSettingsNone]">No settings are currently available.</p>
+                                                </fieldset>
+
+                                                <fieldset id="presence">
+                                                    <h2><span rel="localize[GameSettings]">Game Settings</span></h2>
+                                                    <p rel="localize[GameSettingsDesc]">Determine who can see the information about the games you are playing.</p>
+                                                    <p class="clearfix">
+                                                        <label class="mainLabel" for="presencevisibility" rel="localize[PresenceVisibility]">Presence Visibility</label>
+                                                        <span id="togglePresenceVisibility" class="toggleOptions">
+                                                        </span>
+                                                    </p>
+                                                    <div class="errors"></div>
+                                                </fieldset>
+                                                <fieldset class="cloudsave" data-ui-name="cloudsaves">
+                                                    <h2><span rel="localize[CloudSaves]">Cloud Saves</span></h2>
+                                                    <p rel="localize[CloudSaveOptionsDesc]">Toggle cloud saves for this game.</p>
+                                                    <p class="clearfix">
+
+                                                        <label class="mainLabel" for="radioCloudSave" rel="localize[CloudSaves]">Cloud Saves</label>
+                                                        <span id="toggleCloudSave" class="toggleOptions">
+                                                            <a href="#" class="first" data-ui-name="disabledOption">
+                                                                <input type="radio" name="radioCloudSave" value="disabled">
+                                                                <span rel="localize[Disabled]">Disabled</span>
+                                                            </a>
+                                                            <a href="#" class="last" data-ui-name="enabledOption">
+                                                                <input type="radio" name="radioCloudSave" value="enabled">
+                                                                <span rel="localize[Enabled]">Enabled</span>
+                                                            </a>
+                                                            <span class="privacyChangeAlert"></span>
+                                                        </span>
+                                                    </p>
+                                                    <div class="errors"></div>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                        <div id="settings" class="content"></div>
+                                        <div id="blockList" class="content">
+                                            <div id="blockedUsersHeader">
+                                                <h2>
+                                                    <span class="noBlockedUsers" rel="localize[NoBlockedUsers]">No blocked users</span>
+                                                    <span class="blockInfo" rel="localize[BlockInfo]">You can individually block users by clicking the "BLOCK" button on their profile.</span>
+                                                </h2>
+                                            </div>
+                                            <div id="blockListPlayercards"></div>
+                                        </div>
+                                        <div id="avatar" class="content selectAvatarPanel">
+                                            <div class="inner">
+                                                <form action="#" method="post" id="editAvatarForm" onsubmit="return false;">
+                                                    <fieldset>
+                                                        <legend>Category select</legend>
+                                                        <p>
+                                                            <label class="title" for="editAvatarGame"><span class="number">1</span><span rel="localize[SelectCategory]">Select a Category</span></label>
+                                                            <select name="editAvatarGame" id="editAvatarGame"></select>
+                                                        </p>
+                                                    </fieldset>
+                                                    <label id="editAvatarError"></label>
+                                                    <div class="errors"></div>
+                                                </form>
+
+                                                <p class="title selectAvatarLabel"><span class="number">2</span><span rel="localize[SelectAvatar]">Select an Avatar</span></p>
+                                                <div class="loadingAvatarGames waitMessage"><span class="loading"></span><span rel="localize[LoadingAvatars]">Please wait... loading Avatars</span></div>
+                                                <div id="editAvatarPanel" class="avatarPanel">
+                                                    <span class="loading"></span>
+                                                    <div id="editAvatarPanelInner"><ul id="avatarSlider"></ul>
+                                                    </div>
+                                                </div>
+                                                <div class="editSelectedAvatar">
+                                                    <p class="title"><span class="number">3</span><span rel="localize[Confirm]">Confirm</span></p>
+                                                    <div id="selectedAvatarContainer">
+                                                        <img id="imgEditSelectedAvatar" src="https://s.rsg.sc/scui/ext/scui/images/avatars/128x128/default.png" alt="" title="" class="extraLargeAvatar" />
+                                                    </div>
+                                                    <p class="text subTitle"><span rel="localize[SelectedAvatar]">Selected Avatar</span></p>
+                                                    <p class="text" rel="localize[AvatarSC]">Your avatar will represent you throughout Social Club.</p>
+                                                    <div class="errors"></div>
+                                                </div>
+
+                                                <div id="editAvatarWrapper" class="submitAvatarWrapper">
+                                                    <a href="#" class="btn btnPurple btnLarge btnRounded" id="editAvatarSubmit" rel="localize[Submit]">Submit</a>
+                                                </div>
+
+                                                <div id="customAvatarContainer" style="display:none">
+                                                    <p id="customAvatar"><span rel="localize[WheresMyPhoto]">Where's my photo?</span> <a href="#" class="close">?</a></p>
+                                                    <div id="customAvatarInfo" style="display:none">
+                                                        <a class="close" href="#"><i class="sc-signout"></i></a>
+                                                        <h4 rel="localize[WheresMyPhoto]">Where's my photo?</h4>
+                                                        <p rel="localize[WheresMyPhotoDescription]">Selfies and Mugshots are the only photos that can be used as an Avatar. Photos with meme text will not appear here. Photos created prior to May 2015 may need to be retaken to appear here.</p>
+
+                                                        <h4 rel="localize[CantFindCharacter]">Can't find your character?</h4>
+                                                        <p rel="localize[MakeSureAccountLinked]">Make sure your <a href="http://socialclub.rockstargames.com/settings/linkedaccounts" class="RGSCLoadExt">accounts</a> are linked to your Social Club account.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="networkSettings">
+                                            <ul id="networkInformation">
+                                                <li class="clearfix">
+                                                    <a href="" class="rowAnchor clearfix editlink" style="display: block;">
+                                                        <span class="settingLabel" rel="localize[publicAddress]">Public Address</span>
+                                                        <span class="settingContent public"></span>
+                                                    </a>
+                                                </li>
+                                                <li class="clearfix">
+                                                    <a href="" class="rowAnchor clearfix editlink" style="display: block;">
+                                                        <span class="settingLabel" rel="localize[privateAddress]">Private Address</span>
+                                                        <span class="settingContent private"></span>
+                                                    </a>
+                                                </li>
+                                                <li class="clearfix">
+                                                    <a href="" class="rowAnchor clearfix editlink" style="display: block;">
+                                                        <span class="settingLabel" rel="localize[natType]">NAT Type</span>
+                                                        <span class="settingContent nat"></span>
+                                                    </a>
+                                                </li>
+                                                <li class="clearfix">
+                                                    <a href="" class="rowAnchor clearfix editlink pcp" style="display: block;">
+                                                        <span class="settingLabel" rel="localize[pcp]">PCP</span>
+                                                        <span class="settingContent"></span>
+                                                    </a>
+                                                </li>
+                                                <li class="clearfix">
+                                                    <a href="" class="rowAnchor clearfix editlink" style="display: block;">
+                                                        <span class="settingLabel" rel="localize[uPnp]">UPnP</span>
+                                                        <span class="settingContent upnp"></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div id="connectionDetails">
+                                                <h3 rel="localize[ConnectionDetails]">Connection Details</h3>
+                                                <p></p>
+                                            </div>
+                                            <p id="retryNetworkSettings">
+                                                <a href="#" class="btn btnPurple" rel="localize[Refresh]">Refresh</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+         </div>
+        <div id="storePanel" class="panel">
+            <div class="loadingMask contentWrapper watermarkBg">
+                <span class="loading"></span>
+            </div>
+            <iframe name="storeFrame" id="storeFrame" src="" scrolling="no"></iframe>
+            <div rel="localize[QuitMessage]">Press [ESC] to exit Social Club</div>
+        </div>
+        <div id="storev2Panel" class="panel">
+            <div class="contentWrapper">
+                <div id="storeCatalog"></div>
+                <div class="loadingMask"><span class="loading"></span></div>
+            </div>
+        </div>
+        <div id="storet2gpPanel" class="panel">
+            <div class="contentWrapper">
+                <div class="loadingMask"><span class="loading"></span></div>
+                <iframe name="t2gpstoreFrame" id="t2gpstoreFrame" frameborder="0" title="t2 store content" src="" scrolling="yes"></iframe>
+            </div>
+        </div>
+        <div id="scuiPanelInstruction" rel="localize[QuitMessage]">Press [ESC] to exit Social Club</div>
+    </div>
+
+    <div id="confirmModal"></div>
+    <div id="reportModal"></div>
+</div>
+
+<div id="invisibleMask"></div>
+
+    
+    <script type="text/javascript" src="https://s.rsg.sc/scui/ext/scui/20230227bgcb/js/build/runtime.19c4f89b1749f7a458f0.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://s.rsg.sc/scui/ext/scui/20230227bgcb/js/build/common.cdce4e00bce969f96338.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://s.rsg.sc/scui/ext/scui/20230227bgcb/js/build/game.39c91029d6c4c258ea4e.js" charset="utf-8"></script>
+        <script type="text/javascript" src="https://s.rsg.sc/scui/ext/scui/20230227bgcb/js/build/scui-ratings.js" charset="utf-8"></script>
+
+</body>
+</html>
